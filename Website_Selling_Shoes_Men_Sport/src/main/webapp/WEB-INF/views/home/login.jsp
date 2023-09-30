@@ -46,14 +46,14 @@
             <div class="col-lg-6">
                 <div class="login_form_inner">
                     <h3>Log in to enter</h3>
-                    <form class="row login_form" action="../../../contact_process.php" method="post" id="contactForm"
+                    <form class="row login_form" action="/admin/login" method="post" id="contactForm"
                           novalidate="novalidate">
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Username"
+                            <input type="text" class="form-control" name="username" placeholder="Username"
                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Password"
+                            <input type="text" class="form-control" name="password" placeholder="Password"
                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
                         </div>
                         <div class="col-md-12 form-group">

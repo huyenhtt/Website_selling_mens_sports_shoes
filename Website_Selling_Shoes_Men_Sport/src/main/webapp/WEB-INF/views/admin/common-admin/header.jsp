@@ -1,7 +1,7 @@
 <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-        <a href="/" class="logo d-flex align-items-center">
+        <a href="/admin/home" class="logo d-flex align-items-center">
             <img src="../../../assets/img/logo.png" alt="">
             <span class="d-none d-lg-block">FS Shoes</span>
         </a>
@@ -212,7 +212,7 @@
                     </li>
 
                     <li>
-                        <a class="dropdown-item d-flex align-items-center" href="#">
+                        <a class="dropdown-item d-flex align-items-center" href="/admin/logout">
                             <i class="bi bi-box-arrow-right"></i>
                             <span>Sign Out</span>
                         </a>
@@ -224,4 +224,5 @@
         </ul>
     </nav><!-- End Icons Navigation -->
 
-</header><!-- End Header -->
+</header>
+<!-- End Header -->
