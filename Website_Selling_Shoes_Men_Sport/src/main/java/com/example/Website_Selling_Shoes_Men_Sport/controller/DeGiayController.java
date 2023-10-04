@@ -48,13 +48,15 @@ public class DeGiayController {
         Page<DeGiay> page = deGiayService.getListDeGiay(pageable);
         model.addAttribute("page", page);
         model.addAttribute("searchForm", new Searchform());
-        return "/admin/de-giay/list-degiay";
+        model.addAttribute("view", "../admin/de-giay/list-degiay.jsp");
+        return "/admin/dashboard";
     }
 
     @RequestMapping("/view-add")
     public String viewAdd(@ModelAttribute("deGiay") DeGiay deGiay, Model model) {
         model.addAttribute("action", "/admin/de-giay/add");
-        return "/admin/de-giay/add";
+        model.addAttribute("view", "../admin/de-giay/add.jsp");
+        return "/admin/dashboard";
     }
 
     @RequestMapping("/view-update/{id}")
@@ -62,13 +64,15 @@ public class DeGiayController {
         DeGiay deGiay = deGiayService.GetDeGiayById(id);
         model.addAttribute("deGiay", deGiay);
         model.addAttribute("action", "/admin/de-giay/update/" + deGiay.getId());
-        return "/admin/de-giay/add";
+        model.addAttribute("view", "../admin/de-giay/update.jsp");
+        return "/admin/dashboard";
     }
     @RequestMapping("/add")
     public String addDeGiay(Model model, @Valid @ModelAttribute("deGiay") DeGiay deGiay, BindingResult result) {
         if (result.hasErrors()) {
             model.addAttribute("mess", "Vui lòng nhập đúng các thuộc tính !");
-            return "/admin/de-giay/hien-de-giay";
+            model.addAttribute("view", "../admin/de-giay/add.jsp");
+            return "/admin/dashboard";
         }
         deGiayService.AddDeGiay(deGiay);
         return "redirect:/admin/de-giay/hien-de-giay";
@@ -85,6 +89,8 @@ public class DeGiayController {
     public String updateDeGiay( Model model,@Valid @ModelAttribute("deGiay") DeGiay deGiay, @PathVariable UUID id, BindingResult result) {
         if (result.hasErrors()){
             model.addAttribute("mess", "Vui lòng nhập đúng các thuộc tính !");
+            model.addAttribute("view", "../admin/de-giay/update.jsp");
+            return "/admin/dashboard";
         }
 
         deGiayService.UpdateDeGiay(deGiay,deGiay.getId());
@@ -92,13 +98,14 @@ public class DeGiayController {
 
     }
     @RequestMapping("/search")
-    public String searchDeGiay(@ModelAttribute("searchForm") LoaiGiayController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model){
+    public String searchDeGiay(@ModelAttribute("searchForm") DeGiayController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model){
         if (p<0){
             p=0;
         }
         Pageable pageable=PageRequest.of(p,5);
         Page<DeGiay> page=deGiayService.searchDeGiay(searchform.keyword,pageable);
         model.addAttribute("page",page);
-        return "/admin/de-giay/list-degiay";
+        model.addAttribute("view", "../admin/de-giay/list-degiay.jsp");
+        return "/admin/dashboard";
     }
 }
