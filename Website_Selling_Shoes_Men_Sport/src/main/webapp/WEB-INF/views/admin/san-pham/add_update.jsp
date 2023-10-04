@@ -11,7 +11,7 @@
 
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/dashboard">Quản Lý Sản Phẩm</a></li>
+            <li class="breadcrumb-item"><a href="/admin/san-pham/hien-thi">Quản Lý Sản Phẩm</a></li>
 
             <li class="breadcrumb-item active">Sản Phẩm</li>
         </ol>
