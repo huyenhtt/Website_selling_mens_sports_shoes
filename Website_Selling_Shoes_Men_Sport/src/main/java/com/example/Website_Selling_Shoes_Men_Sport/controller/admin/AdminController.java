@@ -24,7 +24,8 @@ public class AdminController {
 
     //    đây là phần test
     @GetMapping("/home")
-    public String dashboard() {
+    public String dashboard(Model model) {
+        model.addAttribute("view", "../admin/index.jsp");
         return "admin/dashboard";
     }
 
