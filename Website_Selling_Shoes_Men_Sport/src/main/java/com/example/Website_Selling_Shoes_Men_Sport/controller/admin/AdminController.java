@@ -46,7 +46,7 @@ public class AdminController {
         for (Account a : service.findAll()) {
             if (a.getUsername().equals(username) && a.getPassword().equals(password)) {
                 if (a.isRole() == true) {
-                    session.setAttribute("username", username);
+                    session.setAttribute("account", a);
                     return "home/a";
                 }
                 if (a.isRole() == false) {
