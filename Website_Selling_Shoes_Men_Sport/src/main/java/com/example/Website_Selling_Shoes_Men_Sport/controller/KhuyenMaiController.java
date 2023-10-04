@@ -48,13 +48,15 @@ public class KhuyenMaiController {
         Page<KhuyenMai> page = khuyenMaiService.getListKhuyenMai(pageable);
         model.addAttribute("page", page);
         model.addAttribute("searchForm", new Searchform());
-        return "/admin/khuyen-mai/list-khuyenmai";
+        model.addAttribute("view", "../admin/khuyen-mai/list-khuyenmai.jsp");
+        return "/admin/dashboard";
     }
 
     @RequestMapping("/view-add")
     public String viewAdd(@ModelAttribute("khuyenMai") KhuyenMai khuyenMai, Model model) {
         model.addAttribute("action", "/admin/khuyen-mai/add");
-        return "/admin/khuyen-mai/add";
+        model.addAttribute("view", "../admin/khuyen-mai/add.jsp");
+        return "/admin/dashboard";
     }
 
     @RequestMapping("/view-update/{id}")
@@ -62,13 +64,15 @@ public class KhuyenMaiController {
         KhuyenMai khuyenMai = khuyenMaiService.GetKhuyenMaiById(id);
         model.addAttribute("khuyenMai", khuyenMai);
         model.addAttribute("action", "/admin/khuyen-mai/update/" + khuyenMai.getId());
-        return "/admin/khuyen-mai/add";
+        model.addAttribute("view", "../admin/khuyen-mai/update.jsp");
+        return "/admin/dashboard";
     }
     @RequestMapping("/add")
     public String addKhuyenMai(Model model, @Valid @ModelAttribute("khuyenMai") KhuyenMai khuyenMai, BindingResult result) {
         if (result.hasErrors()) {
             model.addAttribute("mess", "Vui lòng nhập đúng các thuộc tính !");
-            return "/admin/khuyen-mai/hien-khuyen-mai";
+            model.addAttribute("view", "../admin/khuyen-mai/add.jsp");
+            return "/admin/dashboard";
         }
         khuyenMaiService.AddKhuyenMai(khuyenMai);
         return "redirect:/admin/khuyen-mai/hien-khuyen-mai";
@@ -85,6 +89,8 @@ public class KhuyenMaiController {
     public String updateKhuyenMai( Model model,@Valid @ModelAttribute("khuyenMai") KhuyenMai khuyenMai, @PathVariable UUID id, BindingResult result) {
         if (result.hasErrors()){
             model.addAttribute("mess", "Vui lòng nhập đúng các thuộc tính !");
+            model.addAttribute("view", "../admin/khuyen-mai/update.jsp");
+            return "/admin/dashboard";
         }
 
         khuyenMaiService.UpdateKhuyenMai(khuyenMai,khuyenMai.getId());
@@ -99,6 +105,7 @@ public class KhuyenMaiController {
         Pageable pageable=PageRequest.of(p,5);
         Page<KhuyenMai> page=khuyenMaiService.searchKhuyenMai(searchform.keyword,pageable);
         model.addAttribute("page",page);
-        return "/admin/khuyen-mai/list-khuyenmai";
+        model.addAttribute("view", "../admin/khuyen-mai/list-khuyenmai.jsp");
+        return "/admin/dashboard";
     }
 }

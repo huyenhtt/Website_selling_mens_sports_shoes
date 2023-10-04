@@ -41,6 +41,21 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/admin/de-giay/hien-de-giay">
+                         <i class="bi bi-circle"></i><span>Quản Lý Đế Giày</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/khuyen-mai/hien-khuyen-mai">
+                         <i class="bi bi-circle"></i><span>Quản Lý Khuyến Mãi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/mau-sac/hien-mau-sac">
+                         <i class="bi bi-circle"></i><span>Quản Lý Màu Sắc</span>
+                    </a>
+                </li>
+                <li>
                     <a href="/admin/san-pham/view-add">
                         <i class="bi bi-circle"></i><span>Quản lý....</span>
                     </a>
