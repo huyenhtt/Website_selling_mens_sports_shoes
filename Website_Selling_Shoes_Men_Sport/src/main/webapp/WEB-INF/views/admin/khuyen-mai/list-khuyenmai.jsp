@@ -29,7 +29,7 @@
         <thead class="table table-danger">
         <tr>
             <th>#</th>
-            <th>ID</th>
+            <th style="display: none;">ID</th>
             <th>Mã Khuyến Nãi</th>
             <th>Tên Khuyến Mãi</th>
             <th>Giá Trị</th>
@@ -46,7 +46,7 @@
         <c:forEach items="${page.getContent()}" var="khuyenmai" varStatus="i">
             <tr>
                 <td>${i.index+1}</td>
-                <td>${khuyenmai.id}</td>
+                <td style="display: none;">${khuyenmai.id}</td>
                 <td>${khuyenmai.maKhuyenMai}</td>
                 <td>${khuyenmai.tenKhuyenMai}</td>
                 <td>${khuyenmai.giaTri}</td>
