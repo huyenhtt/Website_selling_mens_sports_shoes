@@ -11,6 +11,8 @@ public interface ChatLieuService {
 
     List<ChatLieu> getListCL();
 
+    ChatLieu getOne(String maCL) ;
+
     ChatLieu insertCL(ChatLieu chatLieu);
 
     ChatLieu deleteCL(UUID id);

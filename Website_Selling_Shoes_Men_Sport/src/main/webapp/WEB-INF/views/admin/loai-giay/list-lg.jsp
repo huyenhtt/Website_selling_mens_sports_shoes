@@ -45,7 +45,6 @@
                         <thead class="table table-danger">
                         <tr>
                             <th>#</th>
-                            <th>ID</th>
                             <th>Mã Loại Giầy</th>
                             <th>Tên Loại Giầy</th>
                             <th>Ngày Tạo</th>
@@ -58,7 +57,6 @@
                         <c:forEach items="${page.getContent()}" var="lg" varStatus="i">
                             <tr>
                                 <td>${i.index+1}</td>
-                                <td>${lg.id}</td>
                                 <td>${lg.ma}</td>
                                 <td>${lg.tenTheLoai}</td>
                                 <td>${lg.createDate}</td>
@@ -67,9 +65,8 @@
                                 <td>
 
                                     <a href="/admin/loai-giay/view-update/${lg.id}" class="btn btn-warning"><i
-                                            class="bi bi-pencil-square"></i></a>
-                                        <%--                                    <a href="/loai-giay/delete/${lg.id}}" class="btn btn-danger"><i--%>
-                                        <%--                                            class="bi bi-trash3-fill"></i></a>--%>
+                                            class="bi bi-pencil-square"></i>Sửa</a>
+
                             </tr>
                         </c:forEach>
                         </tbody>

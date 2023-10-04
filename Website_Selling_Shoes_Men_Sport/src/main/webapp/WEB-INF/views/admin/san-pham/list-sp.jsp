@@ -10,7 +10,7 @@
     <h1>Data Tables</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/dashboard">Quản Lý Sản Phẩm</a></li>
+            <li class="breadcrumb-item"><a href="/admin/san-pham/hien-thi">Quản Lý Sản Phẩm</a></li>
 
             <li class="breadcrumb-item active">Danh Sách sản Phẩm</li>
         </ol>
@@ -25,31 +25,33 @@
 
             <div class="card">
                 <div class="card-body">
-
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <a href="/admin/san-pham/view-add"
+                               class="btn btn-primary"><i
+                                    class="bi bi-plus-square-dotted"></i>Thêm mới</a>
+                        </div>
+                        <div class="col-9 col-md-9 col-sm-9">
+                            <form:form action="/admin/san-pham/search" modelAttribute="searchForm" method="post">
+                                <div class="search">
+                                    <button type="submit" class="btn btn-primary btn-search">Tìm kiếm</button>
+                                    <form:input placeholder="Tìm kiếm theo mã hoặc tên sản phẩm" path="keyword"
+                                                cssClass="form-control-sm"/>
+                                </div>
+                            </form:form>
+                        </div>
+                    </div>
                     <!-- Table with stripped rows -->
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-lg-4">
                             <h5 class="card-title">Danh sách sản phẩm</h5>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-lg-6">
-                            <form:form action="/admin/san-pham/search" modelAttribute="searchForm" method="post">
-                                <div class="input-group mb-3"><form:input type="text" path="keyword"
-                                                                          class="form-control"
-                                                                          placeholder="Nhập mã hoặc tên sản phẩm..."
-                                                                          aria-describedby="button-addon2"></form:input>
-                                    <button class="btn btn-success" type="button" id="button-addon2">Tìm kiếm</button>
-                                </div>
-                            </form:form>
-                        </div>
-                        <div class="col-md-2 col-sm-2 col-lg-2"><a href="/admin/san-pham/view-add" class="btn btn-primary"><i
-                                class="bi bi-plus-square-dotted"></i>Thêm mới</a>
-                        </div>
                     </div>
+
                     <table class="table table-bordered">
                         <thead class="table table-danger">
                         <tr>
                             <th>#</th>
-                            <th>ID</th>
                             <th>Mã Sản Phẩm</th>
                             <th>Tên Sản Phẩm</th>
                             <th>Ngày Tạo</th>
@@ -62,7 +64,6 @@
                         <c:forEach items="${page.getContent()}" var="sp" varStatus="i">
                             <tr>
                                 <td>${i.index+1}</td>
-                                <td>${sp.id}</td>
                                 <td>${sp.maSanPham}</td>
                                 <td>${sp.tenSanPham}</td>
                                 <td>${sp.createDate}</td>
@@ -71,10 +72,10 @@
                                 <td>
 
                                     <a href="/admin/san-pham/view-update/${sp.id}" class="btn btn-warning"><i
-                                            class="bi bi-pencil-square"></i></a>
+                                            class="bi bi-pencil-square">Sửa</i></a>
 
-                                        <%--                                    <a href="/san-pham/delete/${sp.id}}" class="btn btn-danger"><i--%>
-                                        <%--                                            class="bi bi-trash3-fill"></i></a>--%>
+                                    <a href="/chi-tiet-san-pham/view-add/${sp.id}" class="btn btn-danger"><i
+                                            class="bi bi-pencil-square">Thêm chi tiết</i></a>
                             </tr>
                         </c:forEach>
                         </tbody>

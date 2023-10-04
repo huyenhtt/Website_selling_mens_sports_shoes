@@ -30,7 +30,10 @@ public class ChatLieuServiceImpl implements ChatLieuService {
         chatLieu.setLastModifiedDate(LocalDateTime.now());
         return chatLieuRepository.save(chatLieu);
     }
-
+    @Override
+    public ChatLieu getOne(String maCL) {
+        return chatLieuRepository.getSanPhamByMaSP(maCL);
+    }
     @Override
     public ChatLieu deleteCL(UUID id) {
         ChatLieu chatLieu = chatLieuRepository.findById(id).get();
