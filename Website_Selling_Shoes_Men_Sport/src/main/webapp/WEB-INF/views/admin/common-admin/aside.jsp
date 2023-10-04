@@ -1,6 +1,5 @@
 <!-- ======= Sidebar ======= -->
 <%@ page pageEncoding="utf-8" %>
-<%--aside --%>
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
