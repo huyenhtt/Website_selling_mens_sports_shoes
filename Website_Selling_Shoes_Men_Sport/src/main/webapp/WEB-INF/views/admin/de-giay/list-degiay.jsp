@@ -29,7 +29,7 @@
         <thead class="table table-danger">
         <tr>
             <th>#</th>
-            <th>ID</th>
+            <th style="display: none;">ID</th>
             <th>Mã Đế Giầy</th>
             <th>Loại Đế</th>
             <th>Mô Tả</th>
@@ -43,7 +43,7 @@
         <c:forEach items="${page.getContent()}" var="degiay" varStatus="i">
             <tr>
                 <td>${i.index+1}</td>
-                <td>${degiay.id}</td>
+                <td style="display: none;">${degiay.id}</td>
                 <td>${degiay.ma}</td>
                 <td>${degiay.loaiDe}</td>
                 <td>${degiay.moTa}</td>
