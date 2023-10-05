@@ -42,17 +42,17 @@
                 </li>
                 <li>
                     <a href="/admin/de-giay/hien-de-giay">
-                         <i class="bi bi-circle"></i><span>Quản Lý Đế Giày</span>
+                        <i class="bi bi-circle"></i><span>Quản Lý Đế Giày</span>
                     </a>
                 </li>
                 <li>
                     <a href="/admin/khuyen-mai/hien-khuyen-mai">
-                         <i class="bi bi-circle"></i><span>Quản Lý Khuyến Mãi</span>
+                        <i class="bi bi-circle"></i><span>Quản Lý Khuyến Mãi</span>
                     </a>
                 </li>
                 <li>
                     <a href="/admin/mau-sac/hien-mau-sac">
-                         <i class="bi bi-circle"></i><span>Quản Lý Màu Sắc</span>
+                        <i class="bi bi-circle"></i><span>Quản Lý Màu Sắc</span>
                     </a>
                 </li>
                 <li>
@@ -71,14 +71,19 @@
             </a>
             <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="#">
+                    <a href="/admin/hoa-don/hien-thi">
                         <span>Quản lý hoá đơn</span>
                     </a>
                 </li>
 
             </ul>
         </li><!-- End Forms Nav -->
-
+        <li class="nav-item">
+            <a class="nav-link " href="/admin/hoa-don/hien-thi">
+                <i class="bi bi-cash"></i>
+                <span>Quản lý hoá đơn</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
         <!-- End Icons Nav -->
 
         <li class="nav-heading">Pages</li>

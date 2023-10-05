@@ -28,53 +28,46 @@
                     <h5 class="card-title">Thêm/sửa hóa đơn</h5>
 
                     <!-- Table with stripped rows -->
-                    <form:form action="${action}" modelAttribute="hoaDon">
+                    <form:form action="${action}" modelAttribute="hoaDon" class="row g-3">
                         <form:input path="id" class="form-control" type="hidden"/>
-
-                        <div class="mb-3">
+                        <div class="col-md-4">
                             <label class="form-label">Mã hóa đơn: </label>
                             <form:input path="MaHD" class="form-control"/>
                             <form:errors path="MaHD" cssStyle="color: crimson"/>
                         </div>
 
-
-                        <div class="mb-3">
+                        <div class="col-md-4">
                             <label class="form-label">Địa chỉ: </label>
                             <form:input path="diaChi" class="form-control"/>
                             <form:errors path="diaChi" cssStyle="color: crimson"/>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Hình thức thanh toán: </label>
-                            <form:radiobuttons items="${dsHinhThucThanhoan}" path="hinhThucThanhToan" class="form-check-input"/>
+                        <div class="col-md-4">
+                            <label class="form-label">Hình thức thanh toán: </label> <br>
+                            <form:radiobuttons items="${dsHinhThucThanhoan}" path="hinhThucThanhToan"
+                                               class="form-check-input"/> <br>
                             <form:errors path="hinhThucThanhToan" cssStyle="color: crimson"/>
                         </div>
 
-                        <div class="mb-3">
-                            <label class="form-label">Hình thức giao hàng: </label>
-                            <form:radiobuttons items="${dsHinhThucGiaoHang}" path="hinhThucGiaoHang" class="form-check-input"/>
-                            <form:errors path="hinhThucGiaoHang" cssStyle="color: crimson"/>
-                        </div>
-
-                        <div class="mb-3">
+                        <div class="col-md-4">
                             <label class="form-label">SDT người nhận: </label>
                             <form:input path="sdtNguoiNhan" class="form-control"/>
                             <form:errors path="sdtNguoiNhan" cssStyle="color: crimson"/>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="col-md-4">
                             <label class="form-label">SDT người ship: </label>
                             <form:input path="sdtNguoiShip" class="form-control"/>
                             <form:errors path="sdtNguoiShip" cssStyle="color: crimson"/>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="col-md-4">
                             <label class="form-label">Tên người nhận: </label>
                             <form:input path="tenNguoiNhan" class="form-control"/>
                             <form:errors path="tenNguoiNhan" cssStyle="color: crimson"/>
                         </div>
 
-                        <div class="mb-3">
+                        <div class="col-md-4">
                             <label class="form-label">Trạng Thái: </label>
                             <form:radiobuttons items="${dsTrangThai}" path="trangThai" class="form-check-input"/>
                             <form:errors path="trangThai" cssStyle="color: crimson"/>
@@ -83,6 +76,14 @@
                             <button type="submit" class="btn btn-success"
                                     onclick="return confirm('Bạn có chắc muốn thực hiện ?');">
                                 Submit
+                            </button>
+                            <button type="submit" class="btn btn-primary"
+                                    onclick="return confirm('Bạn có chắc muốn thực hiện ?');">
+                                Update
+                            </button>
+                            <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Bạn có chắc muốn thực hiện ?');">
+                                Delete
                             </button>
                         </div>
                     </form:form>
