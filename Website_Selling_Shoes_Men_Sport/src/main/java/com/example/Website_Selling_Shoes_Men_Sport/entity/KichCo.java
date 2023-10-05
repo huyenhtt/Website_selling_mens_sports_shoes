@@ -38,7 +38,7 @@ public class KichCo {
     private String maKichCo;
 
     @Column(name = "Size")
-    @NotBlank(message = "Không để trống")
+    @NotNull(message = "Không để trống")
     private Integer size;
 
     @Column(name = "LoaiSize")
@@ -46,7 +46,7 @@ public class KichCo {
     private String loaiSize;
 
     @Column(name = "GioiTinh")
-    @NotBlank(message = "Không để trống")
+//    @NotNull(message = "Không để trống")
     private Boolean gioiTinh;
 
     @Column(name = "CreateDate")

@@ -10,7 +10,7 @@
     <h1>Data Tables</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/dashboard">Quản Lý Chất Liệu</a></li>
+            <li class="breadcrumb-item"><a href="/admin/chat-lieu/hien-thi">Quản Lý Chất Liệu</a></li>
 
             <li class="breadcrumb-item active">Danh Sách Chất Liệu</li>
         </ol>
@@ -29,16 +29,21 @@
                     <!-- Table with stripped rows -->
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-lg-4">
-                            <h5 class="card-title">Danh sách chất liệu</h5>
+                            <h5 class="card-title">Danh Sách Chất Liệu</h5>
                         </div>
-                        <form:form action="/admin/chat-lieu/search" modelAttribute="searchForm" method="post">
-                            <div class="input-group mb-3"><form:input type="text" path="keyword" class="form-control"
-                                                                      placeholder="Nhập mã hoặc tên chất liệu..."
-                                                                      aria-describedby="button-addon2"></form:input>
-                                <button class="btn btn-success" type="button" id="button-addon2">Search</button>
-                            </div>
-                        </form:form>
-
+                        <div class="col-md-6 col-sm-6 col-lg-6">
+                            <form:form action="/admin/chat-lieu/search" modelAttribute="searchForm" method="post">
+                                <div class="input-group mb-3"><form:input type="text" path="keyword"
+                                                                          class="form-control"
+                                                                          placeholder="Nhập mã hoặc tên chất liệu..."
+                                                                          aria-describedby="button-addon2"></form:input>
+                                    <button class="btn btn-success" type="button" id="button-addon2">Tìm kiếm</button>
+                                </div>
+                            </form:form>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-lg-2"><a href="/admin/chat-lieu/view-add" class="btn btn-primary"><i
+                                class="bi bi-plus-square-dotted"></i>Thêm mới</a>
+                        </div>
                     </div>
                     <br>
                     <table class="table table-bordered">
@@ -67,7 +72,7 @@
                                 <td>
 
                                     <a href="/admin/chat-lieu/view-update/${cl.id}" class="btn btn-warning"><i
-                                            class="bi bi-pencil-square"></i></a> class="bi bi-trash3-fill"></i></a>--%>
+                                            class="bi bi-pencil-square"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>

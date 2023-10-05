@@ -27,21 +27,28 @@ public class KichCoController {
     private KichCoService kichCoService;
 
     @ModelAttribute("dsTrangThai")
-    public Map<Boolean, String> dsGioiTinh(){
-        Map<Boolean, String> map = new HashMap<>();
-        map.put(true, "Nam");
-        map.put(false, "Nu");
-        return map;
+    public Map<Integer, String> getDSTT() {
+        Map<Integer, String> dsTrangThai = new HashMap<>();
+        dsTrangThai.put(0, "Còn sản phẩm");
+        dsTrangThai.put(1, "Hết sản phẩm");
+        return dsTrangThai;
     }
 
+    @ModelAttribute("dsGioiTinh")
+    public Map<Boolean, String> getDsGioiTinh() {
+        Map<Boolean, String> dsGT = new HashMap<>();
+        dsGT.put(true, "Nam");
+        dsGT.put(false, "Nữ");
+        return dsGT;
+    }
     @Data
-    public static class Searchform{
+    public static class Searchform {
         String keyword;
     }
 
     @RequestMapping("/hien-thi")
-    public String getListKC(@RequestParam(defaultValue = "0") int p, Model model){
-        if (p < 0){
+    public String getListKC(@RequestParam(defaultValue = "0") int p, Model model) {
+        if (p < 0) {
             p = 0;
         }
         Pageable pageable = PageRequest.of(p, 5);
@@ -54,7 +61,7 @@ public class KichCoController {
 
     @RequestMapping("/view-add")
     public String viewAdd(@ModelAttribute("kichCo") KichCo kichCo, Model model) {
-        model.addAttribute("action", "admin/kich-co/add");
+        model.addAttribute("action", "/admin/kich-co/add");
         model.addAttribute("view", "../admin/kich-co/add_update.jsp");
         return "/admin/dashboard";
     }
@@ -68,6 +75,7 @@ public class KichCoController {
         return "/admin/dashboard";
 
     }
+
     @RequestMapping("/add")
     public String addKichCo(Model model, @Valid @ModelAttribute("kichCo") KichCo kichCo, BindingResult result) {
         if (result.hasErrors()) {
@@ -76,9 +84,11 @@ public class KichCoController {
             return "/admin/dashboard";
         }
         kichCoService.insertKC(kichCo);
+        model.addAttribute("view", "../admin/kich-co/list-kc.jsp");
         return "redirect:/admin/kich-co/hien-thi";
 
     }
+
     @RequestMapping("/delete/{id}")
     public String deleteKichCo(@PathVariable UUID id) {
         kichCoService.deleteKC(id);
@@ -87,7 +97,7 @@ public class KichCoController {
     }
 
     @RequestMapping("/update/{id}")
-    public String updateKichCo( Model model,@Valid @ModelAttribute("kichCo") KichCo kichCo, @PathVariable UUID id, BindingResult result) {
+    public String updateKichCo(Model model,@PathVariable UUID id,  @Valid @ModelAttribute("kichCo") KichCo kichCo, BindingResult result) {
         if (result.hasErrors()){
             model.addAttribute("mess", "Vui lòng nhập đúng các thuộc tính !");
             model.addAttribute("view", "../admin/kich-co/add_update.jsp");
@@ -95,17 +105,19 @@ public class KichCoController {
         }
 
         kichCoService.updateKC(kichCo,kichCo.getId());
-        return "redirect:/admin/kich-co/hien-thi";
+        model.addAttribute("view", "../admin/kich-co/list-kc.jsp");
 
+        return "redirect:/admin/kich-co/hien-thi";
     }
+
     @RequestMapping("/search")
-    public String searchKichCo(@ModelAttribute("searchForm") KichCoController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model){
-        if (p<0){
-            p=0;
+    public String searchKichCo(@ModelAttribute("searchForm") KichCoController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model) {
+        if (p < 0) {
+            p = 0;
         }
-        Pageable pageable=PageRequest.of(p,5);
-        Page<KichCo> page=kichCoService.searchKC(searchform.keyword,pageable);
-        model.addAttribute("page",page);
+        Pageable pageable = PageRequest.of(p, 5);
+        Page<KichCo> page = kichCoService.searchKC(searchform.keyword, pageable);
+        model.addAttribute("page", page);
         model.addAttribute("view", "../admin/kich-co/list-kc.jsp");
         return "/admin/dashboard";
 

@@ -10,7 +10,7 @@
     <h1>Data Tables</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/dashboard">Quản Lý Kích Cỡ</a></li>
+            <li class="breadcrumb-item"><a href="/admin/kich-co/hien-thi">Quản Lý Kích Cỡ</a></li>
 
             <li class="breadcrumb-item active">Danh Sách Kích Cỡ</li>
         </ol>
@@ -29,16 +29,22 @@
                     <!-- Table with stripped rows -->
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-lg-4">
-                            <h5 class="card-title">Danh sách kích cỡ</h5>
+                            <h5 class="card-title">Danh Sách Kích Cỡ</h5>
                         </div>
-                        <form:form action="/admin/kich-co/search" modelAttribute="searchForm" method="post">
-                            <div class="input-group mb-3"><form:input type="text" path="keyword" class="form-control"
-                                                                      placeholder="Nhập mã hoặc loại size giầy..."
-                                                                      aria-describedby="button-addon2"></form:input>
-                                <button class="btn btn-success" type="button" id="button-addon2">Search</button>
-                            </div>
-                        </form:form>
-
+                        <div class="col-md-6 col-sm-6 col-lg-6">
+                            <form:form action="/admin/kich-co/search" modelAttribute="searchForm" method="post">
+                                <div class="input-group mb-3"><form:input type="text" path="keyword"
+                                                                          class="form-control"
+                                                                          placeholder="Nhập mã hoặc size ..."
+                                                                          aria-describedby="button-addon2"></form:input>
+                                    <button class="btn btn-success" type="button" id="button-addon2">Tìm kiếm</button>
+                                </div>
+                            </form:form>
+                        </div>
+                        <div class="col-md-2 col-sm-2 col-lg-2"><a href="/admin/kich-co/view-add"
+                                                                   class="btn btn-primary"><i
+                                class="bi bi-plus-square-dotted"></i>Thêm mới</a>
+                        </div>
                     </div>
                     <br>
                     <table class="table table-bordered">
@@ -50,6 +56,7 @@
                             <th>Size</th>
                             <th>Loại Size</th>
                             <th>Giới tính</th>
+                            <th>Ngày tạo</th>
                             <th>Ngày cập nhật</th>
                             <th>Trạng Thái</th>
                             <th>Action</th>
@@ -62,15 +69,21 @@
                                 <td>${kc.id}</td>
                                 <td>${kc.maKichCo}</td>
                                 <td>${kc.size}</td>
-                                <td>${kc.Loaisize}</td>
-                                <td>${kc.gioiTinh == true ? "Nam" : "Nữ"}</td>
+                                <td>${kc.loaiSize}</td>
+                                <td>
+
+                                    <c:if test="${kc.gioiTinh==true}">Nam</c:if>
+                                    <c:if test="${kc.gioiTinh==false}">Nữ</c:if>
+                                </td>
+
                                 <td>${kc.createDate}</td>
                                 <td>${kc.lastModifiedDate}</td>
                                 <td>${kc.trangThai == 0 ? "Còn sản phẩm":"Hết sản phẩm"}</td>
                                 <td>
 
                                     <a href="/admin/kich-co/view-update/${kc.id}" class="btn btn-warning"><i
-                                            class="bi bi-pencil-square"></i></a> class="bi bi-trash3-fill"></i></a>--%>
+                                            class="bi bi-pencil-square"></i></a>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>

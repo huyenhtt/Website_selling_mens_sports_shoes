@@ -48,6 +48,7 @@ public class KichCoServiceImpl implements KichCoService {
             KichCo kichCoToUpdate = exitingKichCo.get();
             kichCoToUpdate.setLastModifiedDate(LocalDateTime.now());
             kichCoToUpdate.setLoaiSize(kichCo.getLoaiSize());
+            kichCoToUpdate.setGioiTinh(kichCo.getGioiTinh());
             kichCoToUpdate.setTrangThai(kichCo.getTrangThai());
             kichCoRepository.save(kichCoToUpdate);
             return kichCoToUpdate;
