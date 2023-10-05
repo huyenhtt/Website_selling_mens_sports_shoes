@@ -1,12 +1,11 @@
 <!-- ======= Sidebar ======= -->
 <%@ page pageEncoding="utf-8" %>
-
 <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
 
         <li class="nav-item">
-            <a class="nav-link " href="#">
+            <a class="nav-link " href="/admin/home">
                 <i class="bi bi-grid"></i>
                 <span>Dashboard</span>
             </a>
@@ -39,6 +38,21 @@
                 <li>
                     <a href="/admin/loai-giay/hien-thi">
                         <i class="bi bi-circle"></i><span>Quản Lý Loại Giầy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/de-giay/hien-de-giay">
+                         <i class="bi bi-circle"></i><span>Quản Lý Đế Giày</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/khuyen-mai/hien-khuyen-mai">
+                         <i class="bi bi-circle"></i><span>Quản Lý Khuyến Mãi</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/admin/mau-sac/hien-mau-sac">
+                         <i class="bi bi-circle"></i><span>Quản Lý Màu Sắc</span>
                     </a>
                 </li>
                 <li>
@@ -76,48 +90,7 @@
             </a>
         </li><!-- End Profile Page Nav -->
 
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-faq.html">
-                <i class="bi bi-question-circle"></i>
-                <span>F.A.Q</span>
-            </a>
-        </li><!-- End F.A.Q Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-contact.html">
-                <i class="bi bi-envelope"></i>
-                <span>Contact</span>
-            </a>
-        </li><!-- End Contact Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="/admin/register">
-                <i class="bi bi-card-list"></i>
-                <span>Register</span>
-            </a>
-        </li><!-- End Register Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="/admin/login">
-                <i class="bi bi-box-arrow-in-right"></i>
-                <span>Login</span>
-            </a>
-        </li><!-- End Login Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-error-404.html">
-                <i class="bi bi-dash-circle"></i>
-                <span>Error 404</span>
-            </a>
-        </li><!-- End Error 404 Page Nav -->
-
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="pages-blank.html">
-                <i class="bi bi-file-earmark"></i>
-                <span>Blank</span>
-            </a>
-        </li><!-- End Blank Page Nav -->
-
     </ul>
 
 </aside>
+<!-- End Sidebar-->

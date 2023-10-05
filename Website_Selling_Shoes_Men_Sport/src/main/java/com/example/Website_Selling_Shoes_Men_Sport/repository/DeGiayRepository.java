@@ -11,4 +11,6 @@ import java.util.UUID;
 public interface DeGiayRepository extends JpaRepository<DeGiay, UUID> {
     @Query("select l from DeGiay l where l.ma like %?1% or l.loaiDe like %?1% or ?1 is null")
     Page<DeGiay> searchDeGiay(String keyword, Pageable pageable);
+    @Query(value = "select d from DeGiay d where d.ma = ?1")
+    DeGiay findByMa(String ma);
 }

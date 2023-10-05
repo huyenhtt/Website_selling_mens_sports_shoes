@@ -24,7 +24,8 @@ public class AdminController {
 
     //    đây là phần test
     @GetMapping("/home")
-    public String dashboard() {
+    public String dashboard(Model model) {
+        model.addAttribute("view", "../admin/index.jsp");
         return "admin/dashboard";
     }
 
@@ -45,7 +46,7 @@ public class AdminController {
         for (Account a : service.findAll()) {
             if (a.getUsername().equals(username) && a.getPassword().equals(password)) {
                 if (a.isRole() == true) {
-                    session.setAttribute("username", username);
+                    session.setAttribute("account", a);
                     return "home/a";
                 }
                 if (a.isRole() == false) {

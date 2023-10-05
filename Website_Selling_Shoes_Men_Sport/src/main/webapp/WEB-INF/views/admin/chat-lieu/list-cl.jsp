@@ -73,6 +73,7 @@
 
                                     <a href="/admin/chat-lieu/view-update/${cl.id}" class="btn btn-warning"><i
                                             class="bi bi-pencil-square"></i></a>
+                                    <a href="/admin/chat-lieu/delete/${cl.id}" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>

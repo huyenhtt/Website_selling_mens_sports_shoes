@@ -13,4 +13,7 @@ import java.util.UUID;
 public interface ChatLieuRepository extends JpaRepository<ChatLieu, UUID> {
     @Query("select cl from ChatLieu cl where cl.maChatLieu like %?1% or cl.tenChatLieu like %?1% or ?1 is null")
     Page<ChatLieu> searchCL(String keyword, Pageable pageable);
+
+    @Query("select cl from ChatLieu cl where  cl.maChatLieu =?1")
+    ChatLieu getSanPhamByMaSP(String maCl);
 }

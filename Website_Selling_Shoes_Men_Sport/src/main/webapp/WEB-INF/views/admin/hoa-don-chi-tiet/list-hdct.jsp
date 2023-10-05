@@ -10,9 +10,9 @@
     <h1>Data Tables</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/admin/kich-co/hien-thi">Quản Lý Kích Cỡ</a></li>
+            <li class="breadcrumb-item"><a href="/admin/hoa-don-chi-tiet/hien-thi">Quản Lý Hoá Đơn Chi Tiết</a></li>
 
-            <li class="breadcrumb-item active">Danh Sách Kích Cỡ</li>
+            <li class="breadcrumb-item active">Danh Sách Hóa Đơn Chi Tiết</li>
         </ol>
     </nav>
 </div>
@@ -29,20 +29,19 @@
                     <!-- Table with stripped rows -->
                     <div class="row">
                         <div class="col-md-4 col-sm-4 col-lg-4">
-                            <h5 class="card-title">Danh Sách Kích Cỡ</h5>
+                            <h5 class="card-title">Danh Sách Hóa Đơn Chi Tiết</h5>
                         </div>
                         <div class="col-md-6 col-sm-6 col-lg-6">
-                            <form:form action="/admin/kich-co/search" modelAttribute="searchForm" method="post">
+                            <form:form action="/admin/hoa-don-chi-tiet/search" modelAttribute="searchForm" method="post">
                                 <div class="input-group mb-3"><form:input type="text" path="keyword"
                                                                           class="form-control"
-                                                                          placeholder="Nhập mã hoặc size ..."
+                                                                          placeholder="Nhập mã hoặc tên chất liệu..."
                                                                           aria-describedby="button-addon2"></form:input>
                                     <button class="btn btn-success" type="button" id="button-addon2">Tìm kiếm</button>
                                 </div>
                             </form:form>
                         </div>
-                        <div class="col-md-2 col-sm-2 col-lg-2"><a href="/admin/kich-co/view-add"
-                                                                   class="btn btn-primary"><i
+                        <div class="col-md-2 col-sm-2 col-lg-2"><a href="/admin/hoa-don-chi-tiet/view-add" class="btn btn-primary"><i
                                 class="bi bi-plus-square-dotted"></i>Thêm mới</a>
                         </div>
                     </div>
@@ -52,38 +51,30 @@
                         <tr>
                             <th>#</th>
                             <th>ID</th>
-                            <th>Mã Kích Cỡ/th>
-                            <th>Size</th>
-                            <th>Loại Size</th>
-                            <th>Giới tính</th>
-                            <th>Ngày tạo</th>
+                            <th>Số Lượng</th>
+                            <th>Đơn Giá</th>
+                            <th>Giá Bán</th>
+                            <th>Giảm Giá Khuyến Mại</th>
+                            <th>Ngày Tạo</th>
                             <th>Ngày cập nhật</th>
-                            <th>Trạng Thái</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${page.getContent()}" var="kc" varStatus="i">
+                        <c:forEach items="${page.getContent()}" var="hdct" varStatus="i">
                             <tr>
                                 <td>${i.index+1}</td>
-                                <td>${kc.id}</td>
-                                <td>${kc.maKichCo}</td>
-                                <td>${kc.size}</td>
-                                <td>${kc.loaiSize}</td>
+                                <td>${hdct.id}</td>
+                                <td>${hdct.soLuong}</td>
+                                <td>${hdct.donGia}</td>
+                                <td>${hdct.giaBan}</td>
+                                <td>${hdct.giamGiaKhuyenMai}</td>
+                                <td>${hdct.createDate}</td>
+                                <td>${hdct.lastModifiedDate}</td>
                                 <td>
-
-                                    <c:if test="${kc.gioiTinh==true}">Nam</c:if>
-                                    <c:if test="${kc.gioiTinh==false}">Nữ</c:if>
-                                </td>
-
-                                <td>${kc.createDate}</td>
-                                <td>${kc.lastModifiedDate}</td>
-                                <td>${kc.trangThai == 0 ? "Còn sản phẩm":"Hết sản phẩm"}</td>
-                                <td>
-
-                                    <a href="/admin/kich-co/view-update/${kc.id}" class="btn btn-warning"><i
+                                    <a href="/admin/hoa-don-chi-tiet/view-update/${hdct.id}" class="btn btn-warning"><i
                                             class="bi bi-pencil-square"></i></a>
-                                    <a href="/admin/kich-co/delete/${kc.id}" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
+                                    <a href="/admin/hoa-don-chi-tiet/delete/${hdct.id}" class="btn btn-danger"><i class="bi bi-trash3-fill"></i></a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -99,12 +90,11 @@
 <div class="text-center">
     <nav aria-label="Page navigation example" class="text-center">
         <ul class="pagination justify-content-center">
-            <li class="page-item"><a class="page-link" href="/admin/kich-co/hien-thi?p=0">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="/admin/kich-co/hien-thi?p=${page.number-1}"><<</a></li>
-            <li class="page-item"><a class="page-link" href="/admin/kich-co/hien-thi?p=${page.number+1}">>></a></li>
-            <li class="page-item"><a class="page-link" href="/admin/kich-co/hien-thi?p=${page.totalPages-1}">Next</a>
+            <li class="page-item"><a class="page-link" href="/admin/hoa-don-chi-tiet/hien-thi?p=0">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="/admin/hoa-don-chi-tiet/hien-thi?p=${page.number-1}"><<</a></li>
+            <li class="page-item"><a class="page-link" href="/admin/hoa-don-chi-tiet/hien-thi?p=${page.number+1}">>></a></li>
+            <li class="page-item"><a class="page-link" href="/admin/hoa-don-chi-tiet/hien-thi?p=${page.totalPages-1}">Next</a>
             </li>
         </ul>
     </nav>
 </div>
-

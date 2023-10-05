@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -38,19 +40,15 @@ public class HoaDon {
     private String maHD;
 
     @Column(name = "NgayTao")
-    @NotBlank(message = "Không để trống")
     private LocalDateTime ngayTao;
 
     @Column(name = "NgayThanhToan")
-    @NotBlank(message = "Không để trống")
     private LocalDateTime ngayThanhToan;
 
     @Column(name = "NgayNhan")
-    @NotBlank(message = "Không để trống")
     private LocalDateTime ngayNhan;
 
     @Column(name = "NgayShip")
-    @NotBlank(message = "Không để trống")
     private LocalDateTime ngayShip;
 
     @Column(name = "DiaChi")
@@ -58,11 +56,11 @@ public class HoaDon {
     private String diaChi;
 
     @Column(name = "HinhThucThanhToan")
-    @NotBlank(message = "Không để trống")
+    @NotNull(message = "Không để trống")
     private Integer hinhThucThanhToan;
 
     @Column(name = "HinhThucGiaoHang")
-    @NotBlank(message = "Không để trống")
+    @NotNull(message = "Không để trống")
     private Integer hinhThucGiaoHang;
 
     @Column(name = "SDTNguoiNhan")
@@ -87,5 +85,8 @@ public class HoaDon {
     @NotNull(message = "Không để trống")
     private Integer trangThai;
 
+    @ManyToOne
+    @JoinColumn(name = "IdND")
+    private NguoiDung nguoiDung;
 
 }

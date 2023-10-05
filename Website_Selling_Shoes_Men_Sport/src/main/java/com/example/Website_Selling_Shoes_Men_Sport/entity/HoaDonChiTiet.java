@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -19,35 +21,35 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "KichCo")
+@Table(name = "HoaDonChiTiet")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @Builder
-public class KichCo {
+public class HoaDonChiTiet {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "Id")
     private UUID id;
 
-    @Column(name = "MaKichCo")
-    @NotBlank(message = "Không để trống")
-    private String maKichCo;
-
-    @Column(name = "Size")
+    @Column(name = "SoLuong")
     @NotNull(message = "Không để trống")
-    private Integer size;
+    private Integer soLuong;
 
-    @Column(name = "LoaiSize")
+    @Column(name = "DonGia")
     @NotNull(message = "Không để trống")
-    private String loaiSize;
+    private Float donGia;
 
-    @Column(name = "GioiTinh")
+    @Column(name = "GiaBan")
     @NotNull(message = "Không để trống")
-    private Boolean gioiTinh;
+    private Float giaBan;
+
+    @Column(name = "GiamGiaKhuyenMai")
+    @NotNull(message = "Không để trống")
+    private Double giamGiaKhuyenMai;
 
     @Column(name = "CreateDate")
     private LocalDateTime createDate;
@@ -55,8 +57,13 @@ public class KichCo {
     @Column(name = "LastModifiledDate")
     private LocalDateTime lastModifiedDate;
 
-    @Column(name = "TrangThai")
-    @NotNull(message = "Không để trống")
-    private Integer trangThai;
+
+    @ManyToOne
+    @JoinColumn(name = "IdHoaDon")
+    private HoaDon hoaDon;
+
+    @ManyToOne
+    @JoinColumn(name = "IdChiTietSP")
+    private ChiTietSanPham chiTietSanPham;
 
 }

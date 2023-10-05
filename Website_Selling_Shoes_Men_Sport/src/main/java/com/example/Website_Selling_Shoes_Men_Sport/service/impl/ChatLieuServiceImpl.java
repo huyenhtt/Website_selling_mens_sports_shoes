@@ -30,7 +30,10 @@ public class ChatLieuServiceImpl implements ChatLieuService {
         chatLieu.setLastModifiedDate(LocalDateTime.now());
         return chatLieuRepository.save(chatLieu);
     }
-
+    @Override
+    public ChatLieu getOne(String maCL) {
+        return chatLieuRepository.getSanPhamByMaSP(maCL);
+    }
     @Override
     public ChatLieu deleteCL(UUID id) {
         ChatLieu chatLieu = chatLieuRepository.findById(id).get();
@@ -46,8 +49,9 @@ public class ChatLieuServiceImpl implements ChatLieuService {
         Optional<ChatLieu> exitingChatLieu = chatLieuRepository.findById(id);
         if(exitingChatLieu.isPresent()){
             ChatLieu chatLieuToUpdate = exitingChatLieu.get();
-            chatLieuToUpdate.setLastModifiedDate(LocalDateTime.now());
+            chatLieuToUpdate.setMaChatLieu(chatLieu.getMaChatLieu());
             chatLieuToUpdate.setTenChatLieu(chatLieu.getTenChatLieu());
+            chatLieuToUpdate.setLastModifiedDate(LocalDateTime.now());
             chatLieuToUpdate.setTrangThai(chatLieu.getTrangThai());
             chatLieuRepository.save(chatLieuToUpdate);
             return chatLieuToUpdate;

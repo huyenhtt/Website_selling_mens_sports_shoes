@@ -97,7 +97,6 @@ public class ChatLieuController {
 
         chatLieuService.updateCL(chatLieu,chatLieu.getId());
         model.addAttribute("view", "../admin/chat-lieu/list-cl.jsp");
-
         return "redirect:/admin/chat-lieu/hien-thi";
 
     }

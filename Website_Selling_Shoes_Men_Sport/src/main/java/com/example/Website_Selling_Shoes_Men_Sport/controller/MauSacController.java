@@ -48,13 +48,15 @@ public class MauSacController {
         Page<MauSac> page = mauSacService.getListMauSac(pageable);
         model.addAttribute("page", page);
         model.addAttribute("searchForm", new Searchform());
-        return "/admin/mau-sac/list-mausac";
+        model.addAttribute("view", "../admin/mau-sac/list-mausac.jsp");
+        return "/admin/dashboard";
     }
 
     @RequestMapping("/view-add")
     public String viewAdd(@ModelAttribute("mauSac") MauSac mauSac, Model model) {
         model.addAttribute("action", "/admin/mau-sac/add");
-        return "/admin/mau-sac/add";
+        model.addAttribute("view", "../admin/mau-sac/add.jsp");
+        return "/admin/dashboard";
     }
 
     @RequestMapping("/view-update/{id}")
@@ -62,13 +64,15 @@ public class MauSacController {
         MauSac mauSac = mauSacService.GetMauSacById(id);
         model.addAttribute("mauSac", mauSac);
         model.addAttribute("action", "/admin/mau-sac/update/" + mauSac.getId());
-        return "/admin/mau-sac/add";
+        model.addAttribute("view", "../admin/mau-sac/update.jsp");
+        return "/admin/dashboard";
     }
     @RequestMapping("/add")
     public String addMauSac(Model model, @Valid @ModelAttribute("mauSac") MauSac mauSac, BindingResult result) {
         if (result.hasErrors()) {
             model.addAttribute("mess", "Vui lòng nhập đúng các thuộc tính !");
-            return "/admin/mau-sac/hien-mau-sac";
+            model.addAttribute("view", "../admin/mau-sac/add.jsp");
+            return "/admin/dashboard";
         }
         mauSacService.AddMauSac(mauSac);
         return "redirect:/admin/mau-sac/hien-mau-sac";
@@ -85,6 +89,8 @@ public class MauSacController {
     public String updateMauSac( Model model,@Valid @ModelAttribute("mauSac") MauSac mauSac, @PathVariable UUID id, BindingResult result) {
         if (result.hasErrors()){
             model.addAttribute("mess", "Vui lòng nhập đúng các thuộc tính !");
+            model.addAttribute("view", "../admin/mau-sac/update.jsp");
+            return "/admin/dashboard";
         }
 
         mauSacService.UpdateMauSac(mauSac,mauSac.getId());
@@ -92,13 +98,14 @@ public class MauSacController {
 
     }
     @RequestMapping("/search")
-    public String searchMauSac(@ModelAttribute("searchForm") LoaiGiayController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model){
+    public String searchMauSac(@ModelAttribute("searchForm") MauSacController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model){
         if (p<0){
             p=0;
         }
         Pageable pageable=PageRequest.of(p,5);
         Page<MauSac> page=mauSacService.searchMauSac(searchform.keyword,pageable);
         model.addAttribute("page",page);
-        return "/admin/mau-sac/list-mausac";
+        model.addAttribute("view", "../admin/mau-sac/list-mausac.jsp");
+        return "/admin/dashboard";
     }
 }
