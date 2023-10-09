@@ -3,6 +3,7 @@ package com.example.Website_Selling_Shoes_Men_Sport.service.impl;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.ChiTietSanPham;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.KichCo;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.LoaiGiay;
+import com.example.Website_Selling_Shoes_Men_Sport.entity.SanPham;
 import com.example.Website_Selling_Shoes_Men_Sport.repository.ChiTietSanPhamRepo;
 import com.example.Website_Selling_Shoes_Men_Sport.service.ChiTietSanPhamService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -87,6 +88,11 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
     }
 
     @Override
+    public List<SanPham> search2SP(String keyword) {
+        return repo.searchSP(keyword);
+    }
+
+    @Override
     public List<KichCo> search2KC(Integer size) {
         return repo.search2KC(size);
     }
@@ -95,4 +101,11 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
     public List<KichCo> getListKC() {
         return repo.listKC();
     }
+
+    @Override
+    public UUID getOneToAddModal(UUID id) {
+        return repo.getOneToAddModal(id);
+    }
+
+
 }

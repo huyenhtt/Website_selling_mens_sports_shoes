@@ -3,7 +3,6 @@
 
 <title>Dashboard - NiceAdmin</title>
 <meta content="" name="description">
-<meta content="" name="keywords">
 
 <!-- Favicons -->
 <link href="../../../assets/img/favicon.png" rel="icon">
@@ -26,10 +25,5 @@
 <!-- Template Main CSS File -->
 <link href="../../../assets/css/style.css" rel="stylesheet">
 
-<!-- =======================================================
-* Template Name: NiceAdmin
-* Updated: Aug 30 2023 with Bootstrap v5.3.1
-* Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-======================================================== -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>

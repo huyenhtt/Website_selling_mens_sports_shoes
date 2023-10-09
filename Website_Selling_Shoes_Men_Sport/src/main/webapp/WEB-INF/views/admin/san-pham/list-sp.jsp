@@ -7,7 +7,7 @@
 <br>
 
 <div class="pagetitle">
-    <h1>Data Tables</h1>
+
     <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/admin/san-pham/hien-thi">Quản Lý Sản Phẩm</a></li>
@@ -26,17 +26,23 @@
             <div class="card">
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-3">
+                        <div class="col-lg-2 col-md-2 col-sm-2">
                             <a href="/admin/san-pham/view-add"
                                class="btn btn-primary"><i
                                     class="bi bi-plus-square-dotted"></i>Thêm mới</a>
                         </div>
-                        <div class="col-9 col-md-9 col-sm-9">
+                        <div class="col-lg-9 col-md-9 col-sm-9">
                             <form:form action="/admin/san-pham/search" modelAttribute="searchForm" method="post">
                                 <div class="search">
-                                    <button type="submit" class="btn btn-primary btn-search">Tìm kiếm</button>
-                                    <form:input placeholder="Tìm kiếm theo mã hoặc tên sản phẩm" path="keyword"
-                                                cssClass="form-control-sm"/>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-6">
+                                            <form:input placeholder="Tìm kiếm theo mã hoặc tên sản phẩm" path="keyword"
+                                                        cssClass="form-control"/>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-2">
+                                            <button type="submit" class="btn btn-primary btn-search">Tìm kiếm</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </form:form>
                         </div>
