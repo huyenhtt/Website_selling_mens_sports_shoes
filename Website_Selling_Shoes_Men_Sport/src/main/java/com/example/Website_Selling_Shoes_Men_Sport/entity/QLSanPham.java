@@ -1,6 +1,7 @@
 package com.example.Website_Selling_Shoes_Men_Sport.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -26,22 +27,27 @@ public class QLSanPham {
 
     @ManyToOne()
     @JoinColumn(name = "Idmausac")
+    @NotNull(message = "Mời chọn màu sắc")
     MauSac mauSac;
 
     @ManyToOne()
     @JoinColumn(name = "Idtheloai")
+    @NotNull(message = "Mời chọn thể loại")
     LoaiGiay loaiGiay;
 
     @ManyToOne()
     @JoinColumn(name = "Idkichco")
+//    @NotNull(message = "Mời chọn kích cỡ")
     KichCo kichCo;
 
     @ManyToOne()
     @JoinColumn(name = "Idchatlieu")
+    @NotNull(message = "Mời chọn chất liệu")
     ChatLieu chatLieu;
 
     @ManyToOne()
     @JoinColumn(name = "Iddegiay")
+    @NotNull(message = "Mời chọn đế giầy")
     DeGiay deGiay;
 
 
@@ -50,15 +56,15 @@ public class QLSanPham {
 
 
     @Column(name = "Giaban")
-//    @NotNull(message = "không để trống")
+    @NotNull(message = "không để trống")
     Double giaBan;
 
     @Column(name = "Soluong")
-//    @NotNull(message = "không để trống")
+    @NotNull(message = "không để trống")
     Integer soLuong;
 
     @Column(name = "MoTaCT")
-//    @NotBlank(message = "không để trống")
+    @NotBlank(message = "không để trống")
     String moTaCT;
 
     @Column(name = "Createdate")
@@ -74,17 +80,17 @@ public class QLSanPham {
     @Column(name = "Trangthai")
     @NotNull(message = "Không để trống")
     Integer trangThai;
-
+    //hinh anh
+    @OneToOne(mappedBy = "ctsp")
+    HinhAnh hinhAnhs;
     @Override
     public String toString() {
         return sanPham.getTenSanPham();
     }
 
     public void loadFromDomainModel(ChiTietSanPham domain) {
-//        this.setHinhAnh(hinhAnh);
         this.setChatLieu(domain.getChatLieu());
         this.setDeGiay(domain.getDeGiay());
-        //this.setGiaGoc(domain.getGiaGoc());
         this.setGiaBan(domain.getGiaBan());
         this.setKichCo(domain.getKichCo());
         this.setSanPham(domain.getSanPham());

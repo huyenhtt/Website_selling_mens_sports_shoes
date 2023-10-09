@@ -4,8 +4,11 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-<br>
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<br>
+<br>
 <div class="container">
     <%--    <div class="row-cols-6">--%>
     <%--        <select type="text" id="searchName"></select>--%>
@@ -89,11 +92,15 @@
 
                 </form:form>
             </div>
+            </br>
+
             <div class="col-2 col-md-2 col-sm-2">
-                <form:form action="#" modelAttribute="sortForm">
+                <form:form action="/chi-tiet-san-pham/sort" modelAttribute="sortForm">
                     <label class="form-label">Sắp xếp:</label>
                     <form:select path="key" onchange="submit()" class="form-control">
-                        <option value="0">-khoảng giá-</option>
+                        <option value="0">---</option>
+                        <form:option value="giaBan">Đơn giá</form:option>
+
                     </form:select>
                 </form:form>
             </div>
@@ -103,6 +110,7 @@
 
             <tr style="background: #0d6efd;color: white ">
                 <th>STT</th>
+                <th>Mã sản phẩm</th>
                 <th>Tên sản phẩm</th>
                 <th>Giá Bán</th>
                 <th>Số lượng</th>
@@ -115,15 +123,18 @@
             <c:forEach items="${page.content}" var="sp" varStatus="i">
                 <tr>
                     <td>${i.index+1}</td>
+                    <td>${sp.sanPham.maSanPham}</td>
                     <td>${sp.sanPham.tenSanPham}</td>
                     <td>${sp.giaBan}</td>
-                    <td>${sp.soLuong}</td>
-                    <td>${sp.trangThai==1?"Hoạt động":"Không hoạt động"}</td>
 
+                    <td>${sp.soLuong}</td>
+                    <td>${sp.trangThai==0?"Hoạt động":"Không hoạt động"}</td>
                     <td>${sp.moTaCT}</td>
                     <td>
                         <a href="/chi-tiet-san-pham/view-update/${sp.id}" class="btn btn-warning"><i
                                 class="bi bi-pencil-square"></i></a>
+                        <a href="/chi-tiet-san-pham/hinh-anh/view-add/${sp.id}" class="btn btn-warning"><i
+                                class="bi bi-file-earmark-image"></i></a>
                     </td>
                 </tr>
             </c:forEach>
@@ -150,3 +161,4 @@
     </script>
 
 </div>
+<script src="../../../../../webapp/js/chi-tiet-san-pham.js"></script>

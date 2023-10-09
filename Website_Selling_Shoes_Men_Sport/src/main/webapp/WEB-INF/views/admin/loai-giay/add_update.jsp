@@ -6,14 +6,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 <br>
 <%----%>
-
 <div class="pagetitle">
-
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/dashboard">Quản Lý Loại Giầy</a></li>
+            <li class="breadcrumb-item"><a href="/admin/loai-giay/hien-thi">Quản Lý Loại Giầy</a></li>
 
-            <li class="breadcrumb-item active">Loại Giầy</li>
+            <li class="breadcrumb-item active"><a href="/admin/loai-giay/view-add">Loại Giầy</a></li>
         </ol>
     </nav>
 </div>
@@ -25,8 +23,6 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Thêm/sửa loại giầy</h5>
-
                     <!-- Table with stripped rows -->
                     <form:form action="${action}" modelAttribute="loaiGiay">
                         <form:input path="id" class="form-control" type="hidden"/>

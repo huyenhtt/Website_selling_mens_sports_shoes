@@ -46,8 +46,8 @@
 
                         <div class="mb-3">
                             <label class="form-label">Loại Size</label>
-                            <form:input path="loạiSize" class="form-control"/>
-                            <form:errors path="loạiSize" cssStyle="color: crimson"/>
+                            <form:input path="loaiSize" class="form-control"/>
+                            <form:errors path="loaiSize" cssStyle="color: crimson"/>
                         </div>
 
                         <div class="mb-3">

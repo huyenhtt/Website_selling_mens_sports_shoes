@@ -3,6 +3,7 @@ package com.example.Website_Selling_Shoes_Men_Sport.service;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.ChiTietSanPham;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.KichCo;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.LoaiGiay;
+import com.example.Website_Selling_Shoes_Men_Sport.entity.SanPham;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -35,8 +36,15 @@ public interface ChiTietSanPhamService {
     Page<ChiTietSanPham> searchCTSP(String keyword, Pageable pageable);
 
     List<LoaiGiay> search2(String keyword);
+    //search sp
+    List<SanPham> search2SP(String keyword);
 
     List<KichCo> search2KC(Integer size);
 
     List<KichCo> getListKC();
+
+    // v3 updatectsp modal
+    UUID getOneToAddModal(UUID id);
+
+
 }

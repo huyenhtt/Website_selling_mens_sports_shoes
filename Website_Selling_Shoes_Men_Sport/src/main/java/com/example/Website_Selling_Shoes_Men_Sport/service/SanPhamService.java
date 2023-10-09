@@ -8,17 +8,17 @@ import java.util.List;
 import java.util.UUID;
 
 public interface SanPhamService {
-    List<SanPham> getListSP();
+    List<SanPham> getList();
 
-    SanPham insertSP(SanPham sp);
+    Page<SanPham> findAllSP(Pageable pageable);
 
-    SanPham deleteSP(UUID id);
+    Page<SanPham> findByKeyword(String key,Pageable pageable);
 
-    SanPham updateSP(SanPham sp, UUID id);
+    SanPham addSanPham(SanPham sanPham);
+
+    SanPham udpateSanPham(SanPham sanPham,UUID id);
 
     SanPham getOne(UUID id);
 
-    Page<SanPham> searchSPkeyWord (String keywpord, Pageable pageable);
-
-    Page<SanPham> getListOfPage(Pageable pageable);
+    SanPham getByMa(String ma);
 }
