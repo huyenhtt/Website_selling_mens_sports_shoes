@@ -9,6 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.UUID;
 
 public interface HoaDonRepository extends JpaRepository<HoaDon, UUID> {
-    @Query(value = "select hd from HoaDon  hd where hd.maHD like %?1% ")
+    @Query(value = "select hd from HoaDon  hd where hd.maHD like %?1% or hd.tenNguoiNhan like %?1% or ?1 is null")
     Page<HoaDon> searchHoaDon(String keyword, Pageable pageable);
 }

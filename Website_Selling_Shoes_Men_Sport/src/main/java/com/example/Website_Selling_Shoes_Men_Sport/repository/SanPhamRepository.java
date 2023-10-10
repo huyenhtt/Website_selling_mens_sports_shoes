@@ -13,4 +13,9 @@ import java.util.UUID;
 public interface SanPhamRepository extends JpaRepository<SanPham, UUID> {
     @Query("select s from SanPham s where s.maSanPham like  %?1% or s.tenSanPham like %?1% or ?1 is null")
     Page<SanPham> searchSP(String keyword, Pageable pageable);
+    @Query("select  sp from SanPham  sp")
+    Page<SanPham> findALlSP(Pageable pageable);
+    @Query("select  p from SanPham  p where  p.maSanPham =?1")
+    SanPham getSanPhamByMaSP(String masp);
+
 }

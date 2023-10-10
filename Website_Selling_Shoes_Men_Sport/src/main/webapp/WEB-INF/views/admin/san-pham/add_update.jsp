@@ -25,11 +25,6 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Thêm/sửa sản phẩm</h5>
-
-                    <!-- Table with stripped rows -->
-
-
                     <form:form action="${action}" modelAttribute="sanPham">
                         <form:input path="id" class="form-control" type="hidden"/>
 
@@ -45,16 +40,7 @@
                             <form:input path="tenSanPham" class="form-control"/>
                             <form:errors path="tenSanPham" cssStyle="color: crimson"/>
                         </div>
-                        <%--                        <div class="mb-3">--%>
-                        <%--                            <label class="form-label">Ngày Tạo</label>--%>
-                        <%--                            <form:input path="createDate" class="form-control"/>--%>
 
-                        <%--                        </div>--%>
-                        <%--                        <div class="mb-3">--%>
-                        <%--                            <label class="form-label">Ngày cập nhật cuối:</label>--%>
-                        <%--                            <form:input path="lastModifiedDate" class="form-control"/>--%>
-
-                        <%--                        </div>--%>
                         <div class="mb-3">
                             <label class="form-label">Trạng Thái</label>
                             <form:radiobuttons items="${dsTrangThai}" path="trangThai" class="form-check-input"/>

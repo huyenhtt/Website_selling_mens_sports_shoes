@@ -14,7 +14,7 @@ import java.util.UUID;
 @Repository
 public interface ChiTietSanPhamRepo extends JpaRepository<ChiTietSanPham, UUID> {
 
-    @Query(value = "SELECT ctsp FROM ChiTietSanPham ctsp WHERE  ctsp.sanPham.tenSanPham like %?1%")
+    @Query(value = "SELECT ctsp FROM ChiTietSanPham ctsp WHERE  ctsp.sanPham.tenSanPham like %?1% or ctsp.sanPham.maSanPham like %?1%")
     Page<ChiTietSanPham> searchCTSP(String keyword, Pageable pageable);
 
     @Query("SELECT ctsp FROM ChiTietSanPham ctsp WHERE ( ?1 IS NULL OR ctsp.mauSac.id = ?1)")
@@ -62,6 +62,17 @@ public interface ChiTietSanPhamRepo extends JpaRepository<ChiTietSanPham, UUID> 
     @Query(value = "select k from KichCo k where (:keyword is null or k.size = :keyword)")
     List<KichCo> search2KC(@Param("keyword") Integer size);
 
+    // update ctsp modal add
+    @Query(value = "select c.IdSP from ChiTietSanPham c join SanPham s on c.IdSP=s.Id where c.Id=?1", nativeQuery = true)
+    UUID getOneToAddModal(UUID id);
+// search sp
+    @Query(value = "select s from SanPham s where s.tenSanPham LIKE :keyword ")
+    List<SanPham> searchSP(@Param("keyword") String keyword);
 
+    @Query(value = "select sp from SanPham sp")
+    List<SanPham> listSanPham();
 
+    // list ctsp theo id
+    @Query(value = "select ct from ChiTietSanPham ct where ct.sanPham.id=?1")
+    Page<ChiTietSanPham> listCTSP(UUID id, Pageable pageable);
 }

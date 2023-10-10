@@ -13,4 +13,7 @@ import java.util.UUID;
 public interface KichCoRepository extends JpaRepository<KichCo, UUID> {
     @Query("select kc from KichCo kc where kc.maKichCo like %?1% or kc.loaiSize like %?1% or ?1 is null")
     Page<KichCo> searchKC(String keyword, Pageable pageable);
+
+    @Query("select kc from KichCo kc where  kc.maKichCo =?1")
+    KichCo getSanPhamByMaSP(String maKichCo);
 }

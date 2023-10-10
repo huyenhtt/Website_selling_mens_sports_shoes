@@ -41,6 +41,23 @@ public class KichCoController {
         dsGT.put(false, "Nữ");
         return dsGT;
     }
+
+    @ModelAttribute("dsGioiTinh")
+    public Map<Boolean, String> dsGioiTinh() {
+        Map<Boolean, String> map = new HashMap<>();
+        map.put(true, "Nam");
+        map.put(false, "Nu");
+        return map;
+    }
+
+    @ModelAttribute("dsTrangThai")
+    public Map<Integer, String> dsTrangThai() {
+        Map<Integer, String> map = new HashMap<>();
+        map.put(0, "Còn");
+        map.put(1, "Hết");
+        return map;
+    }
+
     @Data
     public static class Searchform {
         String keyword;
@@ -97,16 +114,15 @@ public class KichCoController {
     }
 
     @RequestMapping("/update/{id}")
-    public String updateKichCo(Model model,@PathVariable UUID id,  @Valid @ModelAttribute("kichCo") KichCo kichCo, BindingResult result) {
-        if (result.hasErrors()){
+    public String updateKichCo(Model model, @Valid @ModelAttribute("kichCo") KichCo kichCo, @PathVariable UUID id, BindingResult result) {
+        if (result.hasErrors()) {
             model.addAttribute("mess", "Vui lòng nhập đúng các thuộc tính !");
             model.addAttribute("view", "../admin/kich-co/add_update.jsp");
             return "/admin/dashboard";
         }
-
         kichCoService.updateKC(kichCo,kichCo.getId());
         model.addAttribute("view", "../admin/kich-co/list-kc.jsp");
-
+        kichCoService.updateKC(kichCo, kichCo.getId());
         return "redirect:/admin/kich-co/hien-thi";
     }
 
@@ -120,6 +136,5 @@ public class KichCoController {
         model.addAttribute("page", page);
         model.addAttribute("view", "../admin/kich-co/list-kc.jsp");
         return "/admin/dashboard";
-
     }
 }

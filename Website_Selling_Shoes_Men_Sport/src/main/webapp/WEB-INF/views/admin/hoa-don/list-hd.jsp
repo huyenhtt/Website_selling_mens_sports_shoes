@@ -7,12 +7,11 @@
 <br>
 
 <div class="pagetitle">
-    <h1>Data Tables</h1>
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/admin/kich-co/hien-thi">Quản Lý Kích Cỡ</a></li>
+            <li class="breadcrumb-item"><a href="/admin/hoa-don/hien-thi">Quản Lý Hóa Đơn</a></li>
 
-            <li class="breadcrumb-item active">Danh Sách Kích Cỡ</li>
+            <li class="breadcrumb-item active"><a href="/admin/hoa-don/hien-thi">Danh Sách Hóa Đơn</a></li>
         </ol>
     </nav>
 </div>
@@ -28,22 +27,19 @@
 
                     <!-- Table with stripped rows -->
                     <div class="row">
-                        <div class="col-md-4 col-sm-4 col-lg-4">
-                            <h5 class="card-title">Danh Sách Hóa Đơn</h5>
+                        <div class="col-lg-2 col-md-4 col-sm-2">
+                            <a href="/admin/hoa-don/view-add"
+                               class="btn btn-primary"><i
+                                    class="bi bi-plus-square-dotted"></i>Thêm mới</a>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-lg-6">
-                            <form:form action="/admin/kich-co/search" modelAttribute="searchForm" method="post">
-                                <div class="input-group mb-3"><form:input type="text" path="keyword"
-                                                                          class="form-control"
-                                                                          placeholder="Nhập mã ..."
+                        <div class="col-lg-8 col-md-6 col-sm-8">
+                            <form:form action="/admin/hoa-don/search" modelAttribute="searchForm" method="post">
+                                <div class="input-group mb-3"><form:input type="text" path="keyword" class="form-control"
+                                                                          placeholder="Nhập mã hóa đơn..."
                                                                           aria-describedby="button-addon2"></form:input>
-                                    <button class="btn btn-success" type="button" id="button-addon2">Tìm kiếm</button>
+                                    <button class="btn btn-success" type="button" id="button-addon2">Search</button>
                                 </div>
                             </form:form>
-                        </div>
-                        <div class="col-md-2 col-sm-2 col-lg-2"><a href="/admin/hoa-don/view-add"
-                                                                   class="btn btn-primary"><i
-                                class="bi bi-plus-square-dotted"></i>Thêm mới</a>
                         </div>
                     </div>
                     <br>

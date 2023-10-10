@@ -8,7 +8,7 @@
 <div class="container">
 
 
-    <a href="/admin/mau-sac/hien-mau-sac" class="btn btn-primary"><i class="bi bi-house-fill"></i></a>
+    <a href="/admin/mau-sac/hien-mau-sac" class="btn btn-primary"><i class="bi bi-arrow-return-left"></i></a>
     <a href="/admin/mau-sac/view-add" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i></a>
 
     <br>

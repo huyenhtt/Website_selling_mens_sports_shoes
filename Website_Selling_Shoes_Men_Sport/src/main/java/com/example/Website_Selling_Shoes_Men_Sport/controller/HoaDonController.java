@@ -119,14 +119,13 @@ public class HoaDonController {
 
     @RequestMapping("/search")
     public String searchHoaDon(@ModelAttribute("searchForm") HoaDonController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model){
-        if (p<0){
-            p=0;
+        if (p < 0){
+            p = 0;
         }
         Pageable pageable=PageRequest.of(p,5);
-        Page<HoaDon> page=hoaDonService.searchHD(searchform.keyword,pageable);
+        Page<HoaDon> page = hoaDonService.searchHD(searchform.keyword, pageable);
         model.addAttribute("page",page);
-        model.addAttribute("view", "../admin/hoadon/list-hd.jsp");
+        model.addAttribute("view", "../admin/hoa-don/list-hd.jsp");
         return "/admin/dashboard";
     }
-
 }

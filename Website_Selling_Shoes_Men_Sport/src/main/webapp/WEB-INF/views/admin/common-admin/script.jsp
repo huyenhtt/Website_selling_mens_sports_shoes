@@ -19,6 +19,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fomantic-ui/2.9.2/semantic.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script src="../../../../webapp/js/chi-tiet-san-pham.js"></script>
 <!-- Template Main JS File -->
 <script src="../../../assets/js/main.js"></script>
+<script src="../../../js/hinh_anh.js"></script>

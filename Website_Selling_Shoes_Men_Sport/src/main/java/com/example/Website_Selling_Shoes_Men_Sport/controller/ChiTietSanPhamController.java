@@ -2,8 +2,8 @@ package com.example.Website_Selling_Shoes_Men_Sport.controller;
 
 import com.example.Website_Selling_Shoes_Men_Sport.entity.*;
 import com.example.Website_Selling_Shoes_Men_Sport.repository.*;
-import com.example.Website_Selling_Shoes_Men_Sport.service.ChiTietSanPhamService;
-import com.example.Website_Selling_Shoes_Men_Sport.service.KichCoService;
+import com.example.Website_Selling_Shoes_Men_Sport.service.*;
+import com.google.zxing.WriterException;
 import jakarta.validation.Valid;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.*;
 
 @Controller
-@RequestMapping("/chi-tiet-san-pham")
 public class ChiTietSanPhamController {
     @Autowired
     ChiTietSanPhamService service;
@@ -50,8 +50,8 @@ public class ChiTietSanPhamController {
     @ModelAttribute("dsTrangThai")
     public Map<Integer, String> getDSTrangThai() {
         Map<Integer, String> dsTrangThai = new HashMap<>();
-        dsTrangThai.put(1, "Hoạt động");
-        dsTrangThai.put(0, "Ngưng Hoạt động");
+        dsTrangThai.put(0, "Hoạt động");
+        dsTrangThai.put(1, "Ngưng Hoạt động");
         return dsTrangThai;
     }
 
@@ -128,9 +128,9 @@ public class ChiTietSanPhamController {
         return sanPhamRepo.findAll();
     }
 
-    @RequestMapping("/hien-thi")
+    @RequestMapping("/chi-tiet-san-pham/hien-thi")
 
-    public String hienThiSanPham(@ModelAttribute("sortForm") SortFormSP sortFormSP, @ModelAttribute("sanpham") QLSanPham sp, @RequestParam(defaultValue = "0") int p, Model model) throws IOException {
+    public String hienThiSanPham(@ModelAttribute("sortForm") SortFormSP sortFormSP, @ModelAttribute("sanpham") QLSanPham sp, @RequestParam(defaultValue = "0") int p, Model model) throws IOException, WriterException {
 
         if (p < 0) {
             p = 0;
@@ -142,17 +142,17 @@ public class ChiTietSanPhamController {
         model.addAttribute("searchChatLieu", new SearchChatlieu());
         model.addAttribute("lg", new SearchLoaiGiay());
         model.addAttribute("SP", new SanPham());
-
+        model.addAttribute("view", "../admin/chi-tiet-san-pham/list.jsp");
         model.addAttribute("searchForm", new SearchFormSP());
         model.addAttribute("searchFormByMau", new SearchFormSPByMau());
         model.addAttribute("searchKC", new SearchKC());
         model.addAttribute("searchDG", new SearchDeGiay());
-        model.addAttribute("view", "../admin/chi-tiet-san-pham/list.jsp");
+
         return "/admin/dashboard";
     }
 
     // search 2 loại giầy
-    @GetMapping("/search2-loai-giay")
+    @GetMapping("/chi-tiet-san-pham/search2-loai-giay")
     public ResponseEntity<?> search2LoaiGiay(@RequestParam(name = "keyword") String keyword) {
 
         if (keyword == null || keyword == "") {
@@ -163,19 +163,31 @@ public class ChiTietSanPhamController {
     }
 
     // search 2 kích cỡ
-    @GetMapping("/search2-kich-co")
-    public ResponseEntity<?> search2KichCo(@RequestParam(name = "keyword", required = false) Integer size) {
+//    @GetMapping("/search2-kich-co")
+//    public ResponseEntity<?> search2KichCo(@RequestParam(name = "keyword") Integer size) {
+//        if (size != null) {
+//            // Xử lý khi 'size' có giá trị
+//            return ResponseEntity.ok(service.search2KC(size));
+//        } else {
+//            // Xử lý khi 'size' là null (không được truyền vào)
+//            return ResponseEntity.ok(kichCoService.getList());
+//        }
+//    }
+    @GetMapping("/chi-tiet-san-pham/search2-kich-co")
+    public ResponseEntity<List<KichCo>> search2KichCo(@RequestParam(name = "keyword", required = false) Integer size) {
+        List<KichCo> result;
         if (size != null) {
             // Xử lý khi 'size' có giá trị
-            return ResponseEntity.ok(service.search2KC(size));
+            result = service.search2KC(size);
         } else {
             // Xử lý khi 'size' là null (không được truyền vào)
-            return ResponseEntity.ok(kichCoService.getListKC());
+            result = kichCoService.getListKC();
         }
+        return ResponseEntity.ok(result);
     }
 
     // search 2 màu sắc
-    @GetMapping("/search2-mau-sac")
+    @GetMapping("/chi-tiet-san-pham/search2-mau-sac")
     public ResponseEntity<?> search2MS(@RequestParam(name = "keyword") String ten) {
 
         if (ten == null || ten.equals("")) {
@@ -186,7 +198,7 @@ public class ChiTietSanPhamController {
     }
 
     // search 2 đế giầy
-    @GetMapping("/search2-de-giay")
+    @GetMapping("/chi-tiet-san-pham/search2-de-giay")
     public ResponseEntity<?> search2DG(@RequestParam(name = "keyword") String loaiDe) {
 
         if (loaiDe == null || loaiDe.equals("")) {
@@ -197,7 +209,7 @@ public class ChiTietSanPhamController {
     }
 
     // search 2 chất liệu
-    @GetMapping("/search2-chat-lieu")
+    @GetMapping("/chi-tiet-san-pham/search2-chat-lieu")
     public ResponseEntity<?> search2CL(@RequestParam(name = "keyword") String ten) {
 
         if (ten == null || ten.equals("")) {
@@ -207,7 +219,7 @@ public class ChiTietSanPhamController {
         }
     }
 
-    @RequestMapping("/search")
+    @RequestMapping("/chi-tiet-san-pham/search")
     public String searchSP(@ModelAttribute("searchForm") SearchFormSP searchFormSP, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -233,7 +245,7 @@ public class ChiTietSanPhamController {
     }
 
     // filer with combobox mau-sac
-    @RequestMapping("/search-by-mausac")
+    @RequestMapping("/chi-tiet-san-pham/search-by-mausac")
     public String searchByMau(@ModelAttribute("searchFormByMau") SearchFormSPByMau searchFormSPByMau, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -259,7 +271,7 @@ public class ChiTietSanPhamController {
     }
 
     // filer with combobox kich co
-    @RequestMapping("/search-by-kichco")
+    @RequestMapping("/chi-tiet-san-pham/search-by-kichco")
     public String searchByKC(@ModelAttribute("searchKC") SearchKC searchKC, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -285,7 +297,7 @@ public class ChiTietSanPhamController {
     }
 
     // filer with combobox de giay
-    @RequestMapping("/search-by-degiay")
+    @RequestMapping("/chi-tiet-san-pham/search-by-degiay")
     public String searchByDeGiay(@ModelAttribute("searchDG") SearchDeGiay searchDeGiay, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -311,7 +323,7 @@ public class ChiTietSanPhamController {
     }
 
     // filer with combobox chat lieu
-    @RequestMapping("/search-by-chatlieu")
+    @RequestMapping("/chi-tiet-san-pham/search-by-chatlieu")
     public String searchByChatLieu(@ModelAttribute("searchChatLieu") SearchChatlieu searchChatlieu, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -338,7 +350,7 @@ public class ChiTietSanPhamController {
     }
 
     // filer with combobox loai giay
-    @RequestMapping("/search-by-loaigiay")
+    @RequestMapping("/chi-tiet-san-pham/search-by-loaigiay")
     public String searchByLoaiGiay(@ModelAttribute("lg") SearchLoaiGiay searchLoaiGiay, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -363,7 +375,7 @@ public class ChiTietSanPhamController {
         return "/admin/dashboard";
     }
 
-    @RequestMapping("/sort")
+    @RequestMapping("/chi-tiet-san-pham/sort")
     public String sort(@ModelAttribute("sortForm") SortFormSP sortFormSP, @ModelAttribute("searchForm") SearchFormSP searchFormSP, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -387,8 +399,8 @@ public class ChiTietSanPhamController {
     }
 
 
-    @RequestMapping("/update/{id}")
-    public String updateCTSP(Model model, @Valid @ModelAttribute("sanpham") QLSanPham qlSanPham, BindingResult result) throws IOException {
+    @RequestMapping("/chi-tiet-san-pham/update/{id}")
+    public String update(Model model, @Valid @ModelAttribute("sanpham") QLSanPham qlSanPham, BindingResult result) throws IOException, WriterException {
         model.addAttribute("lg", new LoaiGiay());
         model.addAttribute("vm", new ChatLieu());
         model.addAttribute("degiay", new DeGiay());
@@ -400,56 +412,285 @@ public class ChiTietSanPhamController {
             model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
             return "/admin/dashboard";
         }
+
+        UUID idSP = service.getOneToAddModal(qlSanPham.getId());
+        SanPham sp2 = sanPhamRepo.findById(idSP).orElse(null);
+        model.addAttribute("tensp", sp2.getTenSanPham());
+
         ChiTietSanPham ctsp = service.getOne(qlSanPham.getId());
         ctsp.loadFromViewModel(qlSanPham);
 
+        service.addCTSP(ctsp);
 
-//     ảnh hiển thị
-
-//        String uploadDir = new File("src/main/resources/static/image/").getAbsolutePath();
-//
-//        MultipartFile multipartFile = qlSanPham.getHinhAnh();
-//        String fileName = multipartFile.getOriginalFilename();
-//        try {
-//            FileCopyUtils.copy(multipartFile.getBytes(), new File(uploadDir + File.separator + fileName));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        ctsp.setHinhAnh(fileName);
-        service.addKC(ctsp);
-        //generate code qr
-//        String documentsPath = System.getProperty("user.home") + File.separator + "Documents";
-//        String qrCodeFolderPath = documentsPath + File.separator + "QRCode";
-//        new File(qrCodeFolderPath).mkdirs(); // Tạo thư mục "QRCode" nếu chưa tồn tại
-
-        // Lưu QR code vào thư mục "QRCode" trong "Documents"
-//        QRCodeGenerator.generatorQRCode(ctsp, qrCodeFolderPath);
-
-        //generate code qr
-//        List<ChiTietSanPham> qlSanPhams = service.getList();
-//        if (qlSanPhams.size() != 0) {
-//            for (ChiTietSanPham ct : qlSanPhams
-//            ) {
-//                QRCodeGenerator.generatorQRCode(ct);
-//            }
-//        }
         model.addAttribute("view", "../admin/chi-tiet-san-pham/list.jsp");
         return "redirect:/chi-tiet-san-pham/hien-thi";
     }
 
-    @RequestMapping("/view-update/{id}")
+    @RequestMapping("/chi-tiet-san-pham/view-update/{id}")
     public String viewUpdate(@PathVariable("id") UUID id, Model model) {
         ChiTietSanPham sp = service.getOne(id);
+
         model.addAttribute("lg", new LoaiGiay());
         model.addAttribute("vm", new ChatLieu());
         model.addAttribute("degiay", new DeGiay());
         model.addAttribute("SP", new SanPham());
         model.addAttribute("ms", new MauSac());
         model.addAttribute("kichco", new KichCo());
+
+
+        UUID idSP = service.getOneToAddModal(id);
+        SanPham sp2 = sanPhamRepo.findById(idSP).orElse(null);
+        model.addAttribute("tensp", sp2.getTenSanPham());
+
+        model.addAttribute("action2", "/chi-tiet-san-pham/kich-co/add/" + id);
+        model.addAttribute("action3", "/chi-tiet-san-pham/mau-sac/add/" + id);
+        model.addAttribute("action4", "/chi-tiet-san-pham/loai-giay/add/" + id);
+        model.addAttribute("action5", "/chi-tiet-san-pham/de-giay/add/" + id);
+        model.addAttribute("action6", "/chi-tiet-san-pham/chat-lieu/add/" + id);
         model.addAttribute("action", "/chi-tiet-san-pham/update/" + sp.getId());
         model.addAttribute("sanpham", sp);
         model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
         return "/admin/dashboard";
     }
+
+    //    // modal
+    @Autowired
+    SanPhamService sanPhamService;
+
+    @RequestMapping("/chi-tiet-san-pham/loai-giay/add/{id}")
+    public String save(Model model, @ModelAttribute("lg") LoaiGiay loaiGiay, @PathVariable("id") UUID id, BindingResult result) {
+        Boolean hasE = result.hasErrors();
+        List<LoaiGiay> list = loaiGiayRepo.findAll();
+        UUID idSP = service.getOneToAddModal(id);
+        SanPham sanPham2 = sanPhamRepo.findById(idSP).orElse(null);
+        model.addAttribute("idsp", idSP);
+        model.addAttribute("tensp", sanPham2.getTenSanPham());
+        model.addAttribute("vm", new ChatLieu());
+        model.addAttribute("degiay", new DeGiay());
+        model.addAttribute("ms", new MauSac());
+        model.addAttribute("kichco", new KichCo());
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getMa().equals(loaiGiay.getMa())) {
+                model.addAttribute("errorMa", "Ma loai giay da ton tai");
+                hasE = true;
+            }
+            if (loaiGiay.getMa().length() < 5) {
+                model.addAttribute("errorMa", "Ma loai giay nhieu hon 5 ki tu");
+                hasE = true;
+            }
+            if (loaiGiay.getMa().length() > 100) {
+                model.addAttribute("errorMa", "Ma loai giay it hon 100 ki tu");
+                hasE = true;
+            }
+        }
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getTenTheLoai().equals(loaiGiay.getTenTheLoai())) {
+                model.addAttribute("errorTen", "Ten loai giay da ton tai");
+                hasE = true;
+            }
+            if (loaiGiay.getTenTheLoai().length() > 150) {
+                model.addAttribute("errorTen", "Ten loai giay it hon 150 ki tu");
+                hasE = true;
+            }
+            if (loaiGiay.getTenTheLoai().length() == 0) {
+                model.addAttribute("errorTen", "Ten loai giay khong duoc bo trong");
+                hasE = true;
+            }
+        }
+        if (hasE) {
+
+            model.addAttribute("sanpham", new QLSanPham());
+            model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
+            return "/chi-tiet-san-pham/view-update/" + id;
+        }
+        loaiGiay.setTrangThai(1);
+        loaiGiayRepo.save(loaiGiay);
+        model.addAttribute("view", "../admin/chi-tiet-san-pham/list.jsp");
+        return "redirect:/chi-tiet-san-pham/view-update/" + id;
+    }
+
+    @RequestMapping("/chi-tiet-san-pham/kich-co/add/{id}")
+    public String addKC(Model model, @Valid @ModelAttribute("kichco") KichCo kichCo, @PathVariable("id") UUID id, BindingResult resultt) {
+        UUID idSP = service.getOneToAddModal(id);
+        SanPham sanPham2 = sanPhamRepo.findById(idSP).orElse(null);
+        model.addAttribute("idsp", idSP);
+        model.addAttribute("tensp", sanPham2.getTenSanPham());
+        model.addAttribute("vm", new ChatLieu());
+        model.addAttribute("degiay", new DeGiay());
+        model.addAttribute("ms", new MauSac());
+        model.addAttribute("lg", new LoaiGiay());
+
+        if (resultt.hasErrors()) {
+            model.addAttribute("mess", "Lỗi vui lòng nhập lại !");
+            return "redirect:/chi-tiet-san-pham/view-update/" + id;
+        }
+
+        kichCoService.insertKC(kichCo);
+        return "redirect:/chi-tiet-san-pham/view-update/" + id;
+    }
+
+    @PostMapping("/chi-tiet-san-pham/mau-sac/add/{id}")
+    public String add(@Valid @ModelAttribute("ms") MauSac ms, @PathVariable("id") UUID id, BindingResult result, Model model) {
+        UUID idSP = service.getOneToAddModal(id);
+        SanPham sanPham2 = sanPhamRepo.findById(idSP).orElse(null);
+        model.addAttribute("idsp", idSP);
+        model.addAttribute("tensp", sanPham2.getTenSanPham());
+        model.addAttribute("vm", new ChatLieu());
+        model.addAttribute("degiay", new DeGiay());
+        model.addAttribute("kichco", new KichCo());
+        model.addAttribute("lg", new LoaiGiay());
+        if (result.hasErrors()) {
+            model.addAttribute("mess", "Lỗi vui lòng nhập lại !");
+            return "redirect:/chi-tiet-san-pham/view-update/" + id;
+        }
+
+        mauSacReponsitories.save(ms);
+        return "redirect:/chi-tiet-san-pham/view-update/" + id;
+    }
+
+    @Autowired
+    ChatLieuService chatLieuService;
+
+    @RequestMapping("/chi-tiet-san-pham/chat-lieu/add/{id}")
+    public String store(Model model, @PathVariable("id") UUID id,
+                        @Valid @ModelAttribute("vm") ChatLieu cl,
+                        BindingResult result
+    ) {
+        UUID idSP = service.getOneToAddModal(id);
+        SanPham sanPham2 = sanPhamRepo.findById(idSP).orElse(null);
+        model.addAttribute("idsp", idSP);
+        model.addAttribute("tensp", sanPham2.getTenSanPham());
+        model.addAttribute("ms", new MauSac());
+        model.addAttribute("degiay", new DeGiay());
+        model.addAttribute("kichco", new KichCo());
+        model.addAttribute("lg", new LoaiGiay());
+        Boolean hasError = result.hasErrors();
+        ChatLieu product = chatLieuService.getOne(cl.getMaChatLieu());
+        if (product != null) {
+            hasError = true;
+            model.addAttribute("maspError", "Vui lòng không nhập trùng mã");
+            model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
+            return "redirect:/chi-tiet-san-pham/view-update/" + id;
+        }
+        if (hasError) {
+            // Báo lỗi
+            model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
+            return "redirect:/chi-tiet-san-pham/view-update/" + id;
+        }
+        this.chatLieuRepo.save(cl);
+        model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
+        return "redirect:/chi-tiet-san-pham/view-update/" + id;
+    }
+
+    @PostMapping("/chi-tiet-san-pham/de-giay/add/{id}")
+    public String add(Model model, @PathVariable("id") UUID id, @Valid @ModelAttribute("degiay") DeGiay degiay, BindingResult result) {
+        UUID idSP = service.getOneToAddModal(id);
+        SanPham sanPham2 = sanPhamRepo.findById(idSP).orElse(null);
+        model.addAttribute("idsp", idSP);
+        model.addAttribute("tensp", sanPham2.getTenSanPham());
+        model.addAttribute("ms", new MauSac());
+        model.addAttribute("vm", new ChatLieu());
+        model.addAttribute("kichco", new KichCo());
+        model.addAttribute("lg", new LoaiGiay());
+        if (result.hasErrors()) {
+            model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
+            return "redirect:/chi-tiet-san-pham/view-update/" + id;
+        }
+
+        if (deGiayRepo.findByMa(degiay.getMa()) != null) {
+            model.addAttribute("mess_Ma", "Lỗi! Mã không được trùng");
+            model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
+            return "redirect:/chi-tiet-san-pham/view-update/" + id;
+        }
+
+        deGiayRepo.save(degiay);
+        model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
+        return "redirect:/chi-tiet-san-pham/view-update/" + id;
+    }
+
+    // hình ảnh
+    @GetMapping("/chi-tiet-san-pham/hinh-anh/view-add/{id}")
+    public String viewAdd(Model model, @ModelAttribute("hinhAnh") HinhAnh hinhAnh, @PathVariable("id") UUID id) {
+        ChiTietSanPham ctsp = service.getOne(id);
+        model.addAttribute("idctsp", id);
+
+        UUID idHinhANh=hinhAnhRepository.getIdHinhAnh(id);
+        if (idHinhANh!=null) {
+//            HinhAnh hinhAnh2 = hinhAnhService.findById(id);
+//            model.addAttribute("listHinhAnh", hinhAnh2);
+            model.addAttribute("action4", "/hinh-anh/update/" + idHinhANh);
+            model.addAttribute("view", "../hinh-anh/add_update.jsp");
+            return "/admin/dashboard";
+        }
+//        model.addAttribute("idctsp", ctsp.getId());
+        model.addAttribute("ctsp", ctsp);
+        model.addAttribute("action4", "/chi-tiet-san-pham/hinh-anh/add/" + ctsp.getId());
+        model.addAttribute("view", "../hinh-anh/add_update.jsp");
+        return "/admin/dashboard";
+    }
+
+    @Autowired
+    HinhAnhService hinhAnhService;
+    @Autowired
+    HinhAnhRepository hinhAnhRepository;
+
+    @PostMapping("/chi-tiet-san-pham/hinh-anh/add/{id}")
+    public String save(Model model,
+                       @RequestParam(name = "tenanh") MultipartFile tenanh,
+                       @RequestParam(name = "duongdan1") MultipartFile duongdan1,
+                       @RequestParam(name = "duongdan2") MultipartFile duongdan2,
+                       @RequestParam(name = "duongdan3") MultipartFile duongdan3,
+                       @PathVariable UUID id,
+                       @RequestParam(name = "ctsp") ChiTietSanPham ctsp
+    ) {
+        HinhAnh hinhAnh = new HinhAnh();
+        hinhAnh.setCtsp(ctsp);
+
+        try {
+            // Lấy đường dẫn tới thư mục lưu trữ tệp tin ảnh từ cấu hình
+            String uploadPath = hinhAnhService.getImageUploadPath();
+
+            // Tạo thư mục lưu trữ nếu chưa tồn tại
+            Path uploadDir = Paths.get(uploadPath);
+            if (!Files.exists(uploadDir)) {
+                Files.createDirectories(uploadDir);
+            }
+
+            // Lưu trữ các tệp tin ảnh và sử dụng tên tệp tin làm đường dẫn
+            MultipartFile[] imageFiles = {tenanh, duongdan1, duongdan2, duongdan3};
+            for (int i = 0; i < imageFiles.length; i++) {
+                MultipartFile file = imageFiles[i];
+                if (file != null && !file.isEmpty()) {
+                    String fileName = file.getOriginalFilename().toLowerCase(); // Sử dụng tên tệp tin làm đường dẫn
+                    Path filePath = uploadDir.resolve(fileName);
+                    Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+                    // Gán tên tệp tin ảnh và đường dẫn tới các thuộc tính tương ứng của đối tượng HinhAnh
+                    switch (i) {
+                        case 0:
+                            hinhAnh.setTenanh(fileName);
+                            break;
+                        case 1:
+                            hinhAnh.setDuongdan1(fileName);
+                            break;
+                        case 2:
+                            hinhAnh.setDuongdan2(fileName);
+                            break;
+                        case 3:
+                            hinhAnh.setDuongdan3(fileName);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        hinhAnhRepository.save(hinhAnh);
+        return "redirect:/chi-tiet-san-pham/hien-thi";
+    }
+
 
 }

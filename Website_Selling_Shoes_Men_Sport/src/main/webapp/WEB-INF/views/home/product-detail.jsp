@@ -1,17 +1,3 @@
-<!DOCTYPE html>
-<html lang="zxx" class="no-js">
-
-<head>
-
-    <%@include file="common/head.jsp" %>
-</head>
-
-<body>
-
-<!-- Start Header Area -->
-
-<%@include file="common/header.jsp" %>
-<!-- End Header Area -->
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -21,7 +7,6 @@
                 <h1>Product Details Page</h1>
                 <nav class="d-flex align-items-center">
                     <a href="/user/home">Home<span class="lnr lnr-arrow-right"></span></a>
-                    <a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
                     <a href="single-product.html">product-details</a>
                 </nav>
             </div>
@@ -37,29 +22,28 @@
             <div class="col-lg-6">
                 <div class="s_Product_carousel">
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="../../../img/category/s-p1.jpg" alt="">
+                        <img class="img-fluid" src="../../../uploads/${sp.hinhAnhs.tenanh}" alt="">
                     </div>
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="../../../img/category/s-p1.jpg" alt="">
+                        <img class="img-fluid" src="../../../uploads/${sp.hinhAnhs.duongdan1}" alt="">
                     </div>
                     <div class="single-prd-item">
-                        <img class="img-fluid" src="../../../img/category/s-p1.jpg" alt="">
+                        <img class="img-fluid" src="../../../uploads/${sp.hinhAnhs.duongdan2}" alt="">
                     </div>
                 </div>
             </div>
             <div class="col-lg-5 offset-lg-1">
                 <div class="s_product_text">
-                    <h3>Faded SkyBlu Denim Jeans</h3>
-                    <h2>$149.99</h2>
+                    <h3>${sp.sanPham.tenSanPham}</h3>
+                    <h2>$ ${sp.giaBan}</h2>
                     <ul class="list">
-                        <li><a class="active" href="#"><span>Category</span> : Household</a></li>
                         <li><a href="#"><span>Availibility</span> : In Stock</a></li>
                     </ul>
                     <p>Mill Oil is an innovative oil filled radiator with the most modern technology. If you are looking
                         for
                         something that can make your interior look awesome, and at the same time give you the pleasant
                         warm feeling
-                        during the winter.</p>
+                        during the winter. <b>${sp.moTaCT}</b></p>
                     <div class="product_count">
                         <label for="qty">Quantity:</label>
                         <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
@@ -71,8 +55,8 @@
                     </div>
                     <div class="card_area d-flex align-items-center">
                         <a class="primary-btn" href="#">Add to Cart</a>
-                        <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-                        <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+<%--                        <a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>--%>
+<%--                        <a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>--%>
                     </div>
                 </div>
             </div>
@@ -592,12 +576,3 @@
 </section>
 <!-- End related-product Area -->
 
-<!-- start footer Area -->
-<%@include file="common/footer.jsp" %>
-<!-- End footer Area -->
-<%@include file="common/script.jsp" %>
->
-
-</body>
-
-</html>

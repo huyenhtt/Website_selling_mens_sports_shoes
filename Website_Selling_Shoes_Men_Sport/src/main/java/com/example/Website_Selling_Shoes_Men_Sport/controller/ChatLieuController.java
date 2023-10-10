@@ -101,7 +101,7 @@ public class ChatLieuController {
 
     }
     @RequestMapping("/search")
-    public String search(@ModelAttribute("searchForm") ChatLieuController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model){
+    public String searchChatLieu(@ModelAttribute("searchForm") ChatLieuController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model){
         if (p<0){
             p=0;
         }
