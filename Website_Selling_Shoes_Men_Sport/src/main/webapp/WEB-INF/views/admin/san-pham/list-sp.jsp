@@ -31,21 +31,27 @@
                                class="btn btn-primary"><i
                                     class="bi bi-plus-square-dotted"></i>Thêm mới</a>
                         </div>
-                        <div class="col-lg-9 col-md-9 col-sm-9">
+                        <div class="col-lg-10 col-md-8 col-sm-6">
                             <form:form action="/admin/san-pham/search" modelAttribute="searchForm" method="post">
-                                <div class="search">
-                                    <div class="row">
-                                        <div class="col-lg-6 col-md-6 col-sm-6">
-                                            <form:input placeholder="Tìm kiếm theo mã hoặc tên sản phẩm" path="keyword"
-                                                        cssClass="form-control"/>
-                                        </div>
-                                        <div class="col-lg-2 col-md-2 col-sm-2">
-                                            <button type="submit" class="btn btn-primary btn-search">Tìm kiếm</button>
-                                        </div>
+                            <div class="search">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-2">
+                                        <form:input placeholder="Tìm kiếm theo mã hoặc tên sản phẩm" path="keyword"
+                                                    cssClass="form-control"/>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-2">
+                                        <button type="submit" class="btn btn-primary btn-search">Tìm kiếm</button>
+                                    </div>
+                                    <div class="col-4 col-md-4 col-sm-2">
+                                        <a href="/chi-tiet-san-pham/hien-thi" class="btn"
+                                           style="background: #0d6efd; color: whitesmoke"><i class="bi bi-eye-fill"></i>Danh sách
+                                            chi tiết</a>
+                                        <br>
                                     </div>
                                 </div>
-                            </form:form>
+                            </div>
                         </div>
+                        </form:form>
                     </div>
                     <!-- Table with stripped rows -->
                     <div class="row">
@@ -80,8 +86,8 @@
                                     <a href="/admin/san-pham/view-update/${sp.id}" class="btn btn-warning"><i
                                             class="bi bi-pencil-square">Sửa</i></a>
 
-                                    <a href="/chi-tiet-san-pham/view-add/${sp.id}" class="btn btn-danger"><i
-                                            class="bi bi-pencil-square">Thêm chi tiết</i></a>
+                                    <a href="/chi-tiet-san-pham/list-san-pham/${sp.id}" class="btn btn-danger"><i
+                                            class="bi bi-eye-fill"></i></a>
                             </tr>
                         </c:forEach>
                         </tbody>
