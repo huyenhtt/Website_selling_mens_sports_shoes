@@ -11,9 +11,9 @@
 
     <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/admin/chat-lieu/hien-thi">Quản Lý Chất Liệu</a></li>
+            <li class="breadcrumb-item"><a href="/admin/hoa-don-chi-tiet/hien-thi">Quản Lý Hóa Đơn Chi Tiết</a></li>
 
-            <li class="breadcrumb-item active">Chất Liệu</li>
+            <li class="breadcrumb-item active">Hóa Đơn Chi Tiết</li>
         </ol>
     </nav>
 </div>
@@ -25,30 +25,38 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Thêm/sửa chất liệu</h5>
+                    <h5 class="card-title">Thêm/sửa hóa đơn chi tiết</h5>
 
                     <!-- Table with stripped rows -->
-                    <form:form action="${action}" modelAttribute="chatLieu">
+                    <form:form action="${action}" modelAttribute="hoaDonChiTiet">
                         <form:input path="id" class="form-control" type="hidden"/>
 
                         <div class="mb-3">
-                            <label class="form-label">Mã Chất Liệu</label>
-                            <form:input path="maChatLieu" class="form-control"/>
-                            <form:errors path="maChatLieu" cssStyle="color: crimson"/>
+                            <label class="form-label">Số lượng: </label>
+                            <form:input path="soLuong" class="form-control"/>
+                            <form:errors path="soLuong" cssStyle="color: crimson"/>
                         </div>
 
 
                         <div class="mb-3">
-                            <label class="form-label">Tên Chất Liệu</label>
-                            <form:input path="tenChatLieu" class="form-control"/>
-                            <form:errors path="tenChatLieu" cssStyle="color: crimson"/>
+                            <label class="form-label">Đơn giá: </label>
+                            <form:input path="donGia" class="form-control"/>
+                            <form:errors path="donGia" cssStyle="color: crimson"/>
                         </div>
 
                         <div class="mb-3">
-                            <label class="form-label">Trạng Thái</label>
-                            <form:radiobuttons items="${dsTrangThai}" path="trangThai" class="form-check-input"/>
-                            <form:errors path="trangThai" cssStyle="color: crimson"/>
+                            <label class="form-label">Giá bán: </label>
+                            <form:input path="giaBan" class="form-control"/>
+                            <form:errors path="giaBan" cssStyle="color: crimson"/>
                         </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Giảm giá khuyến mại: </label>
+                            <form:input path="giamGiaKhuyenMai" class="form-control"/>
+                            <form:errors path="giamGiaKhuyenMai" cssStyle="color: crimson"/>
+                        </div>
+
+
                         <div class="text-center">
                             <button type="submit" class="btn btn-success"
                                     onclick="return confirm('Bạn có chắc muốn thực hiện ?');">

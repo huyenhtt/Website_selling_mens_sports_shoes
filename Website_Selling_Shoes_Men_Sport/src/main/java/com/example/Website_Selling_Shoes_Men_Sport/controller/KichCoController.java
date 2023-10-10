@@ -26,6 +26,22 @@ public class KichCoController {
     @Autowired
     private KichCoService kichCoService;
 
+    @ModelAttribute("dsTrangThai")
+    public Map<Integer, String> getDSTT() {
+        Map<Integer, String> dsTrangThai = new HashMap<>();
+        dsTrangThai.put(0, "Còn sản phẩm");
+        dsTrangThai.put(1, "Hết sản phẩm");
+        return dsTrangThai;
+    }
+
+    @ModelAttribute("dsGioiTinh")
+    public Map<Boolean, String> getDsGioiTinh() {
+        Map<Boolean, String> dsGT = new HashMap<>();
+        dsGT.put(true, "Nam");
+        dsGT.put(false, "Nữ");
+        return dsGT;
+    }
+
     @ModelAttribute("dsGioiTinh")
     public Map<Boolean, String> dsGioiTinh() {
         Map<Boolean, String> map = new HashMap<>();
@@ -62,7 +78,7 @@ public class KichCoController {
 
     @RequestMapping("/view-add")
     public String viewAdd(@ModelAttribute("kichCo") KichCo kichCo, Model model) {
-        model.addAttribute("action", "admin/kich-co/add");
+        model.addAttribute("action", "/admin/kich-co/add");
         model.addAttribute("view", "../admin/kich-co/add_update.jsp");
         return "/admin/dashboard";
     }
@@ -85,6 +101,7 @@ public class KichCoController {
             return "/admin/dashboard";
         }
         kichCoService.insertKC(kichCo);
+        model.addAttribute("view", "../admin/kich-co/list-kc.jsp");
         return "redirect:/admin/kich-co/hien-thi";
 
     }
@@ -103,10 +120,10 @@ public class KichCoController {
             model.addAttribute("view", "../admin/kich-co/add_update.jsp");
             return "/admin/dashboard";
         }
-
+        kichCoService.updateKC(kichCo,kichCo.getId());
+        model.addAttribute("view", "../admin/kich-co/list-kc.jsp");
         kichCoService.updateKC(kichCo, kichCo.getId());
         return "redirect:/admin/kich-co/hien-thi";
-
     }
 
     @RequestMapping("/search")
@@ -119,6 +136,5 @@ public class KichCoController {
         model.addAttribute("page", page);
         model.addAttribute("view", "../admin/kich-co/list-kc.jsp");
         return "/admin/dashboard";
-
     }
 }

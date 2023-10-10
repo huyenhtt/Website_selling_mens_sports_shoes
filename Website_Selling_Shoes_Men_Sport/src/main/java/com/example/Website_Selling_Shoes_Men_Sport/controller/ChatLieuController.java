@@ -55,7 +55,7 @@ public class ChatLieuController {
 
     @RequestMapping("/view-add")
     public String viewAdd(@ModelAttribute("chatLieu") ChatLieu chatLieu, Model model) {
-        model.addAttribute("action", "admin/chat-lieu/add");
+        model.addAttribute("action", "/admin/chat-lieu/add");
         model.addAttribute("view", "../admin/chat-lieu/add_update.jsp");
         return "/admin/dashboard";
     }
@@ -77,8 +77,8 @@ public class ChatLieuController {
             return "/admin/dashboard";
         }
         chatLieuService.insertCL(chatLieu);
+        model.addAttribute("view", "../admin/chat-lieu/list-cl.jsp");
         return "redirect:/admin/chat-lieu/hien-thi";
-
     }
     @RequestMapping("/delete/{id}")
     public String deleteChatLieu(@PathVariable UUID id) {
@@ -96,11 +96,12 @@ public class ChatLieuController {
         }
 
         chatLieuService.updateCL(chatLieu,chatLieu.getId());
+        model.addAttribute("view", "../admin/chat-lieu/list-cl.jsp");
         return "redirect:/admin/chat-lieu/hien-thi";
 
     }
     @RequestMapping("/search")
-    public String search(@ModelAttribute("searchForm") ChatLieuController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model){
+    public String searchChatLieu(@ModelAttribute("searchForm") ChatLieuController.Searchform searchform, @RequestParam(defaultValue = "0") int p, Model model){
         if (p<0){
             p=0;
         }

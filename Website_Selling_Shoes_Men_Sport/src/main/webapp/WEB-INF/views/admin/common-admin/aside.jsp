@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/chat-lieu/hien-chat-lieu">
+                    <a href="/admin/chat-lieu/hien-thi">
                         <i class="bi bi-circle"></i><span>Quản Lý Chất Liệu</span>
                     </a>
                 </li>
