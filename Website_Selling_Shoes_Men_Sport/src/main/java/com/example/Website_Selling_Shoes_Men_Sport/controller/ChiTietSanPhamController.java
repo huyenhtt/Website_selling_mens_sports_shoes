@@ -28,7 +28,6 @@ import java.nio.file.StandardCopyOption;
 import java.util.*;
 
 @Controller
-@RequestMapping("/chi-tiet-san-pham")
 public class ChiTietSanPhamController {
     @Autowired
     ChiTietSanPhamService service;
@@ -129,7 +128,7 @@ public class ChiTietSanPhamController {
         return sanPhamRepo.findAll();
     }
 
-    @RequestMapping("/hien-thi")
+    @RequestMapping("/chi-tiet-san-pham/hien-thi")
 
     public String hienThiSanPham(@ModelAttribute("sortForm") SortFormSP sortFormSP, @ModelAttribute("sanpham") QLSanPham sp, @RequestParam(defaultValue = "0") int p, Model model) throws IOException, WriterException {
 
@@ -153,7 +152,7 @@ public class ChiTietSanPhamController {
     }
 
     // search 2 loại giầy
-    @GetMapping("/search2-loai-giay")
+    @GetMapping("/chi-tiet-san-pham/search2-loai-giay")
     public ResponseEntity<?> search2LoaiGiay(@RequestParam(name = "keyword") String keyword) {
 
         if (keyword == null || keyword == "") {
@@ -174,7 +173,7 @@ public class ChiTietSanPhamController {
 //            return ResponseEntity.ok(kichCoService.getList());
 //        }
 //    }
-    @GetMapping("/search2-kich-co")
+    @GetMapping("/chi-tiet-san-pham/search2-kich-co")
     public ResponseEntity<List<KichCo>> search2KichCo(@RequestParam(name = "keyword", required = false) Integer size) {
         List<KichCo> result;
         if (size != null) {
@@ -188,7 +187,7 @@ public class ChiTietSanPhamController {
     }
 
     // search 2 màu sắc
-    @GetMapping("/search2-mau-sac")
+    @GetMapping("/chi-tiet-san-pham/search2-mau-sac")
     public ResponseEntity<?> search2MS(@RequestParam(name = "keyword") String ten) {
 
         if (ten == null || ten.equals("")) {
@@ -199,7 +198,7 @@ public class ChiTietSanPhamController {
     }
 
     // search 2 đế giầy
-    @GetMapping("/search2-de-giay")
+    @GetMapping("/chi-tiet-san-pham/search2-de-giay")
     public ResponseEntity<?> search2DG(@RequestParam(name = "keyword") String loaiDe) {
 
         if (loaiDe == null || loaiDe.equals("")) {
@@ -210,7 +209,7 @@ public class ChiTietSanPhamController {
     }
 
     // search 2 chất liệu
-    @GetMapping("/search2-chat-lieu")
+    @GetMapping("/chi-tiet-san-pham/search2-chat-lieu")
     public ResponseEntity<?> search2CL(@RequestParam(name = "keyword") String ten) {
 
         if (ten == null || ten.equals("")) {
@@ -220,7 +219,7 @@ public class ChiTietSanPhamController {
         }
     }
 
-    @RequestMapping("/search")
+    @RequestMapping("/chi-tiet-san-pham/search")
     public String searchSP(@ModelAttribute("searchForm") SearchFormSP searchFormSP, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -246,7 +245,7 @@ public class ChiTietSanPhamController {
     }
 
     // filer with combobox mau-sac
-    @RequestMapping("/search-by-mausac")
+    @RequestMapping("/chi-tiet-san-pham/search-by-mausac")
     public String searchByMau(@ModelAttribute("searchFormByMau") SearchFormSPByMau searchFormSPByMau, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -272,7 +271,7 @@ public class ChiTietSanPhamController {
     }
 
     // filer with combobox kich co
-    @RequestMapping("/search-by-kichco")
+    @RequestMapping("/chi-tiet-san-pham/search-by-kichco")
     public String searchByKC(@ModelAttribute("searchKC") SearchKC searchKC, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -298,7 +297,7 @@ public class ChiTietSanPhamController {
     }
 
     // filer with combobox de giay
-    @RequestMapping("/search-by-degiay")
+    @RequestMapping("/chi-tiet-san-pham/search-by-degiay")
     public String searchByDeGiay(@ModelAttribute("searchDG") SearchDeGiay searchDeGiay, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -324,7 +323,7 @@ public class ChiTietSanPhamController {
     }
 
     // filer with combobox chat lieu
-    @RequestMapping("/search-by-chatlieu")
+    @RequestMapping("/chi-tiet-san-pham/search-by-chatlieu")
     public String searchByChatLieu(@ModelAttribute("searchChatLieu") SearchChatlieu searchChatlieu, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -351,7 +350,7 @@ public class ChiTietSanPhamController {
     }
 
     // filer with combobox loai giay
-    @RequestMapping("/search-by-loaigiay")
+    @RequestMapping("/chi-tiet-san-pham/search-by-loaigiay")
     public String searchByLoaiGiay(@ModelAttribute("lg") SearchLoaiGiay searchLoaiGiay, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -376,7 +375,7 @@ public class ChiTietSanPhamController {
         return "/admin/dashboard";
     }
 
-    @RequestMapping("/sort")
+    @RequestMapping("/chi-tiet-san-pham/sort")
     public String sort(@ModelAttribute("sortForm") SortFormSP sortFormSP, @ModelAttribute("searchForm") SearchFormSP searchFormSP, @RequestParam(defaultValue = "0") int p, Model model) {
         if (p < 0) {
             p = 0;
@@ -400,7 +399,7 @@ public class ChiTietSanPhamController {
     }
 
 
-    @RequestMapping("/update/{id}")
+    @RequestMapping("/chi-tiet-san-pham/update/{id}")
     public String update(Model model, @Valid @ModelAttribute("sanpham") QLSanPham qlSanPham, BindingResult result) throws IOException, WriterException {
         model.addAttribute("lg", new LoaiGiay());
         model.addAttribute("vm", new ChatLieu());
@@ -421,13 +420,13 @@ public class ChiTietSanPhamController {
         ChiTietSanPham ctsp = service.getOne(qlSanPham.getId());
         ctsp.loadFromViewModel(qlSanPham);
 
-        service.addKC(ctsp);
+        service.addCTSP(ctsp);
 
         model.addAttribute("view", "../admin/chi-tiet-san-pham/list.jsp");
         return "redirect:/chi-tiet-san-pham/hien-thi";
     }
 
-    @RequestMapping("/view-update/{id}")
+    @RequestMapping("/chi-tiet-san-pham/view-update/{id}")
     public String viewUpdate(@PathVariable("id") UUID id, Model model) {
         ChiTietSanPham sp = service.getOne(id);
 
@@ -458,7 +457,7 @@ public class ChiTietSanPhamController {
     @Autowired
     SanPhamService sanPhamService;
 
-    @RequestMapping("/loai-giay/add/{id}")
+    @RequestMapping("/chi-tiet-san-pham/loai-giay/add/{id}")
     public String save(Model model, @ModelAttribute("lg") LoaiGiay loaiGiay, @PathVariable("id") UUID id, BindingResult result) {
         Boolean hasE = result.hasErrors();
         List<LoaiGiay> list = loaiGiayRepo.findAll();
@@ -510,7 +509,7 @@ public class ChiTietSanPhamController {
         return "redirect:/chi-tiet-san-pham/view-update/" + id;
     }
 
-    @RequestMapping("/kich-co/add/{id}")
+    @RequestMapping("/chi-tiet-san-pham/kich-co/add/{id}")
     public String addKC(Model model, @Valid @ModelAttribute("kichco") KichCo kichCo, @PathVariable("id") UUID id, BindingResult resultt) {
         UUID idSP = service.getOneToAddModal(id);
         SanPham sanPham2 = sanPhamRepo.findById(idSP).orElse(null);
@@ -530,7 +529,7 @@ public class ChiTietSanPhamController {
         return "redirect:/chi-tiet-san-pham/view-update/" + id;
     }
 
-    @PostMapping("/mau-sac/add/{id}")
+    @PostMapping("/chi-tiet-san-pham/mau-sac/add/{id}")
     public String add(@Valid @ModelAttribute("ms") MauSac ms, @PathVariable("id") UUID id, BindingResult result, Model model) {
         UUID idSP = service.getOneToAddModal(id);
         SanPham sanPham2 = sanPhamRepo.findById(idSP).orElse(null);
@@ -552,7 +551,7 @@ public class ChiTietSanPhamController {
     @Autowired
     ChatLieuService chatLieuService;
 
-    @RequestMapping("/chat-lieu/add/{id}")
+    @RequestMapping("/chi-tiet-san-pham/chat-lieu/add/{id}")
     public String store(Model model, @PathVariable("id") UUID id,
                         @Valid @ModelAttribute("vm") ChatLieu cl,
                         BindingResult result
@@ -583,7 +582,7 @@ public class ChiTietSanPhamController {
         return "redirect:/chi-tiet-san-pham/view-update/" + id;
     }
 
-    @PostMapping("/de-giay/add/{id}")
+    @PostMapping("/chi-tiet-san-pham/de-giay/add/{id}")
     public String add(Model model, @PathVariable("id") UUID id, @Valid @ModelAttribute("degiay") DeGiay degiay, BindingResult result) {
         UUID idSP = service.getOneToAddModal(id);
         SanPham sanPham2 = sanPhamRepo.findById(idSP).orElse(null);
@@ -610,7 +609,7 @@ public class ChiTietSanPhamController {
     }
 
     // hình ảnh
-    @GetMapping("/hinh-anh/view-add/{id}")
+    @GetMapping("/chi-tiet-san-pham/hinh-anh/view-add/{id}")
     public String viewAdd(Model model, @ModelAttribute("hinhAnh") HinhAnh hinhAnh, @PathVariable("id") UUID id) {
         ChiTietSanPham ctsp = service.getOne(id);
         model.addAttribute("idctsp", id);
@@ -635,7 +634,7 @@ public class ChiTietSanPhamController {
     @Autowired
     HinhAnhRepository hinhAnhRepository;
 
-    @PostMapping("/hinh-anh/add/{id}")
+    @PostMapping("/chi-tiet-san-pham/hinh-anh/add/{id}")
     public String save(Model model,
                        @RequestParam(name = "tenanh") MultipartFile tenanh,
                        @RequestParam(name = "duongdan1") MultipartFile duongdan1,
@@ -692,5 +691,6 @@ public class ChiTietSanPhamController {
         hinhAnhRepository.save(hinhAnh);
         return "redirect:/chi-tiet-san-pham/hien-thi";
     }
+
 
 }

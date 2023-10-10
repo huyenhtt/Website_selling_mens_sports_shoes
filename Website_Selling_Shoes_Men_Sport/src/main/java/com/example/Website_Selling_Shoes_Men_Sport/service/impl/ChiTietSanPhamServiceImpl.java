@@ -34,7 +34,7 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
     }
 
     @Override
-    public void addKC(ChiTietSanPham qlSanPham) {
+    public void addCTSP(ChiTietSanPham qlSanPham) {
         Random random = new Random();
         qlSanPham.setMaCTSP("CTSP" + random.nextInt());
         repo.save(qlSanPham);
@@ -105,6 +105,11 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
     @Override
     public UUID getOneToAddModal(UUID id) {
         return repo.getOneToAddModal(id);
+    }
+
+    @Override
+    public Page<ChiTietSanPham> listCTSP(UUID id , Pageable pageable) {
+        return repo.listCTSP(id,pageable);
     }
 
 

@@ -15,7 +15,10 @@
     <%--    </div>--%>
     <div class="row">
         <div class="col-6 col-md-6 col-sm-6">
-            <h3>Danh sách chi tiết sản phẩm</h3>
+            <a href="/chi-tiet-san-pham/view-add/${idsp}" class="btn" style="background: #0d6efd; color: whitesmoke"><i
+                    class="bi bi-plus-circle-fill"></i>Thêm
+                CT Sản Phẩm</a>
+            <br>
         </div>
         <div class="col-6 col-md-6 col-sm-6">
 
@@ -91,16 +94,6 @@
             </div>
             </br>
 
-            <div class="col-2 col-md-2 col-sm-2">
-                <form:form action="/chi-tiet-san-pham/sort" modelAttribute="sortForm">
-                    <label class="form-label">Sắp xếp:</label>
-                    <form:select path="key" onchange="submit()" class="form-control">
-                        <option value="0">---</option>
-                        <form:option value="giaBan">Đơn giá</form:option>
-
-                    </form:select>
-                </form:form>
-            </div>
         </div>
 
         <table class="table">
@@ -140,13 +133,13 @@
         <div class="text-center">
             <nav aria-label="Page navigation text-center">
                 <ul class="pagination justify-content-center">
-                    <li class="page-item"><a class="page-link" href="/chi-tiet-san-pham/hien-thi?p=0">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="/chi-tiet-san-pham/list-san-pham/${idsp}?p=0">Previous</a></li>
                     <li class="page-item"><a class="page-link"
-                                             href="/chi-tiet-san-pham/hien-thi?p=${page.number-1}"><<</a></li>
+                                             href="/chi-tiet-san-pham/list-san-pham/${idsp}?p=${page.number-1}"><<</a></li>
                     <li class="page-item"><a class="page-link"
-                                             href="/chi-tiet-san-pham/hien-thi?p=${page.number+1}">>></a></li>
+                                             href="/chi-tiet-san-pham/list-san-pham/${idsp}?p=${page.number+1}">>></a></li>
                     <li class="page-item"><a class="page-link"
-                                             href="/chi-tiet-san-pham/hien-thi?p=${page.totalPages-1}">Next</a></li>
+                                             href="/chi-tiet-san-pham/list-san-pham/${idsp}?p=${page.totalPages-1}">Next</a></li>
                 </ul>
             </nav>
         </div>

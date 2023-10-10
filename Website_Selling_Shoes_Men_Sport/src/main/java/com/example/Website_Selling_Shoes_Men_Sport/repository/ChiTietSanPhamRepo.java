@@ -71,4 +71,8 @@ public interface ChiTietSanPhamRepo extends JpaRepository<ChiTietSanPham, UUID> 
 
     @Query(value = "select sp from SanPham sp")
     List<SanPham> listSanPham();
+
+    // list ctsp theo id
+    @Query(value = "select ct from ChiTietSanPham ct where ct.sanPham.id=?1")
+    Page<ChiTietSanPham> listCTSP(UUID id, Pageable pageable);
 }

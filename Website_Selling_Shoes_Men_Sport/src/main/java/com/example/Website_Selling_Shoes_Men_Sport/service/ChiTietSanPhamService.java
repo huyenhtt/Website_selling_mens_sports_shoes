@@ -15,7 +15,7 @@ public interface ChiTietSanPhamService {
 
     Page<ChiTietSanPham> getListSP(Pageable pageable);
 
-    void addKC(ChiTietSanPham qlSanPham);
+    void addCTSP(ChiTietSanPham qlSanPham);
 
     void deleteSP(UUID id);
 
@@ -46,5 +46,5 @@ public interface ChiTietSanPhamService {
     // v3 updatectsp modal
     UUID getOneToAddModal(UUID id);
 
-
+    Page<ChiTietSanPham> listCTSP(UUID id, Pageable pageable);
 }

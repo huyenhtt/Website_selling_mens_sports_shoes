@@ -23,6 +23,8 @@
                         <tr>
                             <th>#</th>
                             <th>Mã CTSP</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Mô tả</th>
                             <th>Tên ảnh</th>
                             <th>Đường dẫn 1</th>
                             <th>Đường dẫn 2</th>
@@ -35,10 +37,49 @@
                             <tr>
                                 <td>${i.index+1}</td>
                                 <td>${ha.ctsp.maCTSP}</td>
-                                <td>${ha.tenanh}</td>
-                                <td>${ha.duongdan1}</td>
-                                <td>${ha.duongdan2}</td>
-                                <td>${ha.duongdan3}</td>
+                                <td>${ha.ctsp.sanPham.tenSanPham}</td>
+                                <td>${ha.ctsp.moTaCT}</td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${empty ha.tenanh}">
+                                            <i class="bi bi-image"></i><span class="text-muted">no image</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="../../../uploads/${ha.tenanh}" width="100px" height="100px"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${empty ha.duongdan1}">
+                                            <i class="bi bi-image"></i><span class="text-muted">no image</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="../../../uploads/${ha.duongdan1}" width="100px" height="100px"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${empty ha.duongdan2}">
+                                            <i class="bi bi-image"></i><span class="text-muted">no image</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="../../../uploads/${ha.duongdan2}" width="100px" height="100px"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
+                                <td>
+                                    <c:choose>
+                                        <c:when test="${empty ha.duongdan3}">
+                                            <i class="bi bi-image"></i>
+                                            <span class="text-muted">no image</span>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <img src="../../../uploads/${ha.duongdan3}" width="100px" height="100px"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                                 <td>
 
                                     <a href="/hinh-anh/view-update/${ha.id}"
