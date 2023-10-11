@@ -37,47 +37,61 @@ public class NguoiDung {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     private UUID id;
-    @ManyToOne
+
+    @ManyToOne()
     @JoinColumn(name = "IdTaiKhoan")
     private Account account;
+
+    @NotBlank(message = "không để trống")
     @Column(name = "Ma")
-
     private String ma;
+
+    @NotBlank(message = "không để trống")
     @Column(name = "Ho")
-
     private String ho;
+
     @Column(name = "TenDem")
-
+    @NotBlank(message = "không để trống")
     private String tenDem;
+
+    @NotBlank(message = "không để trống")
     @Column(name = "Ten")
-
     private String ten;
-    @Column(name = "GioiTinh")
 
+
+    @Column(name = "GioiTinh")
+    @NotNull(message = "không để trống")
     private Boolean gioiTinh = true;
+
     @Column(name = "NgaySinh")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     @NotNull(message = "Không để trống")
     private Date ngaySinh;
+
     @Column(name = "DiaChi")
-
+    @NotBlank(message = "không để trống")
     private String diaChi;
+
     @Column(name = "SoDienThoai")
-
+    @NotBlank(message = "không để trống")
     private String soDienThoai;
-    @Column(name = "Email")
 
+    @Column(name = "Email")
+    @NotBlank(message = "không để trống")
     private String email;
+
     @Column(name = "CreateDate")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date createDate;
+
     @Column(name = "LastModifiledDate")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
     private Date lastModifiedDate;
-    @Column(name = "TrangThai")
 
+    @Column(name = "TrangThai")
+    @NotNull(message = "không để trống")
     private Integer trangThai;
 }

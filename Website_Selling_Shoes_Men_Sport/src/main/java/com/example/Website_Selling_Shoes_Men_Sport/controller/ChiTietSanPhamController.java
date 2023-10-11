@@ -452,6 +452,61 @@ public class ChiTietSanPhamController {
         model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
         return "/admin/dashboard";
     }
+    //update list-spct
+
+    @RequestMapping("/chi-tiet-san-pham/update-sp/{id}")
+    public String updateSPCT(Model model, @Valid @ModelAttribute("sanpham") QLSanPham qlSanPham, BindingResult result) throws IOException, WriterException {
+        model.addAttribute("lg", new LoaiGiay());
+        model.addAttribute("vm", new ChatLieu());
+        model.addAttribute("degiay", new DeGiay());
+        model.addAttribute("SP", new SanPham());
+        model.addAttribute("ms", new MauSac());
+        model.addAttribute("kichco", new KichCo());
+        if (result.hasErrors()) {
+            model.addAttribute("mess", "Lỗi! Vui lòng kiểm tra các trường trên !");
+            model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
+            return "/admin/dashboard";
+        }
+
+        UUID idSP = service.getOneToAddModal(qlSanPham.getId());
+        SanPham sp2 = sanPhamRepo.findById(idSP).orElse(null);
+        model.addAttribute("tensp", sp2.getTenSanPham());
+        model.addAttribute("searchForm", new SearchFormSP());
+
+        ChiTietSanPham ctsp = service.getOne(qlSanPham.getId());
+        ctsp.loadFromViewModel(qlSanPham);
+
+        service.addCTSP(ctsp);
+        model.addAttribute("view", "../admin/chi-tiet-san-pham/list-spct.jsp");
+        return "redirect:/chi-tiet-san-pham/list-san-pham/" + idSP;
+    }
+
+    @RequestMapping("/chi-tiet-san-pham/view-update-ctsp/{id}")
+    public String viewUpdateCTSP(@PathVariable("id") UUID id, Model model) {
+        ChiTietSanPham sp = service.getOne(id);
+
+        model.addAttribute("lg", new LoaiGiay());
+        model.addAttribute("vm", new ChatLieu());
+        model.addAttribute("degiay", new DeGiay());
+        model.addAttribute("SP", new SanPham());
+        model.addAttribute("ms", new MauSac());
+        model.addAttribute("kichco", new KichCo());
+
+
+        UUID idSP = service.getOneToAddModal(id);
+        SanPham sp2 = sanPhamRepo.findById(idSP).orElse(null);
+        model.addAttribute("tensp", sp2.getTenSanPham());
+
+        model.addAttribute("action2", "/chi-tiet-san-pham/kich-co/add/" + id);
+        model.addAttribute("action3", "/chi-tiet-san-pham/mau-sac/add/" + id);
+        model.addAttribute("action4", "/chi-tiet-san-pham/loai-giay/add/" + id);
+        model.addAttribute("action5", "/chi-tiet-san-pham/de-giay/add/" + id);
+        model.addAttribute("action6", "/chi-tiet-san-pham/chat-lieu/add/" + id);
+        model.addAttribute("action", "/chi-tiet-san-pham/update-sp/" + sp.getId());
+        model.addAttribute("sanpham", sp);
+        model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
+        return "/admin/dashboard";
+    }
 
     //    // modal
     @Autowired
@@ -503,7 +558,7 @@ public class ChiTietSanPhamController {
             model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
             return "/chi-tiet-san-pham/view-update/" + id;
         }
-        loaiGiay.setTrangThai(1);
+        loaiGiay.setTrangThai(0);
         loaiGiayRepo.save(loaiGiay);
         model.addAttribute("view", "../admin/chi-tiet-san-pham/list.jsp");
         return "redirect:/chi-tiet-san-pham/view-update/" + id;
@@ -609,24 +664,54 @@ public class ChiTietSanPhamController {
     }
 
     // hình ảnh
+
     @GetMapping("/chi-tiet-san-pham/hinh-anh/view-add/{id}")
     public String viewAdd(Model model, @ModelAttribute("hinhAnh") HinhAnh hinhAnh, @PathVariable("id") UUID id) {
         ChiTietSanPham ctsp = service.getOne(id);
         model.addAttribute("idctsp", id);
 
-        UUID idHinhANh=hinhAnhRepository.getIdHinhAnh(id);
-        if (idHinhANh!=null) {
-//            HinhAnh hinhAnh2 = hinhAnhService.findById(id);
-//            model.addAttribute("listHinhAnh", hinhAnh2);
-            model.addAttribute("action4", "/hinh-anh/update/" + idHinhANh);
+        UUID idHinhANh = hinhAnhRepository.getIdHinhAnh(id);
+        SanPham sp = hinhAnhService.getSanPhamByIDCTSP(id);
+        if (idHinhANh != null) {
+            HinhAnh hinhAnh2 = hinhAnhService.getHinhAnh(id);
+            model.addAttribute("listHinhAnh", hinhAnh2);
+
+            model.addAttribute("action4", "/hinh-anh-spct/update/" + idHinhANh);
+            model.addAttribute("view", "../hinh-anh/add_update.jsp");
+            return "/admin/dashboard";
+
+        } else {
+            // Các xử lý khác nếu không tìm thấy idHinhAnh
+            model.addAttribute("ctsp", ctsp);
+            model.addAttribute("action4", "/chi-tiet-san-pham/hinh-anh/add/" + ctsp.getId());
             model.addAttribute("view", "../hinh-anh/add_update.jsp");
             return "/admin/dashboard";
         }
-//        model.addAttribute("idctsp", ctsp.getId());
-        model.addAttribute("ctsp", ctsp);
-        model.addAttribute("action4", "/chi-tiet-san-pham/hinh-anh/add/" + ctsp.getId());
-        model.addAttribute("view", "../hinh-anh/add_update.jsp");
-        return "/admin/dashboard";
+    }
+
+    @GetMapping("/chi-tiet-san-pham/hinh-anh-sp/view-add/{id}")
+    public String viewAddHinhAnh(Model model, @ModelAttribute("hinhAnh") HinhAnh hinhAnh, @PathVariable("id") UUID id) {
+        ChiTietSanPham ctsp = service.getOne(id);
+        model.addAttribute("idctsp", id);
+
+        UUID idHinhANh = hinhAnhRepository.getIdHinhAnh(id);
+        SanPham sp = hinhAnhService.getSanPhamByIDCTSP(id);
+        if (idHinhANh != null) {
+            HinhAnh hinhAnh2 = hinhAnhService.getHinhAnh(id);
+            model.addAttribute("listHinhAnh", hinhAnh2);
+
+            model.addAttribute("action4", "/hinh-anh-ctsp/update/" + idHinhANh);
+            model.addAttribute("view", "../hinh-anh/add_update.jsp");
+            return "/admin/dashboard";
+
+
+        } else {
+            // Các xử lý khác nếu không tìm thấy idHinhAnh
+            model.addAttribute("ctsp", ctsp);
+            model.addAttribute("action4", "/chi-tiet-san-pham/hinh-anh-sp/add/" + ctsp.getId());
+            model.addAttribute("view", "../hinh-anh/add_update.jsp");
+            return "/admin/dashboard";
+        }
     }
 
     @Autowired
@@ -640,6 +725,7 @@ public class ChiTietSanPhamController {
                        @RequestParam(name = "duongdan1") MultipartFile duongdan1,
                        @RequestParam(name = "duongdan2") MultipartFile duongdan2,
                        @RequestParam(name = "duongdan3") MultipartFile duongdan3,
+
                        @PathVariable UUID id,
                        @RequestParam(name = "ctsp") ChiTietSanPham ctsp
     ) {
@@ -692,5 +778,62 @@ public class ChiTietSanPhamController {
         return "redirect:/chi-tiet-san-pham/hien-thi";
     }
 
+    @PostMapping("/chi-tiet-san-pham/hinh-anh-sp/add/{id}")
+    public String saveHinhAnhCTSP(Model model,
+                                  @RequestParam(name = "tenanh") MultipartFile tenanh,
+                                  @RequestParam(name = "duongdan1") MultipartFile duongdan1,
+                                  @RequestParam(name = "duongdan2") MultipartFile duongdan2,
+                                  @RequestParam(name = "duongdan3") MultipartFile duongdan3,
+                                  @PathVariable UUID id,
+                                  @RequestParam(name = "ctsp") ChiTietSanPham ctsp
+    ) {
+        HinhAnh hinhAnh = new HinhAnh();
+        hinhAnh.setCtsp(ctsp);
+        SanPham sp = hinhAnhService.getSanPhamByIDCTSP(id);
+        try {
+            // Lấy đường dẫn tới thư mục lưu trữ tệp tin ảnh từ cấu hình
+            String uploadPath = hinhAnhService.getImageUploadPath();
+
+            // Tạo thư mục lưu trữ nếu chưa tồn tại
+            Path uploadDir = Paths.get(uploadPath);
+            if (!Files.exists(uploadDir)) {
+                Files.createDirectories(uploadDir);
+            }
+
+            // Lưu trữ các tệp tin ảnh và sử dụng tên tệp tin làm đường dẫn
+            MultipartFile[] imageFiles = {tenanh, duongdan1, duongdan2, duongdan3};
+            for (int i = 0; i < imageFiles.length; i++) {
+                MultipartFile file = imageFiles[i];
+                if (file != null && !file.isEmpty()) {
+                    String fileName = file.getOriginalFilename().toLowerCase(); // Sử dụng tên tệp tin làm đường dẫn
+                    Path filePath = uploadDir.resolve(fileName);
+                    Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+
+                    // Gán tên tệp tin ảnh và đường dẫn tới các thuộc tính tương ứng của đối tượng HinhAnh
+                    switch (i) {
+                        case 0:
+                            hinhAnh.setTenanh(fileName);
+                            break;
+                        case 1:
+                            hinhAnh.setDuongdan1(fileName);
+                            break;
+                        case 2:
+                            hinhAnh.setDuongdan2(fileName);
+                            break;
+                        case 3:
+                            hinhAnh.setDuongdan3(fileName);
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        hinhAnhRepository.save(hinhAnh);
+        return "redirect:/chi-tiet-san-pham/list-san-pham/" + sp.getId();
+    }
 
 }

@@ -189,7 +189,6 @@ public class SanPhamController {
         model.addAttribute("action6", "/san-pham/chat-lieu/add/" + id);
 
         SanPham sanPham1 = sanPhamService.getOne(id);
-        model.addAttribute("idsp",sanPham1.getId());
         model.addAttribute("tensp", sanPham1.getTenSanPham());
         model.addAttribute("action", "/chi-tiet-san-pham/add/" + sanPham1.getId());
         model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
@@ -269,7 +268,7 @@ public class SanPhamController {
             model.addAttribute("view", "../admin/chi-tiet-san-pham/add_update.jsp");
             return "/chi-tiet-san-pham/view-add/" + sanPham1.getId();
         }
-        loaiGiay.setTrangThai(1);
+        loaiGiay.setTrangThai(0);
         loaiGiayRepo.save(loaiGiay);
         model.addAttribute("view", "../admin/chi-tiet-san-pham/list.jsp");
         return "redirect:/chi-tiet-san-pham/view-add/" + sanPham1.getId();
@@ -398,6 +397,4 @@ public class SanPhamController {
 
         return "/admin/dashboard";
     }
-
-
 }

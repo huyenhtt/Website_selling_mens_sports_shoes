@@ -1,6 +1,8 @@
 package com.example.Website_Selling_Shoes_Men_Sport.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,14 +15,19 @@ public class KhuyenMai {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     public UUID id;
+    @NotBlank(message = "không để trống")
     public String maKhuyenMai;
+    @NotBlank(message = "không để trống")
     public String tenKhuyenMai;
+    @NotNull(message = "không để trống")
     public Float giaTri;
+    @NotBlank(message = "không để trống")
     public String loaiKhuyenMai;
     public LocalDate ngayBatDau;
     public LocalDate ngayKetThuc;
     public LocalDateTime createDate;
     public LocalDateTime lastModifiledDate;
+    @NotNull(message = "không để trống")
     public Integer trangThai;
 
     public UUID getId() {
