@@ -23,15 +23,15 @@
                                 <li class="nav-item"><a class="nav-link" href="/user/product-detail">Product Details</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/user/checkout">Product Checkout</a></li>
                                 <li class="nav-item"><a class="nav-link" href="/user/cart">Shopping Cart</a></li>
-                                <li class="nav-item"><a class="nav-link" href="confirmation.html">Confirmation</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/user/confirmation">Confirmation</a></li>
                             </ul>
                         </li>
                         <li class="nav-item submenu dropdown">
                             <a href="/user/blog" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false">Blog</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                                <li class="nav-item"><a class="nav-link" href="single-blog.html">Blog Details</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/user/blog">Blog</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/user/single-blog">Blog Details</a></li>
                             </ul>
                         </li>
                         <li class="nav-item submenu dropdown">
@@ -39,8 +39,8 @@
                                aria-expanded="false">Pages</a>
                             <ul class="dropdown-menu">
                                 <li class="nav-item"><a class="nav-link" href="/user/login">Login</a></li>
-                                <li class="nav-item"><a class="nav-link" href="tracking.html">Tracking</a></li>
-                                <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/user/tracking">Tracking</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/user/elements">Elements</a></li>
                             </ul>
                         </li>
                         <li class="nav-item"><a class="nav-link" href="/user/contact">Contact</a></li>

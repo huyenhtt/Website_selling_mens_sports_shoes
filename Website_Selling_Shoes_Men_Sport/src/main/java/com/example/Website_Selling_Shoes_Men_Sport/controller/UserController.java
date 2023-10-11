@@ -73,4 +73,14 @@ public class UserController {
     public String checkout() {
         return "/home/checkout";
     }
+
+    @GetMapping("/confirmation")
+    public String confirmation() {
+        return "/home/confirmation";
+    }
+
+    @GetMapping("/single-blog")
+    public String singleBlog() {
+        return "/home/single-blog";
+    }
 }
