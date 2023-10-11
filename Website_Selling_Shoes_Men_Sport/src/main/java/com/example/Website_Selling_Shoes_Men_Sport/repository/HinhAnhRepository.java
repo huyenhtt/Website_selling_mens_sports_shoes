@@ -2,6 +2,7 @@ package com.example.Website_Selling_Shoes_Men_Sport.repository;
 
 import com.example.Website_Selling_Shoes_Men_Sport.entity.ChiTietSanPham;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.HinhAnh;
+import com.example.Website_Selling_Shoes_Men_Sport.entity.SanPham;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -32,4 +33,11 @@ public interface HinhAnhRepository extends JpaRepository<HinhAnh, UUID> {
 
     @Query(value = "select ctsp.id from HinhAnh h join ChiTietSanPham ctsp on ctsp.id=h.IdCTSP where h.id=?1", nativeQuery = true)
     UUID getIdCTSP(UUID id);
+
+    @Query(value = "select h from HinhAnh h where h.ctsp.id=?1")
+    HinhAnh getHinhAnh(UUID keyword);
+
+    @Query(value = "select ctsp.sanPham from ChiTietSanPham ctsp where ctsp.id=?1")
+    SanPham getSanPhamByIDCTSP(UUID idCTSP);
+
 }

@@ -199,56 +199,13 @@
             </button>
         </div>
     </form:form>
-    <%--    modal0--%>
-<%--    <div class="modal fade" id="exampleModal0" tabindex="-1" aria-labelledby="exampleModalLabel0"--%>
-<%--         aria-hidden="true">--%>
-<%--        <div class="modal-dialog">--%>
-<%--            <div class="modal-content">--%>
-<%--                <form:form modelAttribute="SP" method="post" action="/chi-tiet-san-pham/san-pham/add">--%>
-<%--                    <div class="modal-header">--%>
-<%--                        <h1 class="modal-title fs-5" id="exampleModalLabel0">Thêm Sản Phẩm</h1>--%>
-<%--                        <button type="button" class="btn-close" data-bs-dismiss="modal"--%>
-<%--                                aria-label="Close"></button>--%>
-<%--                    </div>--%>
-<%--                    <div class="modal-body">--%>
-<%--                        <div class="input" style="">--%>
-<%--                            <p>Mã:</p>--%>
-<%--                            <form:input path="maSanPham" class="form-control"/>--%>
-<%--                        </div>--%>
-<%--                        <form:errors path="maSanPham"/>--%>
-<%--                        <div style="margin-left: 10px;color: red">${errorMa}</div>--%>
-<%--                        <div class="input">--%>
-<%--                            <p>Tên Sản Phẩm:</p>--%>
-<%--                            <form:input path="tenSanPham" class="form-control"/>--%>
 
-<%--                        </div>--%>
-<%--                        <form:errors path="tenSanPham"/>--%>
-<%--                        <div style="margin-left: 10px;color: red">${errorTen}</div>--%>
-<%--                        <div class="mb-3 form-check-inline ">--%>
-<%--                            <label class="form-label">Trạng Thái</label>--%>
-<%--                            <form:radiobuttons items="${dsTrangThai}" path="trangThai" class="form-check-input"/>--%>
-<%--                            <form:errors path="trangThai" cssStyle="color: crimson"/>--%>
-<%--                        </div>--%>
-
-<%--                    </div>--%>
-<%--                    <div class="modal-footer">--%>
-<%--                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close--%>
-<%--                        </button>--%>
-<%--                        <button type="submit" class="btn btn-primary">--%>
-<%--                            Submit--%>
-<%--                        </button>--%>
-<%--                    </div>--%>
-<%--                </form:form>--%>
-<%--            </div>--%>
-
-<%--        </div>--%>
-<%--    </div>--%>
     <%--    modal--%>
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form:form modelAttribute="lg" method="post" action="/chi-tiet-san-pham/loai-giay/add">
+                <form:form modelAttribute="lg" method="post" action="${action4}">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm Loại Giầy</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -292,7 +249,7 @@
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form:form modelAttribute="kichco" action="/chi-tiet-san-pham/kich-co/add">
+                <form:form modelAttribute="kichco" action="${action2}">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel2">Thêm kích cỡ</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -346,7 +303,7 @@
     <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form:form modelAttribute="ms" action="/chi-tiet-san-pham/mau-sac/add">
+                <form:form modelAttribute="ms" action="${action3}">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel3">Thêm màu sắc</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -387,7 +344,7 @@
     <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form:form modelAttribute="vm" action="/chi-tiet-san-pham/chat-lieu/add">
+                <form:form modelAttribute="vm" action="${action6}">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="exampleModalLabel4">Thêm chất liệu</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
@@ -426,7 +383,7 @@
     <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form:form modelAttribute="degiay" action="/chi-tiet-san-pham/de-giay/add">
+                <form:form modelAttribute="degiay" action="${action5}">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel5">Thêm đế giầy</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"

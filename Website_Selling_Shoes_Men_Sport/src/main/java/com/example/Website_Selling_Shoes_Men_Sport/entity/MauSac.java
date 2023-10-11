@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -15,10 +17,13 @@ public class MauSac {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     public UUID id;
+    @NotBlank(message = "không để trống")
     public String ma;
+    @NotBlank(message = "không để trống")
     public String tenMau;
     public LocalDateTime createDate;
     public LocalDateTime lastModifiledDate;
+    @NotNull(message = "không để trống")
     public Integer trangThai;
 
     public MauSac(){}

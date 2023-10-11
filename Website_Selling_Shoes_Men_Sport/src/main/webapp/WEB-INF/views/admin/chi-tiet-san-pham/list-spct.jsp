@@ -115,15 +115,14 @@
                     <td>${i.index+1}</td>
                     <td>${sp.sanPham.maSanPham}</td>
                     <td>${sp.sanPham.tenSanPham}</td>
-                    <td>${sp.giaBan}</td>
-
+                    <td><fmt:formatNumber value="${sp.giaBan}" maxFractionDigits="20" type="number"/></td>
                     <td>${sp.soLuong}</td>
                     <td>${sp.trangThai==0?"Hoạt động":"Không hoạt động"}</td>
                     <td>${sp.moTaCT}</td>
                     <td>
-                        <a href="/chi-tiet-san-pham/view-update/${sp.id}" class="btn btn-warning"><i
+                        <a href="/chi-tiet-san-pham/view-update-ctsp/${sp.id}" class="btn btn-warning"><i
                                 class="bi bi-pencil-square"></i></a>
-                        <a href="/chi-tiet-san-pham/hinh-anh/view-add/${sp.id}" class="btn btn-warning"><i
+                        <a href="/chi-tiet-san-pham/hinh-anh-sp/view-add/${sp.id}" class="btn btn-warning"><i
                                 class="bi bi-file-earmark-image"></i></a>
                     </td>
                 </tr>

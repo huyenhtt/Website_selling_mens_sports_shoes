@@ -2,6 +2,7 @@ package com.example.Website_Selling_Shoes_Men_Sport.service.impl;
 
 import com.example.Website_Selling_Shoes_Men_Sport.entity.ChiTietSanPham;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.HinhAnh;
+import com.example.Website_Selling_Shoes_Men_Sport.entity.SanPham;
 import com.example.Website_Selling_Shoes_Men_Sport.repository.ChiTietSanPhamRepo;
 import com.example.Website_Selling_Shoes_Men_Sport.repository.HinhAnhRepository;
 import com.example.Website_Selling_Shoes_Men_Sport.service.HinhAnhService;
@@ -40,6 +41,16 @@ public class HinhAnhServiceImpl implements HinhAnhService {
     @Override
     public UUID getIdHinhAnh(UUID keyword) {
         return repository.getIdHinhAnh(keyword);
+    }
+
+    @Override
+    public HinhAnh getHinhAnh(UUID id) {
+        return repository.getHinhAnh(id);
+    }
+
+    @Override
+    public SanPham getSanPhamByIDCTSP(UUID idCTSP) {
+        return repository.getSanPhamByIDCTSP(idCTSP);
     }
 
     @Override

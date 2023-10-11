@@ -122,7 +122,7 @@
                     <td>${i.index+1}</td>
                     <td>${sp.sanPham.maSanPham}</td>
                     <td>${sp.sanPham.tenSanPham}</td>
-                    <td>${sp.giaBan}</td>
+                    <td><fmt:formatNumber value="${sp.giaBan}" maxFractionDigits="20" type="number"/></td>
 
                     <td>${sp.soLuong}</td>
                     <td>${sp.trangThai==0?"Hoạt động":"Không hoạt động"}</td>
