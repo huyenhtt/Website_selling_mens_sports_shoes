@@ -1,5 +1,6 @@
 package com.example.Website_Selling_Shoes_Men_Sport.service.impl;
 
+import com.example.Website_Selling_Shoes_Men_Sport.entity.Account;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.NguoiDung;
 import com.example.Website_Selling_Shoes_Men_Sport.repository.NguoiDungRepository;
 import com.example.Website_Selling_Shoes_Men_Sport.service.NguoiDungService;
@@ -23,6 +24,7 @@ public class NguoiDungServiceImpl implements NguoiDungService{
     public NguoiDung getObjByAccount(UUID uuid) {
         return ndRepo.findNguoiDungByAccount(uuid);
     }
+
 
     @Override
     public NguoiDung save(NguoiDung nd) {
@@ -50,12 +52,12 @@ public class NguoiDungServiceImpl implements NguoiDungService{
     }
 
     @Override
-    public Page<NguoiDung> getListNguoiDung(Pageable pageable) {
-        return null;
+    public Page<NguoiDung> searchND(String keyword, Pageable pageable) {
+        return ndRepo.searchNd(keyword, pageable);
     }
 
     @Override
-    public Page<NguoiDung> searchND(String keyword, Pageable pageable) {
-        return null;
+    public Page<NguoiDung> getLstNguoiDung(Pageable pageable) {
+        return ndRepo.findAll(pageable);
     }
 }

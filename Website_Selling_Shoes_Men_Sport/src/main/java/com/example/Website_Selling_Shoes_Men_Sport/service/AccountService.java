@@ -7,11 +7,10 @@ import java.util.UUID;
 
 public interface AccountService {
     public List<Account> findAll();
-
-    public void save(Account account);
-
+    public Account save(Account account);
+    Account update(Account account);
     public void deleteById(UUID id);
-
+    Account findAccountByUsername(String users);
     public Account getById(UUID id);
 
     Account findByUser(String users);

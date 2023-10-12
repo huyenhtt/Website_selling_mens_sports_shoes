@@ -17,8 +17,7 @@ public interface NguoiDungService {
     NguoiDung update(NguoiDung nd);
 
     NguoiDung getObj(UUID id);
-
-    Page<NguoiDung> getListNguoiDung(Pageable pageable);
+    Page<NguoiDung> getLstNguoiDung(Pageable pageable);
 
     Page<NguoiDung> searchND(String keyword, Pageable pageable);
 }

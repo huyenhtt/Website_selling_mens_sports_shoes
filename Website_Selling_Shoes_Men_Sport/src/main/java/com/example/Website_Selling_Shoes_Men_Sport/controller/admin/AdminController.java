@@ -46,8 +46,8 @@ public class AdminController {
         for (Account a : service.findAll()) {
             if (a.getUsername().equals(username) && a.getPassword().equals(password)) {
                 if (a.isRole() == true) {
-                    session.setAttribute("account", a);
-                    return "home/a";
+                    session.setAttribute("username", username);
+                    return "redirect:/admin/home";
                 }
                 if (a.isRole() == false) {
                     session.setAttribute("username", username);
@@ -56,7 +56,7 @@ public class AdminController {
             }
         }
         model.addAttribute("message", "Tên đăng nhập/mật khẩu không đúng");
-        return "login";
+        return "admin/page-login";
     }
 
     @GetMapping("/register")
@@ -68,5 +68,11 @@ public class AdminController {
     public String logout() {
         session.removeAttribute("username");
         return "redirect:/admin/login";
+    }
+
+    @GetMapping("/thong-ke")
+    public String thong_ke(Model model) {
+        model.addAttribute("view", "../admin/thong_ke.jsp");
+        return "admin/dashboard";
     }
 }

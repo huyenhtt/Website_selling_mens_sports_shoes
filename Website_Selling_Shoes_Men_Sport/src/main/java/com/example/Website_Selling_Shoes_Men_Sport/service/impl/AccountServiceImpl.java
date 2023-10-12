@@ -20,14 +20,21 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void save(Account account) {
-        accountRepos.save(account);
+    public Account save(Account account) {
+       return accountRepos.save(account);
+    }
+
+    @Override
+    public Account update(Account tk) {
+        return accountRepos.save(tk);
+
     }
 
     @Override
     public void deleteById(UUID id) {
 
     }
+
 
     @Override
     public Account getById(UUID id) {
@@ -37,6 +44,11 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Account findByUser(String users) {
         return null;
+    }
+
+    @Override
+    public Account findAccountByUsername(String users) {
+        return accountRepos.findAccountByUsername(users);
     }
 
     @Override

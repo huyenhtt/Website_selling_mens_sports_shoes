@@ -2,6 +2,7 @@ package com.example.Website_Selling_Shoes_Men_Sport.controller;
 
 import com.example.Website_Selling_Shoes_Men_Sport.entity.Account;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.NguoiDung;
+import com.example.Website_Selling_Shoes_Men_Sport.service.AccountService;
 import com.example.Website_Selling_Shoes_Men_Sport.service.NguoiDungService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -22,14 +23,25 @@ import java.util.UUID;
 public class ProfileController {
     @Autowired
     HttpSession session;
+
     @Autowired
     NguoiDungService ndService;
+    @Autowired
+    AccountService accService;
 
     @GetMapping()
     public String index(Model model, @ModelAttribute("nd") NguoiDung nds) {
         //Cần login
+        Account account = null;
+        String username = (String) session.getAttribute("username");
+            if (username != null) {
+                account = accService.findAccountByUsername(username);
+                System.out.println(account);
+            }
 
-        Account account = (Account) session.getAttribute("account");
+        if (account==null) {
+            return "redirect:/admin/login";
+        }
         NguoiDung nd = ndService.getObjByAccount(account.getId());
 
         System.out.println(account);

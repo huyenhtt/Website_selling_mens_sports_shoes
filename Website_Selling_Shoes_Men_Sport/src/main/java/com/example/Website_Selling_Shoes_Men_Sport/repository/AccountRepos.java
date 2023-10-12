@@ -12,6 +12,7 @@ public interface AccountRepos extends JpaRepository<Account, UUID> {
     searchByAccount(String username, String password);
 
     @Query("Select p from Account p where p.username =?1")
-    Account
-    findByUser(String users);
+    Account findByUser(String users);
+
+    Account findAccountByUsername(String username);
 }
