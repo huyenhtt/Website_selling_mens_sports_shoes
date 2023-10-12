@@ -104,7 +104,7 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link collapsed" href="/thong-ke">
+            <a class="nav-link collapsed" href="/admin/thong-ke">
                 <i class="bi bi-graph-up-arrow"></i>
                 <span>Thống kê</span>
             </a>

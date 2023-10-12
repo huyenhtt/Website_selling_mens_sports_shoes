@@ -69,4 +69,10 @@ public class AdminController {
         session.removeAttribute("username");
         return "redirect:/admin/login";
     }
+
+    @GetMapping("/thong-ke")
+    public String thong_ke(Model model) {
+        model.addAttribute("view", "../admin/thong_ke.jsp");
+        return "admin/dashboard";
+    }
 }
