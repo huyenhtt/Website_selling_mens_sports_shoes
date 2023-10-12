@@ -29,7 +29,7 @@ CREATE TABLE KichCo(
     Id  UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
     MaKichCo  VARCHAR(100) UNIQUE,
     Size   INT ,
-    LoaiSize  VARCHAR(20),
+LoaiSize VARCHAR(10),
 	GioiTinh  BIT,
 	CreateDate Date,
 	LastModifiledDate Date,
@@ -79,7 +79,6 @@ CREATE TABLE ChiTietSanPham(
     MaCTSP VARCHAR(100) UNIQUE,
 	GiaBan   MONEY,
     SoLuong INT,
-    HinhAnh   VARCHAR(250),
     MoTaCT   NVARCHAR(255),
 	CreateDate Date,
 	LastModifiledDate Date,
@@ -99,9 +98,9 @@ CREATE TABLE NguoiDung(
     Id UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
     IdTaiKhoan  UNIQUEIDENTIFIER REFERENCES TaiKhoan(Id),
     Ma    VARCHAR(50),
-    Ho    NVARCHAR(50),
-    TenDem NVARCHAR(50),
-    Ten    NVARCHAR(50),
+    Ho    NVARCHAR(250),
+    TenDem NVARCHAR(250),
+    Ten    NVARCHAR(250),
     GioiTinh  BIT,
     NgaySinh  DATE,
     DiaChi   NVARCHAR(255),
@@ -222,4 +221,129 @@ CREATE TABLE GioHangChiTiet(
     DonGiaKhiGiam MONEY,
 	TrangThai INT
 )
+Go
+CREATE TABLE HinhAnh
+(
+    Id        UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
+    IdCTSP    UNIQUEIDENTIFIER REFERENCES ChiTietSanPham (id),
+    TenAnh    VARCHAR(255),
+    DuongDan1 VARCHAR(255),
+    DuongDan2 VARCHAR(255),
+    DuongDan3 VARCHAR(255),
+    TrangThai INT
+)
+GO
+INSERT INTO [dbo].[ChatLieu]
+           (
+		 
+           [MaChatLieu]
+           ,[TenChatLieu]
+           ,[CreateDate]
+           ,[LastModifiledDate]
+           ,[TrangThai])
+     VALUES
+           (
+           '9247ds',N'Vải','2023-2-2','2023-12-12',1),
+		   ( '9347ds',N'Da','2023-2-2','2023-12-12',1),
+		    ( '9447ds',N'Nylon','2023-2-2','2023-12-12',1), 
+			( '9547ds',N'Apolyurethane','2023-2-2','2023-12-12',1)
 
+GO
+INSERT INTO [dbo].[DeGiay]
+           ([Ma]
+           ,[LoaiDe]
+           ,[MoTa]
+           ,[CreateDate]
+           ,[LastModifiledDate]
+           ,[TrangThai])
+     VALUES
+           ('dh281','Kingsman',N'bảo hộ','2023-2-2','2023-2-2',1),
+		     ('dh28w1','Jogger ',N'bảo hộ','2023-2-2','2023-2-2',1),
+			  ('dhw281','Ziben ',N'bảo hộ','2023-2-2','2023-2-2',1),
+			  ('dh2ww81','Cao su ',N'bền','2023-2-2','2023-2-2',1)
+GO
+INSERT INTO [dbo].[TaiKhoan]
+           ([Username]
+           ,[Password]
+           ,[Role])
+     VALUES
+           ('huyenhtt','123456',1),
+		   ('namnt','123456',0),
+		   ('jekd','123456',1),
+		   ('kientm','123456',1)
+GO
+INSERT INTO [dbo].[NguoiDung]
+           ([IdTaiKhoan]
+           ,[Ma]
+           ,[Ho]
+           ,[TenDem]
+           ,[Ten]
+           ,[GioiTinh]
+           ,[NgaySinh]
+           ,[DiaChi]
+           ,[SoDienThoai]
+           ,[Email]
+           ,[CreateDate]
+           ,[LastModifiledDate]
+           ,[TrangThai])
+     VALUES
+           ('c220e99f-75f2-49bb-bad3-305c071adfeb','quanly2',N'Hoàng',N'Thị',N'Huyền',1,'1-12-2003',N'Hà Nội','0948378375','huuyen@gmail.com','2023-2-2','2023-2-2',1),
+		    ('bd8398e4-281f-4a9c-b95c-5acc01d4dc67','khc23',N'Nguyễn',N'Tiến',N'Nam',0,'2-12-2003',N'Hà Nội','0948387452','namnt@gmail.com','2023-2-2','2023-2-2',1)
+GO
+INSERT INTO [dbo].[MauSac]
+           ([Ma]
+           ,[TenMau]
+           ,[CreateDate]
+           ,[LastModifiledDate]
+           ,[TrangThai])
+     VALUES
+           ('mn279','green','2023-2-2','2023-2-2',1),
+		   ('mn2792','blue','2023-2-2','2023-2-2',1),
+		   ('mn2w7e9','puple','2023-2-2','2023-2-2',1),
+		   ('mn27ws9','black','2023-2-2','2023-2-2',1),
+		   ('mn2s79','white','2023-2-2','2023-2-2',1)
+GO
+
+INSERT INTO [dbo].[LoaiGiay]
+           ([Ma]
+           ,[TenTheLoai]
+           ,[CreateDate]
+           ,[LastModifiledDate]
+           ,[TrangThai])
+     VALUES
+           ('ma1ee31',N'Giày chạy bộ','2023-2-2','2023-2-2',1),
+		   ('ma1e31',N'Giày đi bộ','2023-2-2','2023-2-2',1),
+		   ('ma1q31',N'Giày đá bóng','2023-2-2','2023-2-2',1),
+		   ('ma13ed1',N'Giày chạy địa hình','2023-2-2','2023-2-2',1),
+		   ('maed131',N'Giày bóng rổ','2023-2-2','2023-2-2',1)
+GO
+
+INSERT INTO [dbo].[KichCo]
+           ([MaKichCo]
+           ,[Size]
+           ,[GioiTinh]
+           ,[CreateDate]
+           ,[LastModifiledDate]
+           ,[TrangThai])
+     VALUES
+           ('anu32',40,1,'2023-2-1','2023-2-1',1),
+		   ('anu232',41,1,'2023-2-1','2023-2-1',1),
+		   ('anuqw32',42,1,'2023-2-1','2023-2-1',1),
+		   ('awwnu32',44,1,'2023-2-1','2023-2-1',1),
+		   ('anuwf32',43,1,'2023-2-1','2023-2-1',1)
+GO
+
+INSERT INTO [dbo].[KhuyenMai]
+           ([MaKhuyenMai]
+           ,[TenKhuyenMai]
+           ,[GiaTri]
+           ,[LoaiKhuyenMai]
+           ,[NgayBatDau]
+           ,[NgayKetThuc]
+           ,[CreateDate]
+           ,[LastModifiledDate]
+           ,[TrangThai])
+     VALUES
+           ('km78q3',N'giảm 10%',120,'sp','2023-1-2','2023-1-3','2023-1-2','2023-1-3',0),
+		   ('km78dsq3',N'giảm 30%',122,'sp','2023-1-2','2023-1-3','2023-1-2','2023-1-3',1)
+GO
