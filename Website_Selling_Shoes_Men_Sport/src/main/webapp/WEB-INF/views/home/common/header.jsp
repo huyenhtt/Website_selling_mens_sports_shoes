@@ -15,17 +15,18 @@
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
                         <li class="nav-item active"><a class="nav-link" href="/user/home">Home</a></li>
-                        <li class="nav-item submenu dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                               aria-expanded="false">Shop</a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="/user/category">Shop Category</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/user/product-detail">Product Details</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/user/checkout">Product Checkout</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/user/cart">Shopping Cart</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/user/confirmation">Confirmation</a></li>
-                            </ul>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/user/category">Product</a></li>
+<%--                        <li class="nav-item submenu dropdown">--%>
+<%--                            <a href="/user/category" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"--%>
+<%--                               aria-expanded="false">Product</a>--%>
+<%--                            <ul class="dropdown-menu">--%>
+<%--                                <li class="nav-item"><a class="nav-link" href="/user/category">Shop Category</a></li>--%>
+<%--&lt;%&ndash;                                <li class="nav-item"><a class="nav-link" href="/user/product-detail">Product Details</a></li>&ndash;%&gt;--%>
+<%--                                <li class="nav-item"><a class="nav-link" href="/user/checkout">Product Checkout</a></li>--%>
+<%--&lt;%&ndash;                                <li class="nav-item"><a class="nav-link" href="/user/cart">Shopping Cart</a></li>&ndash;%&gt;--%>
+<%--                                <li class="nav-item"><a class="nav-link" href="/user/confirmation">Confirmation</a></li>--%>
+<%--                            </ul>--%>
+<%--                        </li>--%>
                         <li class="nav-item submenu dropdown">
                             <a href="/user/blog" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false">Blog</a>
@@ -46,7 +47,7 @@
                         <li class="nav-item"><a class="nav-link" href="/user/contact">Contact</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a href="#" class="cart"><span class="ti-bag"></span></a></li>
+                        <li class="nav-item"><a href="/user/cart" class="cart"><span class="ti-bag"></span></a></li>
                         <li class="nav-item">
                             <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
                         </li>

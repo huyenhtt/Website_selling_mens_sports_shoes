@@ -48,7 +48,6 @@
                             <th>#</th>
                             <th>Mã Kích Cỡ</th>
                             <th>Size</th>
-                            <th>Loại Size</th>
                             <th>Giới tính</th>
                             <th>Ngày tạo</th>
                             <th>Ngày cập nhật</th>

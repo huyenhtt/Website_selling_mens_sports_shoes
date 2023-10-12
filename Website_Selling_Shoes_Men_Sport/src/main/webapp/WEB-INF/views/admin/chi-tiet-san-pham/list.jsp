@@ -103,9 +103,9 @@
             </div>
         </div>
 
-        <table class="table">
+        <table class="table table-bordered">
 
-            <tr style="background: #0d6efd;color: white ">
+            <tr class="table-danger">
                 <th>STT</th>
                 <th>Mã sản phẩm</th>
                 <th>Tên sản phẩm</th>
