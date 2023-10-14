@@ -58,12 +58,12 @@ public class HoaDonChiTiet {
     private LocalDateTime lastModifiedDate;
 
 
-    @ManyToOne
-    @JoinColumn(name = "IdHoaDon")
-    private HoaDon hoaDon;
-
-    @ManyToOne
-    @JoinColumn(name = "IdChiTietSP")
-    private ChiTietSanPham chiTietSanPham;
+//    @ManyToOne
+//    @JoinColumn(name = "IdHoaDon")
+//    private HoaDon hoaDon;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "IdChiTietSP")
+//    private ChiTietSanPham chiTietSanPham;
 
 }

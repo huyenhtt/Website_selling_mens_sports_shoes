@@ -12,13 +12,13 @@ public interface HoaDonChiTietService {
 
     List<HoaDonChiTiet> getListHDCT();
 
+    HoaDonChiTiet getOne(UUID id);
+
     HoaDonChiTiet insertHDCT(HoaDonChiTiet hoaDonChiTiet);
 
     HoaDonChiTiet deleteHDCT(UUID id);
 
     HoaDonChiTiet updateHDCT(HoaDonChiTiet hoaDonChiTiet, UUID id);
-
-    HoaDonChiTiet getOne(UUID id);
 
     Page<HoaDonChiTiet> getListHDCT(Pageable pageable);
 

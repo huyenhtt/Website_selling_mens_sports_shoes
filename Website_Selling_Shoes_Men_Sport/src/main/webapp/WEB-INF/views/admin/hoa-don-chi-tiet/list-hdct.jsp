@@ -35,7 +35,7 @@
                             <form:form action="/admin/hoa-don-chi-tiet/search" modelAttribute="searchForm" method="post">
                                 <div class="input-group mb-3"><form:input type="text" path="keyword"
                                                                           class="form-control"
-                                                                          placeholder="Nhập mã hoặc tên chất liệu..."
+                                                                          placeholder="Nhập số lượng..."
                                                                           aria-describedby="button-addon2"></form:input>
                                     <button class="btn btn-success" type="button" id="button-addon2">Tìm kiếm</button>
                                 </div>
@@ -51,6 +51,8 @@
                         <tr>
                             <th>#</th>
                             <th>ID</th>
+<%--                            <td>Id Hoa Don</td>--%>
+<%--                            <td>Id Chi Tiet SP</td>--%>
                             <th>Số Lượng</th>
                             <th>Đơn Giá</th>
                             <th>Giá Bán</th>

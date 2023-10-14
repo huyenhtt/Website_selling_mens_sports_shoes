@@ -33,7 +33,7 @@ public class HoaDonChiTietController {
     @RequestMapping("/hien-thi")
     public String getListHDCT(@RequestParam(defaultValue = "0") int p, Model model){
         if(p < 0){
-            p =0;
+            p = 0;
         }
         Pageable pageable = PageRequest.of(p, 5);
         Page<HoaDonChiTiet> page = hoaDonChiTietService.getListHDCT(pageable);

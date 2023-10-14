@@ -1,6 +1,5 @@
 package com.example.Website_Selling_Shoes_Men_Sport.service.impl;
 
-import com.example.Website_Selling_Shoes_Men_Sport.entity.HoaDon;
 import com.example.Website_Selling_Shoes_Men_Sport.entity.HoaDonChiTiet;
 import com.example.Website_Selling_Shoes_Men_Sport.repository.HoaDonChiTietRepository;
 import com.example.Website_Selling_Shoes_Men_Sport.service.HoaDonChiTietService;
@@ -34,8 +33,11 @@ public class HoaDonChiTietServiceImpl implements HoaDonChiTietService {
 
     @Override
     public HoaDonChiTiet deleteHDCT(UUID id) {
-        hoaDonChiTietRepository.deleteById(id);
-        return null;
+        HoaDonChiTiet hoaDonChiTiet = hoaDonChiTietRepository.findById(id).get();
+            if(hoaDonChiTiet.getId() != null){
+                hoaDonChiTietRepository.save(hoaDonChiTiet);
+        }
+        return hoaDonChiTiet;
     }
 
     @Override
