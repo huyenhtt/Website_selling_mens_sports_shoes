@@ -12,7 +12,7 @@ import java.util.UUID;
 
 @Repository
 public interface LoaiGiayRepo extends JpaRepository<LoaiGiay, UUID> {
-          @Query("select l from LoaiGiay l where l.ma like %?1% or l.tenTheLoai like %?1% or ?1 is null")
-          Page<LoaiGiay> searchLG(String keyword, Pageable pageable);
+    @Query("select l from LoaiGiay l where l.ma like %?1% or l.tenTheLoai like %?1% or ?1 is null")
+    Page<LoaiGiay> searchLG(String keyword, Pageable pageable);
 
 }

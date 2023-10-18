@@ -60,8 +60,6 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
         return repo.searchByDeGiay(idDe, pageable);
     }
 
-
-
     @Override
     public Page<ChiTietSanPham> searchCL(UUID idCL, Pageable pageable) {
         return repo.searchByChatLieu(idCL, pageable);
@@ -110,6 +108,26 @@ public class ChiTietSanPhamServiceImpl implements ChiTietSanPhamService {
     @Override
     public Page<ChiTietSanPham> listCTSP(UUID id , Pageable pageable) {
         return repo.listCTSP(id,pageable);
+    }
+
+    @Override
+    public Page<ChiTietSanPham> searchCTSPByLoaiGiayList(List<UUID> idLoaiGiayList, Pageable pageable) {
+        return repo.searchCTSPByLoaiGiayList(idLoaiGiayList,pageable);
+    }
+
+    @Override
+    public Page<ChiTietSanPham> getCTSPByGiaBan(Double minPrice, Double maxPrice, Pageable pageable) {
+        return repo.getCTSPByGiaBan(minPrice,maxPrice,pageable);
+    }
+
+    @Override
+    public Page<ChiTietSanPham> getCTSPBYKC(UUID idKC, Pageable pageable) {
+        return repo.getCTSPBYKC(idKC,pageable);
+    }
+
+    @Override
+    public Page<ChiTietSanPham> getCTSPBYMauSac(UUID idMS, Pageable pageable) {
+        return repo.getCTSPBYMS(idMS,pageable);
     }
 
 
