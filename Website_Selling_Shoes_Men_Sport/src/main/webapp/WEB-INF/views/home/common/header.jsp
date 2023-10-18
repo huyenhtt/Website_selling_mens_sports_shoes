@@ -1,4 +1,4 @@
-
+<%@ page pageEncoding="utf-8" %>
 <header class="header_area sticky-header">
     <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light main_box">
@@ -14,8 +14,8 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item active"><a class="nav-link" href="/user/home">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/user/category">Product</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/home">Trang Chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/category">Sản Phẩm</a></li>
 <%--                        <li class="nav-item submenu dropdown">--%>
 <%--                            <a href="/user/category" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"--%>
 <%--                               aria-expanded="false">Product</a>--%>
@@ -29,22 +29,22 @@
 <%--                        </li>--%>
                         <li class="nav-item submenu dropdown">
                             <a href="/user/blog" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                               aria-expanded="false">Blog</a>
+                               aria-expanded="false">Tin tức</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="/user/blog">Blog</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/user/single-blog">Blog Details</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/user/blog">Tin tức</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/user/single-blog">Giới thiệu sản phẩm</a></li>
                             </ul>
                         </li>
                         <li class="nav-item submenu dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                                aria-expanded="false">Pages</a>
                             <ul class="dropdown-menu">
-                                <li class="nav-item"><a class="nav-link" href="/user/login">Login</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/user/tracking">Tracking</a></li>
-                                <li class="nav-item"><a class="nav-link" href="/user/elements">Elements</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/user/login">Đăng nhập</a></li>
+                                <li class="nav-item"><a class="nav-link" href="/user/tracking">Theo dõi đơn hàng</a></li>
+<%--                                <li class="nav-item"><a class="nav-link" href="/user/elements">Elements</a></li>--%>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="/user/contact">Contact</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/user/contact">Về chúng tôi</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item"><a href="/user/cart" class="cart"><span class="ti-bag"></span></a></li>

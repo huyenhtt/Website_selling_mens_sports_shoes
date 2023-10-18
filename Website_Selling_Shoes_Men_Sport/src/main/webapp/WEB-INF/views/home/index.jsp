@@ -1,3 +1,4 @@
+<%@ page pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
@@ -20,6 +21,7 @@
 <!-- End footer Area -->
 
 <%@include file="common/script.jsp" %>
+
 </body>
 
 </html>

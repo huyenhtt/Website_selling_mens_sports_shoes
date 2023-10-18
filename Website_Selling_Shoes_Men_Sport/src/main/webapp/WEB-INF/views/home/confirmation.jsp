@@ -1,5 +1,5 @@
 
-
+<%@ page pageEncoding="utf-8" %>
 <!--================Order Details Area =================-->
 <section class="order_details section_gap">
     <div class="container">

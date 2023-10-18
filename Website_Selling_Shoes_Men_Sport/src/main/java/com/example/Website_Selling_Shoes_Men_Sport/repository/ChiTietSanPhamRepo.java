@@ -75,4 +75,21 @@ public interface ChiTietSanPhamRepo extends JpaRepository<ChiTietSanPham, UUID> 
     // list ctsp theo id
     @Query(value = "select ct from ChiTietSanPham ct where ct.sanPham.id=?1")
     Page<ChiTietSanPham> listCTSP(UUID id, Pageable pageable);
+
+    //home
+    @Query("SELECT c FROM ChiTietSanPham c WHERE c.loaiGiay.id IN ?1")
+    Page<ChiTietSanPham> searchCTSPByLoaiGiayList(List<UUID> idLoaiGiayList, Pageable pageable);
+
+    @Query("select ctsp from ChiTietSanPham  ctsp where ctsp.giaBan between ?1 and ?2")
+    Page<ChiTietSanPham> getCTSPByGiaBan(Double minPrice, Double maxPrice, Pageable pageable);
+
+    @Query(value = "select * from ChiTietSanPham where Idkichco = ?1", nativeQuery = true)
+    Page<ChiTietSanPham> getCTSPBYKC(UUID idKC, Pageable pageable);
+
+    @Query("select ctsp from ChiTietSanPham ctsp where ctsp.mauSac.id = ?1")
+    Page<ChiTietSanPham> getCTSPBYMS(UUID idMS, Pageable pageable);
+//đếm số sản phẩm
+
+    @Query(value = "select count(*) from  ChiTietSanPham",nativeQuery = true)
+    Integer countSanPham();
 }

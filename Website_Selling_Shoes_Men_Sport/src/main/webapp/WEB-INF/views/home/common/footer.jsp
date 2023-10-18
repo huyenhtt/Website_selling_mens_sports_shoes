@@ -1,3 +1,4 @@
+<%@ page pageEncoding="utf-8" %>
 <footer class="footer-area section_gap">
     <div class="container">
         <div class="row">
