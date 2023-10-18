@@ -1,4 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ page pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 
@@ -8,9 +11,9 @@
 
 <body id="category">
 
-<!-- Start Header Area -->
+<%--<!-- Start Header Area -->--%>
 <%@include file="common/header.jsp" %>
-<!-- End Header Area -->
+<%--<!-- End Header Area -->--%>
 
 <!-- Start Banner Area -->
 <section class="banner-area organic-breadcrumb">
@@ -32,87 +35,93 @@
     <div class="row">
         <div class="col-xl-3 col-lg-4 col-md-5">
             <div class="sidebar-categories">
-                <div class="head">Browse Categories</div>
+
+                <div class="head">Loại Giầy</div>
+                <%--                <form action="/bumblebee/product_list/searchbyloaigiay">--%>
                 <ul class="main-categories">
-                    <c:forEach items="${listLG}" var="lg">
-                        <li class="main-nav-list"><a href="#">Pest Control<span class="number">(24)</span></a></li>
-                    </c:forEach>
-                    <li class="main-nav-list"><a data-toggle="collapse" href="#officeProduct" aria-expanded="false"
-                                                 aria-controls="officeProduct"><span
-                            class="lnr lnr-arrow-right"></span>Office Products<span class="number">(77)</span></a>
-                        <ul class="collapse" id="officeProduct" data-toggle="collapse" aria-expanded="false"
-                            aria-controls="officeProduct">
-                            <li class="main-nav-list child"><a href="#">Frozen Fish<span class="number">(13)</span></a>
-                            </li>
-                            <li class="main-nav-list child"><a href="#">Dried Fish<span class="number">(09)</span></a>
-                            </li>
-                            <li class="main-nav-list child"><a href="#">Fresh Fish<span class="number">(17)</span></a>
-                            </li>
-                            <li class="main-nav-list child"><a href="#">Meat Alternatives<span
-                                    class="number">(01)</span></a></li>
-                            <li class="main-nav-list child"><a href="#">Meat<span class="number">(11)</span></a></li>
-                        </ul>
+                    <li class="main-nav-list">
+                        <a href="/user/category">All<span> (${soLuongSP})</span></a>
                     </li>
+                    <c:forEach items="${listLoaiGiay}" var="lg">
+                        <li class="main-nav-list">
+                            <a href="/user/category/searchbyloaigiay?idLoaiGiayList=${lg.id}">${lg.tenTheLoai}</a>
+                        </li>
+                    </c:forEach>
 
                 </ul>
+                <%--                </form>--%>
             </div>
             <div class="sidebar-filter mt-50">
-                <div class="top-filter-head">Product Filters</div>
+                <div class="top-filter-head">Lọc sản phẩm</div>
                 <div class="common-filter">
-                    <div class="head">Brands</div>
-                    <form action="#">
-                        <ul>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="apple"
-                                                           name="brand"><label
-                                    for="apple">Apple<span>(29)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="asus"
-                                                           name="brand"><label for="asus">Asus<span>(29)</span></label>
-                            </li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="gionee"
-                                                           name="brand"><label
-                                    for="gionee">Gionee<span>(19)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="micromax"
-                                                           name="brand"><label for="micromax">Micromax<span>(19)</span></label>
-                            </li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="samsung"
-                                                           name="brand"><label
-                                    for="samsung">Samsung<span>(19)</span></label></li>
-                        </ul>
-                    </form>
+                    <div class="head">Kích cỡ</div>
+                    <%--                    <form action="#">--%>
+                    <%--                        <ul>--%>
+                    <%--                            <c:forEach items="${listKC}" var="kc">--%>
+                    <%--                                <li class="filter-list"><input class="pixel-radio" type="radio" id="apple"--%>
+                    <%--                                                               name="brand"> <a--%>
+                    <%--                                        href="/user/category/searchbykichco?idLoaiGiayList=${lg.id}">${lg.tenTheLoai}</a>--%>
+                    <%--                                </li>--%>
+
+                    <%--                            </c:forEach>--%>
+                    <%--                        </ul>--%>
+                    <%--                    </form>--%>
+                    <table class="table ps-table--size table-bordered">
+                        <tbody class="table-bordered">
+                        <c:forEach var="kc" items="${listKC}" varStatus="loop">
+                            <c:if test="${loop.index % 5 == 0}">
+                                <tr>
+                            </c:if>
+                            <td><a href="/user/category/searchbykichco/${kc.id}">${kc.size}</a></td>
+                            <c:if test="${loop.index % 5 == 4 or loop.last}">
+                                </tr>
+                            </c:if>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="common-filter">
-                    <div class="head">Color</div>
+<%--                    <div class="head">Màu sắc</div>--%>
+<%--                    <form action="#">--%>
+<%--                        <ul>--%>
+<%--                            <c:forEach var="ms" items="${listMS}">--%>
+<%--                                <li class="filter-list">--%>
+<%--                                    <a href="javascript:void(0);" onclick="handleColorSelection('${ms.id}');">--%>
+<%--                                            ${ms.tenMau}--%>
+<%--                                        <input class="pixel-radio" type="radio" id="${ms.id}" name="color" style="display: none;">--%>
+<%--                                    </a>--%>
+<%--                                    <label for="${ms.id}">${ms.tenMau}<span>(29)</span></label>--%>
+<%--                                </li>--%>
+<%--                            </c:forEach>--%>
+<%--                        </ul>--%>
+<%--                    </form>--%>
+
+                    <div class="head">Màu sắc</div>
                     <form action="#">
                         <ul>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="black"
-                                                           name="color"><label
-                                    for="black">Black<span>(29)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather"
-                                                           name="color"><label for="balckleather">Black
-                                Leather<span>(29)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="blackred"
-                                                           name="color"><label for="blackred">Black
-                                with red<span>(19)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="gold"
-                                                           name="color"><label for="gold">Gold<span>(19)</span></label>
-                            </li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey" name="color"><label
-                                    for="spacegrey">Spacegrey<span>(19)</span></label></li>
+                            <c:forEach var="ms" items="${listMS}">
+                                <li class="filter-list">
+                                    <a href="/user/category/searchbymausac?idMS=${ms.id}">
+                                        <input class="pixel-radio" type="radio" id="black"
+                                               name="color"><label
+                                            for="black">${ms.tenMau}</label></a></li>
+                            </c:forEach>
                         </ul>
                     </form>
                 </div>
                 <div class="common-filter">
                     <div class="head">Price</div>
                     <div class="price-range-area">
-                        <div id="price-range"></div>
-                        <div class="value-wrapper d-flex">
-                            <div class="price">Price:</div>
-                            <span>$</span>
-                            <div id="lower-value"></div>
-                            <div class="to">to</div>
-                            <span>$</span>
-                            <div id="upper-value"></div>
-                        </div>
+                        <form method="GET" action="/user/category/searchbygiaban">
+                            <form:form modelAttribute="searchFormByGiaban">
+                                <form:input path="minPrice" placeholder="Từ"></form:input>
+                                <span><form:input path="maxPrice" placeholder="Đến"></form:input></span>
+                                <button class="ac-slider__filter ps-btn" type="submit"
+                                        style="background-color: #37517E; color: whitesmoke ; margin-top: 10px">Tìm kiếm
+                                </button>
+                            </form:form>
+                        </form>
+
                     </div>
                 </div>
             </div>
@@ -120,27 +129,28 @@
         <div class="col-xl-9 col-lg-8 col-md-7">
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="sorting">
-                    <select>
-                        <option value="1">Default sorting</option>
-                        <option value="1">Default sorting</option>
-                        <option value="1">Default sorting</option>
-                    </select>
-                </div>
                 <div class="sorting mr-auto">
-                    <select>
-                        <option value="1">Show 12</option>
-                        <option value="1">Show 12</option>
-                        <option value="1">Show 12</option>
-                    </select>
+
+                    <form:form modelAttribute="sortForm" action="/user/category/sort">
+                        <form:select id="mySelect" path="key" onchange="this.form.submit()">
+                            <form:option value="" label="Sắp xếp theo"/>
+                            <form:option value="sanPham.tenSanPham" label="Tên sản phẩm"/>
+                            <form:option value="giaBan" label="Tăng dần theo giá"/>
+                        </form:select>
+                    </form:form>
+
                 </div>
                 <div class="pagination">
                     <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                    <a href="#">6</a>
+
+                    <c:forEach begin="0" end="${listCTSP.totalPages - 1 >= 0 ? listCTSP.totalPages - 1 : 0}"
+                               varStatus="loop">
+                        <li class="page-item">
+                            <a href="/user/category?page=${loop.begin + loop.count - 1}">
+                                    ${loop.begin + loop.count }
+                            </a>
+                        </li>
+                    </c:forEach>
                     <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
@@ -182,33 +192,28 @@
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
                 <div class="sorting mr-auto">
-                    <select>
-                        <option value="1">Show 12</option>
-                        <option value="1">Show 12</option>
-                        <option value="1">Show 12</option>
-                    </select>
+
+                    <form:form modelAttribute="sortForm" action="/user/category/sort">
+                        <form:select id="mySelect" path="key" onchange="this.form.submit()">
+                            <form:option value="" label="Sắp xếp theo"/>
+                            <form:option value="sanPham.tenSanPham" label="Tên sản phẩm"/>
+                            <form:option value="giaBan" label="Tăng dần theo giá"/>
+                        </form:select>
+                    </form:form>
+
                 </div>
                 <div class="pagination">
-                    <%--                    <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>--%>
-                    <%--                    <a href="#" class="active">1</a>--%>
-                    <%--                    <a href="#">2</a>--%>
-                    <%--                    <a href="#">3</a>--%>
-                    <%--                    <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>--%>
-                    <%--                    <a href="#">6</a>--%>
-                    <%--                    <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>--%>
-<%--                    <nav aria-label="Page navigation example">--%>
-                        <ul class="pagination">
-                            <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                            <c:forEach begin="0" end="${ listCTSP.totalPages -1}" varStatus="loop">
-                                <li class="page-item">
-                                    <a class="page-link" href="/user/category?page=${loop.begin + loop.count - 1}">
-                                            ${loop.begin + loop.count }
-                                    </a>
-                                </li>
-                            </c:forEach>
-                            <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
-                        </ul>
-<%--                    </nav>--%>
+                    <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
+
+                    <c:forEach begin="0" end="${listCTSP.totalPages - 1 >= 0 ? listCTSP.totalPages - 1 : 0}"
+                               varStatus="loop">
+                        <li class="page-item">
+                            <a href="/user/category?page=${loop.begin + loop.count - 1}">
+                                    ${loop.begin + loop.count }
+                            </a>
+                        </li>
+                    </c:forEach>
+                    <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
             <!-- End Filter Bar -->
@@ -340,7 +345,15 @@
 </div>
 
 <%@include file="common/script.jsp" %>
-
+<%--<script>--%>
+<%--    function handleColorSelection(id) {--%>
+<%--        var radio = document.getElementById(id);--%>
+<%--        radio.checked = true;--%>
+<%--        var resultDiv = document.getElementById('result');--%>
+<%--        resultDiv.textContent = 'Bạn đã chọn màu: ' + radio.id;--%>
+<%--        window.location.href = '/user/category/searchbymausac?idMS=' + id;--%>
+<%--    }--%>
+<%--</script>--%>
 </body>
 
 </html>

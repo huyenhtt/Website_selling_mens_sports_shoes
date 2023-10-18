@@ -1,3 +1,4 @@
+<%@ page pageEncoding="utf-8" %>
 <section class="blog_categorie_area">
     <div class="container">
         <div class="row">

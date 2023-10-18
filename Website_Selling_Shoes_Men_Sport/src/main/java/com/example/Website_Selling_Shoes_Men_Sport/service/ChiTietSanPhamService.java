@@ -47,4 +47,13 @@ public interface ChiTietSanPhamService {
     UUID getOneToAddModal(UUID id);
 
     Page<ChiTietSanPham> listCTSP(UUID id, Pageable pageable);
+    //home
+    Page<ChiTietSanPham> searchCTSPByLoaiGiayList(List<UUID> idLoaiGiayList, Pageable pageable);
+
+    Page<ChiTietSanPham> getCTSPByGiaBan(Double minPrice, Double maxPrice, Pageable pageable);
+
+    Page<ChiTietSanPham> getCTSPBYKC(UUID idKC, Pageable pageable);
+
+    Page<ChiTietSanPham> getCTSPBYMauSac(UUID idMS, Pageable pageable);
+
 }

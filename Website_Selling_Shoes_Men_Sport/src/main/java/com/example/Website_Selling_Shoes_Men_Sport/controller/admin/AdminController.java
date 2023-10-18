@@ -1,8 +1,10 @@
 package com.example.Website_Selling_Shoes_Men_Sport.controller.admin;
 
 import com.example.Website_Selling_Shoes_Men_Sport.entity.Account;
+import com.example.Website_Selling_Shoes_Men_Sport.entity.ChiTietSanPham;
 import com.example.Website_Selling_Shoes_Men_Sport.repository.AccountRepos;
 import com.example.Website_Selling_Shoes_Men_Sport.service.AccountService;
+import com.example.Website_Selling_Shoes_Men_Sport.service.ChiTietSanPhamService;
 import com.example.Website_Selling_Shoes_Men_Sport.service.impl.AccountServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -39,7 +43,8 @@ public class AdminController {
     public String login() {
         return "admin/page-login";
     }
-
+    @Autowired
+    ChiTietSanPhamService chiTietSanPhamService;
     @PostMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password, Model model) {
         // TODO: Check if user/password exists in database
@@ -47,7 +52,10 @@ public class AdminController {
             if (a.getUsername().equals(username) && a.getPassword().equals(password)) {
                 if (a.isRole() == true) {
                     session.setAttribute("account", a);
-                    return "home/a";
+                    List<ChiTietSanPham> listSP = chiTietSanPhamService.getList();
+                    model.addAttribute("view", "../home/a.jsp");
+                    model.addAttribute("listSP", listSP);
+                    return "/home/index";
                 }
                 if (a.isRole() == false) {
                     session.setAttribute("username", username);
@@ -56,7 +64,7 @@ public class AdminController {
             }
         }
         model.addAttribute("message", "Tên đăng nhập/mật khẩu không đúng");
-        return "login";
+        return "/admin/login";
     }
 
     @GetMapping("/register")
