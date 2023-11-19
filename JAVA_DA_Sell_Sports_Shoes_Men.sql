@@ -153,6 +153,11 @@ CREATE TABLE HoaDon(
     TrangThai INT
 )
 GO
+insert into HoaDon(MaHD,CreateDate) values ('2','01/05/2023'),
+										('2','01/06/2023'),
+										('2','01/09/2023')
+select *from HoaDon
+select * from HoaDon where CreateDate between '01/01/2023' and '01/07/2023'
 
 CREATE TABLE HoaDonChiTiet(
     Id UNIQUEIDENTIFIER DEFAULT NEWID() PRIMARY KEY,
