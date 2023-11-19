@@ -3,11 +3,10 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" pageEncoding="UTF-8" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+ integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 
 <style>
-
     /* Style the tab */
     .tab {
         overflow: hidden;
@@ -148,7 +147,6 @@
     }
 </style>
 <body>
-
 <div class="tab">
     <button class="tablinks active" onclick="openCity(event, 'London')">Quản lý khuyến mại</button>
     <button class="tablinks" onclick="openCity(event, 'Paris')">Sản phẩm khuyến mại</button>
@@ -184,7 +182,6 @@
             <div class="col-lg-1">
                 <button class="btnSearch" onclick="filterTable()">Tìm</button>
             </div>
-
         </div>
     </form>
     <table id="tableKhuyenMai" class="ui celled table" width="100%" cellspacing="0">
@@ -201,7 +198,6 @@
             <th></th>
         </tr>
         </thead>
-
         <tbody id="myTable1">
         <c:forEach items="${page}" var="km" varStatus="i">
             <tr>
@@ -310,9 +306,7 @@
         </c:forEach>
         </tbody>
     </table>
-
 </div>
-
 <div id="Paris" class="tabcontent">
     <div>
         <h1 style="text-align: center; font-family: Nunito; margin-bottom: 50px;">Sản phẩm khuyến mại</h1>
@@ -329,10 +323,8 @@
             <div class="col-lg-1">
                 <button class="btnSearch" onclick="filterTable()">Tìm</button>
             </div>
-
         </div>
     </form>
-
     <table id="tableChiTietKhuyenMai" class="ui celled table" width="100%" cellspacing="0">
         <thead>
         <tr>
@@ -348,7 +340,6 @@
             <th></th>
         </tr>
         </thead>
-
         <tbody id="myTable2">
         <c:forEach items="${listCTKM}" var="ctkm" varStatus="i">
             <tr>
@@ -371,7 +362,6 @@
                     <c:if test="${ctkm.khuyenMai.donVi == '%'}">
                         <fmt:formatNumber> ${ctkm.ctsp.giaBan - ((ctkm.khuyenMai.giaTri / 100) * ctkm.ctsp.giaBan)}</fmt:formatNumber>
                     </c:if>
-
                 </td>
                 <td>${ctkm.ngayBatDau}</td>
                 <td>${ctkm.ngayKetThuc}</td>
@@ -388,8 +378,6 @@
         </c:forEach>
         </tbody>
     </table>
-
-
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js" type="text/javascript"></script>
@@ -529,8 +517,6 @@
     //         return true;
     //     }
     // }
-
-
 </script>
 </body>
 

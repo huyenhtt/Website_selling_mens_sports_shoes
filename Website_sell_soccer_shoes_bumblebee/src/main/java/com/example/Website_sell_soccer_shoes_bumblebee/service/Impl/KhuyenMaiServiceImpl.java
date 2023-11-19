@@ -14,35 +14,28 @@ import java.util.UUID;
 
 @Service
 public class KhuyenMaiServiceImpl implements KhuyenMaiService {
-
     @Autowired
     private KhuyenMaiRepository repo;
-
     @Override
     public Page<KhuyenMai> getAll(Pageable pageable) {
         return repo.getAll(pageable);
     }
-
     @Override
     public List<KhuyenMai> findAll() {
         return repo.findAll();
     }
-
     @Override
     public KhuyenMai save(KhuyenMai km) {
         return repo.save(km);
     }
-
     @Override
     public KhuyenMai findId(UUID id) {
         return repo.findId(id);
     }
-
     @Override
     public KhuyenMai findMa(String ma) {
         return repo.findMa(ma);
     }
-
     @Override
     public List<KhuyenMai> searchKhoangNgay(Date ngayBatDau, Date ngayKetThuc) {
         return repo.searchKhoangNgay(ngayBatDau, ngayKetThuc);

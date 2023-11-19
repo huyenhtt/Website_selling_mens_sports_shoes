@@ -9,12 +9,13 @@ import lombok.Setter;
 
 import java.util.UUID;
 
-@Table(name = "MauSac")
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
+@Table(name = "MauSac")
 public class MauSac {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

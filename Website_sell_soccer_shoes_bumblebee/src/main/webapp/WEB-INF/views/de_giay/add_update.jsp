@@ -54,11 +54,8 @@
         padding-left: 190px;
         padding-top: 15px;
     }
-
-
 </style>
 <br>
-
 <body>
 <div class="formAdd">
     <h1 style="text-align: center; padding-top: 20px;">THÊM/SỬA ĐẾ GIÀY</h1>
@@ -102,7 +99,6 @@
         <div class="buttonSubmit">
             <button class="button" type="submit" onclick="return Validate();">SUBMIT</button>
         </div>
-
     </form:form>
 </div>
 </body>

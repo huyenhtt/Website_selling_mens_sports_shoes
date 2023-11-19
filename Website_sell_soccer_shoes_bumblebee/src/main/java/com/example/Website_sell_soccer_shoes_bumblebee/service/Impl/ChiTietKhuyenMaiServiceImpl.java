@@ -14,35 +14,28 @@ import java.util.UUID;
 
 @Service
 public class ChiTietKhuyenMaiServiceImpl implements ChiTietKhuyenMaiService {
-
     @Autowired
     private ChiTietKhuyenMaiRepository repo;
-
     @Override
     public List<ChiTietKhuyenMai> getAll() {
         return repo.findAll();
     }
-
     @Override
     public ChiTietKhuyenMai save(ChiTietKhuyenMai ctkm) {
         return repo.save(ctkm);
     }
-
     @Override
     public ChiTietKhuyenMai findIdCTSP(UUID idCTSP) {
         return repo.findIdCTSP(idCTSP);
     }
-
     @Override
     public ChiTietKhuyenMai findID(UUID idCTKM) {
         return repo.findId(idCTKM);
     }
-
     @Override
     public ChiTietKhuyenMai findCtkmByIdKmAndCtsp(UUID idCTSP, UUID idKM) {
         return repo.findCtkmByIdKmAndCtsp(idCTSP, idKM);
     }
-
     @Override
     public List<ChiTietKhuyenMai> searchKhoangNgay(Date ngayBatDau, Date ngayKetThuc) {
         return repo.searchKhoangNgay(ngayBatDau, ngayKetThuc);

@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ChiTietKhuyenMaiService {
-
     List<ChiTietKhuyenMai> getAll();
 
     ChiTietKhuyenMai save(ChiTietKhuyenMai ctkm);
@@ -22,6 +21,4 @@ public interface ChiTietKhuyenMaiService {
     ChiTietKhuyenMai findCtkmByIdKmAndCtsp(UUID idCTSP, UUID idKM);
 
     List<ChiTietKhuyenMai> searchKhoangNgay(Date ngayBatDau, Date ngayKetThuc);
-
-
 }

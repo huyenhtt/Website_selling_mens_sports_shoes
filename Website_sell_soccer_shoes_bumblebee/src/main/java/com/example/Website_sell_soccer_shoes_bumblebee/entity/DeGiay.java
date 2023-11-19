@@ -16,6 +16,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
+
 @Table(name = "DeGiay")
 public class DeGiay {
 
@@ -23,17 +24,14 @@ public class DeGiay {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name="Id")
     private UUID id;
-
     @Column(name="Ma")
     @Size(min = 4, max = 100, message = "Mã phải từ 4 đến 150 kí tự")
     @NotBlank(message = "Mã không được để trống")
     private String ma;
-
     @Column(name="LoaiDe")
     @NotBlank(message = "Loại đế không được để trống")
     @Size(max = 150, message = "Loại đế không được quá 150 kí tự")
     private String loaiDe;
-
     @Column(name="TrangThai")
     @NotNull(message = "Trạng thái không được để trống")
     private Integer trangThai;

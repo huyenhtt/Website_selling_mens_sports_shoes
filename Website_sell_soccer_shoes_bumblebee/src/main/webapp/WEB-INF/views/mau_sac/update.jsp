@@ -12,7 +12,6 @@
         rel="stylesheet"
 />
 <style>
-
     body{
         background-color: #D9D9D9;
     }
@@ -25,15 +24,12 @@
         color: #FFFFFF;
         font-family: "Nunito";
     }
-
     form{
         margin-left: 50px;
     }
-
     .formAdd>form>.mb-3>.col-sm-8{
         margin-top: 20px;
     }
-
     .formAdd>h1{
         text-align: center;
         padding-top: 40px;
@@ -41,7 +37,6 @@
     .formAdd>form>.mb-3>label{
         margin-top: 20px;
     }
-
     .buttonSubmit{
         margin-top: 50px;
         margin-left: -50px;
@@ -56,13 +51,11 @@
         border-radius: 10px;
         border: 0px;
     }
-
     .radioButton{
         margin-top: 10px;
     }
 </style>
 <br>
-
 <body>
 <div class="formAdd">
     <h1>THÊM/SỬA ĐẾ GIÀY</h1>
@@ -74,7 +67,6 @@
                 <form:input type="hidden" class="form-control" id="inputEmail3" path="id"/>
             </div>
         </div>
-
         <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Mã:</label>
             <div class="col-sm-8">
@@ -83,7 +75,6 @@
                 <p style="color: crimson">${mess_Ma}</p>
             </div>
         </div>
-
         <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Tên màu :</label>
             <div class="col-sm-8">
@@ -106,12 +97,9 @@
                 <form:errors path="tt" cssStyle="color: crimson"></form:errors>
             </div>
         </div>
-
-
         <div class="buttonSubmit">
             <button type="submit">SUBMIT</button>
         </div>
-
     </form:form>
 </div>
 </body>

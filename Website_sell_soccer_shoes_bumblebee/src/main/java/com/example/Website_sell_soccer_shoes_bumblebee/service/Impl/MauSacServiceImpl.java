@@ -28,7 +28,6 @@ public class MauSacServiceImpl  implements MauSacService {
         }
         return msr.findAll(pageable);
     }
-
     @Override
     public List<MauSac> getAll() {
         return msr.findAll();
@@ -39,7 +38,6 @@ public class MauSacServiceImpl  implements MauSacService {
 
         Iterator<Row> rows = sheet.iterator();
         rows.next(); // Skip header row
-
         while (rows.hasNext()) {
             Row row = rows.next();
             MauSac color = new MauSac();
@@ -51,7 +49,6 @@ public class MauSacServiceImpl  implements MauSacService {
 
             msr.save(color);
         }
-
         workbook.close();
     }
 }

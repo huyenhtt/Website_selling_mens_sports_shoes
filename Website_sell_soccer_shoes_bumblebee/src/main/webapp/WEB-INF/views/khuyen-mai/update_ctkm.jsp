@@ -3,16 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-<link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
-/>
-<link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet"
-/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"/>
 <style>
-
     body {
         background-color: #D9D9D9;
     }
@@ -54,10 +47,8 @@
         padding-left: 190px;
         padding-top: 15px;
     }
-
 </style>
 <br>
-
 <body>
 <div class="formAdd">
     <h1 style="text-align: center; padding-top: 20px;">SỬA CHI TIẾT KHUYẾN MẠI</h1>
@@ -87,7 +78,6 @@
                 <input type="text" class="form-control" value="${ctkm.khuyenMai.maKhuyenMai}" disabled/>
             </div>
         </div>
-
         <div class="row mb-3">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
@@ -102,7 +92,6 @@
                 </c:if>
             </div>
         </div>
-
         <div class="row mb-3">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
@@ -112,7 +101,6 @@
                 <input type="text" class="form-control" value="<fmt:formatNumber>${ctkm.ctsp.giaBan}</fmt:formatNumber>" disabled/>
             </div>
         </div>
-
         <div class="row mb-3">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
@@ -125,10 +113,8 @@
                 <c:if test="${ctkm.khuyenMai.donVi == 'VNĐ'}">
                     <input type="text" class="form-control" value="${ctkm.ctsp.giaBan- ctkm.khuyenMai.giaTri}" disabled/>
                 </c:if>
-
             </div>
         </div>
-
         <div class="row mb-3">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
@@ -138,7 +124,6 @@
                 <input type="datetime-local" class="form-control" value="${ctkm.ngayBatDau}" name="ngayBatDau"/>
             </div>
         </div>
-
         <div class="row mb-3">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
@@ -148,8 +133,6 @@
                 <input type="datetime-local" class="form-control" value="${ctkm.ngayKetThuc}" name="ngayKetThuc"/>
             </div>
         </div>
-
-
         <div class="row mb-3">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
@@ -165,7 +148,6 @@
         <div class="buttonSubmit">
             <button class="button" type="submit">SUBMIT</button>
         </div>
-
     </form>
 </div>
 </body>

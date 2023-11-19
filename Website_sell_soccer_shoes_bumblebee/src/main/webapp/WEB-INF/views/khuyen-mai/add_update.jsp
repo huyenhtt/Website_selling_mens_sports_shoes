@@ -3,16 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-<link
-        rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
-/>
-<link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet"
-/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet"/>
 <style>
-
     body {
         background-color: #D9D9D9;
     }
@@ -54,11 +47,8 @@
         padding-left: 190px;
         padding-top: 15px;
     }
-
-
 </style>
 <br>
-
 <body>
 <div class="formAdd">
     <h1 style="text-align: center; padding-top: 20px;">THÊM/SỬA KHUYẾN MẠI</h1>
@@ -80,7 +70,6 @@
                 <span style="color: crimson">${mess_Ma}</span>
             </div>
         </div>
-
         <div class="row mb-3">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
@@ -91,7 +80,6 @@
                 <form:errors path="tenKhuyenMai" cssStyle="color: crimson"></form:errors>
             </div>
         </div>
-
         <div class="row mb-3">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
@@ -105,7 +93,6 @@
                 <form:errors path="donVi" cssStyle="color: crimson"></form:errors>
             </div>
         </div>
-
         <div class="row mb-3">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
@@ -117,8 +104,6 @@
                 <span style="color: crimson">${errorGiaTri}</span>
             </div>
         </div>
-
-
         <div class="row mb-3">
             <div class="col-lg-1"></div>
             <div class="col-lg-2">
@@ -132,7 +117,6 @@
         <div class="buttonSubmit">
             <button class="button" type="submit">SUBMIT</button>
         </div>
-
     </form:form>
 </div>
 </body>

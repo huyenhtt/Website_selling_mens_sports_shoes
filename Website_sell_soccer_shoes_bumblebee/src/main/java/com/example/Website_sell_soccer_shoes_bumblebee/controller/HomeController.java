@@ -135,7 +135,6 @@ public class HomeController {
     private List<GioHangChiTiet> listGHCT = null;
     private List<UUID> idCartUUIDList = null;
 
-
     @RequestMapping("/bumblebee/home")
     public String home(Model model, @RequestParam(defaultValue = "0") int p, HttpSession session) {
         int page = p; // Trang đầu tiên
