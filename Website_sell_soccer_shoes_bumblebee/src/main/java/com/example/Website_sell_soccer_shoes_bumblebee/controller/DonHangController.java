@@ -110,50 +110,6 @@ public class DonHangController {
             @RequestParam(name = "donHang", required = false) String donHang,
             Model model
     ) {
-//        if (page < 0) {
-//            page = 0;
-//        }
-//        Page<HoaDon> hoaDonPage;
-//        Pageable pageable = PageRequest.of(page, 5);
-//
-//        if (searchLoaiHoaDon.key >= 0) {
-//            hoaDonPage = hoaDonService.searchLoaiHoaDon(searchLoaiHoaDon.key, pageable);
-//            model.addAttribute("page", hoaDonPage);
-//
-//            // Check if donHang is provided and use the corresponding repository method
-//            if ("cho-xac-nhan".equals(donHang)) {
-//                hoaDonPage = hoaDonRepository.searchLoaiHoaDonChoXacNhan(searchLoaiHoaDon.key, pageable);
-//                model.addAttribute("page", hoaDonPage);
-//            } else if ("chuan-bi".equals(donHang)) {
-//                hoaDonPage = hoaDonRepository.searchLoaiHoaDonChuanBi(searchLoaiHoaDon.key, pageable);
-//                model.addAttribute("page", hoaDonPage);
-//            } else if ("dang-giao".equals(donHang)) {
-//                hoaDonPage = hoaDonRepository.searchLoaiHoaDonDangGiao(searchLoaiHoaDon.key, pageable);
-//                model.addAttribute("page", hoaDonPage);
-//            } else if ("hoan-thanh".equals(donHang)) {
-//                hoaDonPage = hoaDonRepository.searchLoaiHoaDonHoanThanh(searchLoaiHoaDon.key, pageable);
-//                model.addAttribute("page", hoaDonPage);
-//            } else if ("don-da-doi".equals(donHang)) {
-//                hoaDonPage = hoaDonRepository.searchLoaiHoaDonDaTra(searchLoaiHoaDon.key, pageable);
-//                model.addAttribute("page", hoaDonPage);
-//            } else if ("don-doi".equals(donHang)) {
-//                hoaDonPage = hoaDonRepository.searchLoaiHoaDonTraHang(searchLoaiHoaDon.key, pageable);
-//                model.addAttribute("page", hoaDonPage);
-//            } else if ("huy".equals(donHang)) {
-//                hoaDonPage = hoaDonRepository.searchLoaiHoaDonDaHuy(searchLoaiHoaDon.key, pageable);
-//                model.addAttribute("page", hoaDonPage);
-//            } else if ("all".equals(donHang)) {
-//                hoaDonPage = hoaDonService.searchLoaiHoaDon(searchLoaiHoaDon.key, pageable);
-//                model.addAttribute("page", hoaDonPage);
-//            } else {
-//                model.addAttribute("messError", "Không thể tìm kiếm ! Vui lòng xem lại dữ liệu !");
-//            }
-//        }
-//
-//        model.addAttribute("searchForm", new SearchForm());
-////        model.addAttribute("page", hoaDonPage);
-//        model.addAttribute("view", "../don-hang/listdh.jsp");
-//        return "/admin/index";
 
         //1
         if (page < 0) {
@@ -176,58 +132,6 @@ public class DonHangController {
         model.addAttribute("searchForm", new SearchForm());
         model.addAttribute("view", "../don-hang/listdh.jsp");
         return "/admin/index";
-
-//        if (page < 0) {
-//            page = 0;
-//        }
-//
-//        Page<HoaDon> hoaDonPage;
-//        Pageable pageable = PageRequest.of(page, 5);
-//
-//        if (donHang != null && !donHang.isEmpty()) {
-//            switch (donHang) {
-//                case "cho-xac-nhan":
-//                    hoaDonPage = hoaDonRepository.searchLoaiHoaDonChoXacNhan(searchLoaiHoaDon.key, pageable);
-//                    break;
-//                case "chuan-bi":
-//                    hoaDonPage = hoaDonRepository.searchLoaiHoaDonChuanBi(searchLoaiHoaDon.key, pageable);
-//                    break;
-//                case "dang-giao":
-//                    hoaDonPage = hoaDonRepository.searchLoaiHoaDonDangGiao(searchLoaiHoaDon.key, pageable);
-//                    break;
-//                case "hoan-thanh":
-//                    hoaDonPage = hoaDonRepository.searchLoaiHoaDonHoanThanh(searchLoaiHoaDon.key, pageable);
-//                    break;
-//                case "don-da-doi":
-//                    hoaDonPage = hoaDonRepository.searchLoaiHoaDonDaTra(searchLoaiHoaDon.key, pageable);
-//
-//                    break;
-//                case "don-doi":
-//                    hoaDonPage = hoaDonRepository.searchLoaiHoaDonTraHang(searchLoaiHoaDon.key, pageable);
-//
-//                    break;
-//                case "huy":
-//                    hoaDonPage = hoaDonRepository.searchLoaiHoaDonDaHuy(searchLoaiHoaDon.key, pageable);
-//                    break;
-//                case "all":
-//                    hoaDonPage = hoaDonService.searchLoaiHoaDon(searchLoaiHoaDon.key, pageable);
-//
-//                    break;
-//                // Thêm các trường hợp khác tương ứng với loại hoá đơn của bạn
-//                default:
-//                    hoaDonPage = hoaDonService.searchLoaiHoaDon(-1, pageable); // Mặc định nếu không có loại hoá đơn
-//
-//                    break;
-//            }
-//        } else {
-//            hoaDonPage = hoaDonService.searchLoaiHoaDon(-1, pageable); // Mặc định nếu không có loại hoá đơn
-//            model.addAttribute("messError", "Không thể tìm kiếm ! Vui lòng xem lại dữ liệu !");
-//        }
-
-//        model.addAttribute("page", hoaDonPage);
-//        model.addAttribute("searchForm", new SearchForm());
-//        model.addAttribute("view", "../don-hang/listdh.jsp");
-//        return "/admin/index";
 
 
     }

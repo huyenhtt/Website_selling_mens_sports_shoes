@@ -44,24 +44,11 @@ public class MauSacController {
     @GetMapping("mau-sac/hien-thi")
     public String hien(@Param("key") String key, Model model, @ModelAttribute("ms") MauSac mauSac, @RequestParam(defaultValue = "1") int page) {
 
-
-//        if (page < 1) {
-//            page = 1;
-//        }
-//        Pageable pageable = PageRequest.of(page - 1, 6);
-//        Page<MauSac> pgg = this.mss.search(key, pageable);
-//        model.addAttribute("list", pgg);
-////        model.addAttribute("ms", mauSac);
         model.addAttribute("view", "../mau_sac/index.jsp");
         return "/admin/index";
     }
 
-    //    @GetMapping("delete/{id}")
-//    public String xoa(@PathVariable("id") MauSac ms) {
-//        this.msr.delete(ms);
-//        return "redirect:/mau-sac/hien-thi";
-//
-//    }
+
      @GetMapping("/mau-sac/hien-thi/list")
      public ResponseEntity<?> index(@RequestParam(defaultValue = "0",name = "page")Integer page,Model model){
         return ResponseEntity.ok(msr.findAll());
