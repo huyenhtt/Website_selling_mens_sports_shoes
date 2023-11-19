@@ -28,7 +28,6 @@ import java.util.*;
 
 @Controller
 public class DonHangController {
-
     @Autowired
     HoaDonService hoaDonService;
     @Autowired
@@ -50,10 +49,8 @@ public class DonHangController {
     @Data
     public static class SearchForm {
         String keyword = "";
-
         @DateTimeFormat( pattern="yyyy-MM-dd HH:mm:ss")
         Date fromDate;
-
         @DateTimeFormat( pattern="yyyy-MM-dd HH:mm:ss")
         Date toDate;
     }
@@ -260,15 +257,12 @@ public class DonHangController {
     @GetMapping("/don-hang/exportExcel")
     public void exportToExcel(HttpServletResponse response) throws Exception {
         response.setContentType("application/octet-stream");
-
         String headerKey = "Content-Disposition";
         DateFormat dateFormat = (DateFormat) new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String current = dateFormat.format(new Date());
         String filename = "bills_" + current + ".xls";
         String headerValue = "attachment;filename=" + filename;
-
         response.setHeader(headerKey, headerValue);
-
         hoaDonServiceImpl.exportExcel(response);
     }
 
@@ -282,10 +276,8 @@ public class DonHangController {
         Pageable pageable = PageRequest.of(page, 5);
         String donHang = "all";
         model.addAttribute("donHang", donHang);
-
         Page<HoaDon> list = hoaDonRepository.findAll(pageable);
         model.addAttribute("page", list);
-
         model.addAttribute("view", "../don-hang/listdh.jsp");
         return "/admin/index";
     }
@@ -293,7 +285,6 @@ public class DonHangController {
     //listChoXacNhan
     @GetMapping("/don-hang/list-cho-xac-nhan")
     public String listChoXacNhan(@RequestParam(defaultValue = "0", name = "p") Integer page, @ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-
         model.addAttribute("searchLoaiDon", new SearchLoaiHoaDon());
         if (page < 0) {
             page = 0;
@@ -303,121 +294,96 @@ public class DonHangController {
         Pageable pageable = PageRequest.of(page, 5);
         Page<HoaDon> donHangCho = hoaDonRepository.donHangChoXacNhan(pageable);
         model.addAttribute("page", donHangCho);
-
         model.addAttribute("view", "../don-hang/listdh.jsp");
         return "/admin/index";
     }
 
     @GetMapping("/don-hang/list-chuan-bi")
     public String listChuanBi(@RequestParam(defaultValue = "0", name = "p") Integer page, @ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-
         model.addAttribute("searchLoaiDon", new SearchLoaiHoaDon());
         if (page < 0) {
             page = 0;
         }
         String donHang = "chuan-bi";
         model.addAttribute("donHang", donHang);
-
         Pageable pageable = PageRequest.of(page, 5);
-
         Page<HoaDon> pageChuanBi = hoaDonRepository.donHangDangChuanBi(pageable);
         model.addAttribute("page", pageChuanBi);
-
         model.addAttribute("view", "../don-hang/listdh.jsp");
         return "/admin/index";
     }
 
     @GetMapping("/don-hang/list-huy")
     public String listHuy(@RequestParam(defaultValue = "0", name = "p") Integer page, @ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-
         model.addAttribute("searchLoaiDon", new SearchLoaiHoaDon());
         if (page < 0) {
             page = 0;
         }
         String donHang = "huy";
         model.addAttribute("donHang", donHang);
-
         Pageable pageable = PageRequest.of(page, 5);
-
         Page<HoaDon> pageDonDaHuy = hoaDonRepository.donHangDaHuy(pageable);
         model.addAttribute("page", pageDonDaHuy);
-
         model.addAttribute("view", "../don-hang/listdh.jsp");
         return "/admin/index";
     }
 
     @GetMapping("/don-hang/list-dang-giao")
     public String listDangGiao(@RequestParam(defaultValue = "0", name = "p") Integer page, @ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-
         model.addAttribute("searchLoaiDon", new SearchLoaiHoaDon());
         if (page < 0) {
             page = 0;
         }
         String donHang = "dang-giao";
         model.addAttribute("donHang", donHang);
-
         Pageable pageable = PageRequest.of(page, 5);
-
         Page<HoaDon> donDangGiao = hoaDonRepository.donHangDangGiao(pageable);
         model.addAttribute("page", donDangGiao);
-
         model.addAttribute("view", "../don-hang/listdh.jsp");
         return "/admin/index";
     }
 
     @GetMapping("/don-hang/list-hoan-thanh")
     public String listHoanThanh(@RequestParam(defaultValue = "0", name = "p") Integer page, @ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-
         model.addAttribute("searchLoaiDon", new SearchLoaiHoaDon());
         if (page < 0) {
             page = 0;
         }
         String donHang = "hoan-thanh";
         model.addAttribute("donHang", donHang);
-
         Pageable pageable = PageRequest.of(page, 5);
-
         Page<HoaDon> donHoanThanh = hoaDonRepository.donHangHoanThanh(pageable);
         model.addAttribute("page", donHoanThanh);
-
         model.addAttribute("view", "../don-hang/listdh.jsp");
         return "/admin/index";
     }
 
     @GetMapping("/don-hang/list-don-doi")
     public String listDonTra(@RequestParam(defaultValue = "0", name = "p") Integer page, @ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-
         model.addAttribute("searchLoaiDon", new SearchLoaiHoaDon());
         if (page < 0) {
             page = 0;
         }
         String donHang = "don-doi";
         model.addAttribute("donHang", donHang);
-
         Pageable pageable = PageRequest.of(page, 5);
-
         Page<HoaDon> donTra = hoaDonRepository.donHangTra(pageable);
         model.addAttribute("page", donTra);
-
         model.addAttribute("view", "../don-hang/listdh.jsp");
         return "/admin/index";
     }
 
     @GetMapping("/don-hang/list-don-da-doi")
     public String listDonDaTra(@RequestParam(defaultValue = "0", name = "p") Integer page, @ModelAttribute("searchForm") SearchForm searchForm, Model model) {
-
         model.addAttribute("searchLoaiDon", new SearchLoaiHoaDon());
         if (page < 0) {
             page = 0;
         }
         String donHang = "don-da-doi";
         model.addAttribute("donHang", donHang);
-
         Pageable pageable = PageRequest.of(page, 5);
-
         Page<HoaDon> donDaTra = hoaDonRepository.donHangDaTra(pageable);
         model.addAttribute("page", donDaTra);
-
         model.addAttribute("view", "../don-hang/listdh.jsp");
         return "/admin/index";
     }

@@ -17,10 +17,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-
 @Controller
 public class DeGiayController {
-
     @Autowired
     private DeGiayServiceImpl deGiayService;
 
@@ -64,7 +62,6 @@ public class DeGiayController {
             model.addAttribute("view", "../de_giay/add_update.jsp");
             return "/admin/index";
         }
-
         deGiayService.add(degiay);
         return "redirect:/de-giay/hien-thi";
     }
@@ -86,11 +83,7 @@ public class DeGiayController {
 
             return "/admin/index";
         }
-
         deGiayService.add(degiay);
         return "redirect:/de-giay/hien-thi";
-
     }
-
-
 }

@@ -12,7 +12,6 @@
         rel="stylesheet"
 />
 <style>
-
     body{
         background-color: #D9D9D9;
     }
@@ -62,19 +61,15 @@
     }
 </style>
 <br>
-
 <body>
 <div class="formAdd">
     <h1>THÊM/SỬA MÀU SẮC</h1>
-
     <form:form action="/mau-sac/add" modelAttribute="ms" method="post">
-
         <div class="row mb-3">
             <div class="col-sm-6">
                 <form:input type="hidden" class="form-control" id="inputEmail3" path="id"/>
             </div>
         </div>
-
         <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Mã:</label>
             <div class="col-sm-8">
@@ -83,7 +78,6 @@
                 <p style="color: crimson">${mess_Ma}</p>
             </div>
         </div>
-
         <div class="row mb-3">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Tên màu :</label>
             <div class="col-sm-8">
@@ -91,7 +85,6 @@
                 <form:errors path="ten" cssStyle="color: crimson"></form:errors>
             </div>
         </div>
-
 <%--        <div class="row mb-3">--%>
 <%--            <label for="inputEmail3" class="col-sm-2 col-form-label">Mô tả:</label>--%>
 <%--            <div class="col-sm-8">--%>
@@ -119,12 +112,9 @@
 
 <%--        <sf:radiobutton path="tt" value="0"/>K Hoạt Động--%>
 <%--        <br>--%>
-
-
         <div class="buttonSubmit">
             <button type="submit">SUBMIT</button>
         </div>
-
     </form:form>
 </div>
 </body>

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 @Repository
-public interface MauSacReponsitory  extends JpaRepository<MauSac, UUID> {
+public interface MauSacReponsitory extends JpaRepository<MauSac, UUID> {
     @Query("select ms from MauSac  ms where ms .ten=:ten")
     MauSac findByTen(@Param("ten")String ten);
     @Query("SELECT ms FROM MauSac ms where ms.ten LIKE %?1% or ms.ma like %?1%")

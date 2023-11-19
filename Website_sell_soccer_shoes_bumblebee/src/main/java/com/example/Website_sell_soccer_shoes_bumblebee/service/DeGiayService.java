@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface DeGiayService {
-
     List<DeGiay> getList();
     Page<DeGiay> getListPage(Pageable pageable);
     DeGiay add(DeGiay deGiay);

@@ -9,16 +9,10 @@ import java.util.List;
 import java.util.UUID;
 
 public interface KhuyenMaiService {
-
     Page<KhuyenMai> getAll(Pageable pageable);
-
     List<KhuyenMai> findAll();
-
     KhuyenMai save(KhuyenMai km);
-
     KhuyenMai findId(UUID id);
-
     KhuyenMai findMa(String ma);
-
     List<KhuyenMai> searchKhoangNgay(Date ngayBatDau, Date ngayKetThuc);
 }

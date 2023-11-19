@@ -29,7 +29,6 @@ import java.util.Map;
 import java.util.UUID;
 
 @Controller
-
 public class MauSacController {
     @Autowired
     MauSacReponsitory msr;
@@ -42,7 +41,6 @@ public class MauSacController {
         dsTrangThai.put(1, "Hoạt động");
         return dsTrangThai;
     }
-
     @GetMapping("mau-sac/hien-thi")
     public String hien(@Param("key") String key, Model model, @ModelAttribute("ms") MauSac mauSac, @RequestParam(defaultValue = "1") int page) {
 
@@ -68,7 +66,6 @@ public class MauSacController {
      public ResponseEntity<?> index(@RequestParam(defaultValue = "0",name = "page")Integer page,Model model){
         return ResponseEntity.ok(msr.findAll());
      }
-
     @RequestMapping("mau-sac/update/{id}")
     public String vupdate(@PathVariable("id") UUID id, Model model) {
         MauSac ms = this.msr.findById(id).orElse(null);
@@ -76,14 +73,12 @@ public class MauSacController {
         model.addAttribute("view", "../mau_sac/update.jsp");
         return "/admin/index";
     }
-
     @GetMapping("/hien-thi-add")
     public String vthem(Model model, MauSac ms) {
         model.addAttribute("ms", ms);
         model.addAttribute("view", "../mau_sac/add.jsp");
         return "/admin/index";
     }
-
     @RequestMapping("mau-sac/update")
     public String update( Model model,
                          @Valid @ModelAttribute("ms") MauSac cl,
@@ -95,12 +90,10 @@ public class MauSacController {
             model.addAttribute("view", "../chat_lieu/add_update.jsp");
             return "/admin/index";
         }
-
         this.msr.save(cl);
         model.addAttribute("view", "../mau_sac/index.jsp");
         return "redirect:/mau-sac/hien-thi";
     }
-
     @PostMapping("mau-sac/add")
     public String add(@Valid @ModelAttribute("ms") MauSac ms, BindingResult result, Model model) {
         Boolean hasE = result.hasErrors();

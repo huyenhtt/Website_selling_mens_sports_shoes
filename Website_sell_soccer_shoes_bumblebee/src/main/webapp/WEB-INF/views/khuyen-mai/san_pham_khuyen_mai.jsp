@@ -57,15 +57,11 @@
         margin-top: 5px;
         margin-right: 10px;
     }
-
-
 </style>
 <body>
 <div>
     <h1 style="text-align: center; font-family: Nunito;">Sản phẩm khuyến mãi</h1>
 </div>
-
-
 <div class="table">
     <table>
         <thead>
@@ -79,7 +75,6 @@
             <th></th>
         </tr>
         </thead>
-
         <tbody>
         <c:forEach items="${page.content}" var="km" varStatus="i">
             <tr>
@@ -96,7 +91,6 @@
         </c:forEach>
         </tbody>
     </table>
-
 </div>
 
 </body>
